@@ -1,5 +1,4 @@
 .home-banner {
-  background-image: url(home-banner.png);
   background-size: cover;
   height: 650px;
 
@@ -15,4 +14,13 @@
       font-size: 36px;
       font-weight: lighter;
     }
+}
+
+.date_fox_elipse {
+  background-image: url();
+  padding: 24px;
+  background-color: #6F4A85;
+  width: 80%;
+  border-radius: 45%;
+  position: relative;
 }
