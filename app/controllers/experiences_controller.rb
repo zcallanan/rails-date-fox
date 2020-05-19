@@ -1,9 +1,10 @@
 class ExperiencesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
+
   def index
     @experiences = Experience.all
   end
 
-  # this required?
   def show; end
 
   def new
