@@ -1,0 +1,18 @@
+.home-banner {
+  background-image: url(home-banner.png);
+  background-size: cover;
+  height: 650px;
+
+    h1 {
+    padding-top: 440px;
+    font-weight: bold;
+    font-size: 80px;
+    color: #f7f7f7;
+    shadow: 5px 5px 8px #100303;
+    }
+
+    button {
+      font-size: 36px;
+      font-weight: lighter;
+    }
+}
