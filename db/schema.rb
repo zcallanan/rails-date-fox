@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 2020_05_18_143305) do
 
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "idea_id", null: false
+    t.bigint "experience_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["idea_id"], name: "index_bookings_on_idea_id"
+    t.index ["experience_id"], name: "index_bookings_on_experience_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table "ideas", force: :cascade do |t|
+  create_table "experiences", force: :cascade do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string "name"
@@ -39,14 +39,14 @@ ActiveRecord::Schema.define(version: 2020_05_18_143305) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "item_ideas", force: :cascade do |t|
+  create_table "item_experiences", force: :cascade do |t|
     t.integer "travel_time"
-    t.bigint "idea_id", null: false
+    t.bigint "experience_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["idea_id"], name: "index_item_ideas_on_idea_id"
-    t.index ["item_id"], name: "index_item_ideas_on_item_id"
+    t.index ["experience_id"], name: "index_item_experiences_on_experience_id"
+    t.index ["item_id"], name: "index_item_experiences_on_item_id"
   end
 
   create_table "item_kinds", force: :cascade do |t|
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_143305) do
     t.time "close_time"
     t.integer "rating"
     t.integer "price_range"
+    t.integer "price"
     t.string "days_closed"
     t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -95,10 +96,10 @@ ActiveRecord::Schema.define(version: 2020_05_18_143305) do
 
   create_table "travel_kinds", force: :cascade do |t|
     t.string "name"
-    t.bigint "item_idea_id", null: false
+    t.bigint "item_experience_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_idea_id"], name: "index_travel_kinds_on_item_idea_id"
+    t.index ["item_experience_id"], name: "index_travel_kinds_on_item_experience_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,14 +115,14 @@ ActiveRecord::Schema.define(version: 2020_05_18_143305) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bookings", "ideas"
+  add_foreign_key "bookings", "experiences"
   add_foreign_key "bookings", "users"
-  add_foreign_key "item_ideas", "ideas"
-  add_foreign_key "item_ideas", "items"
+  add_foreign_key "item_experiences", "experiences"
+  add_foreign_key "item_experiences", "items"
   add_foreign_key "item_kinds", "items"
   add_foreign_key "items", "activities"
   add_foreign_key "search_activities", "activities"
   add_foreign_key "search_activities", "searches"
   add_foreign_key "searches", "users"
-  add_foreign_key "travel_kinds", "item_ideas"
+  add_foreign_key "travel_kinds", "item_experiences"
 end
