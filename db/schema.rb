@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_143305) do
     t.time "close_time"
     t.integer "rating"
     t.integer "price_range"
+    t.integer "price"
     t.string "days_closed"
     t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
