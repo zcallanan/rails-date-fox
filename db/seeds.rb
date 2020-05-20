@@ -60,8 +60,14 @@ categories.each do |category|
     ser_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
     item_data = JSON.parse(ser_data)
 
-    item_data.each do |x|
-      hours = val['hours'][0]['open']
+    item_data.each do |time|
+      hours = time['hours'][0]['open']
+      timetable = OperatingHour.new(
+        day: hours['day'],
+        open_time: hours['start'],
+        close_time: hours['end']
+      )
+
     end
     item_data.each_with_index do |val, ind|
       hours
