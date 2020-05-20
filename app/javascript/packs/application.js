@@ -17,3 +17,7 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import 'plugins/flatpickr'
+import "controllers"
+import { activities, price_range } from '../components/checkboxes'
+activities();
+price_range();

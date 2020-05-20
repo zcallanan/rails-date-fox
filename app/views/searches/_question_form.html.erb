@@ -1,0 +1,52 @@
+<div class="search-form-container">
+
+  <%= simple_form_for @search, method: :get do |f| %>
+
+    <%= f.input :city, label: "Where do you want your date?" %>
+
+    <div class="form-group">
+      <label class="control-label">What do you want to do?</label>
+      <input type="hidden" name="search[activity_ids][]" value="">
+        <div class="activity-choices">
+          <% @activities.each do |activity| %>
+            <input type="checkbox" class="hidden" value="<%= activity.id %>" name="search[activity_ids][]" id="search_activity_ids_<%= activity.id %>">
+            <label class="activity-choice" for="search_activity_ids_<%= activity.id %>"><%= activity.name %><br><i class="fa fa-check"></i></label>
+          <% end %>
+        </div>
+    </div>
+    
+    <div class="date">
+      <%= f.input :starts_at, 
+                  as: :string, 
+                  label: "Start",
+                  placeholder: 'From:',
+                  input_html: {class: "datepicker"} %>
+      <%= f.input :ends_at, 
+                  as: :string, 
+                  label: "End",
+                  placeholder: 'To:',
+                  input_html: {class: "datepicker"} %>
+    </div>
+
+    <div class="form-group">
+      <div class="col-form-label pt-0">Set your budget</div>
+      <input type="hidden" name="search[price_range][]" value="">
+        <div class="price-choices">
+          <input class="hidden" type="checkbox" value="1" name="search[price_range][]" id="search_price_range_1">
+          <label class="price-choice" for="search_price_range_1">€</label>
+        
+          <input class="hidden" type="checkbox" value="2" name="search[price_range][]" id="search_price_range_2">
+          <label class="price-choice" for="search_price_range_2">€€</label>
+        
+          <input class="hidden" type="checkbox" value="3" name="search[price_range][]" id="search_price_range_3">
+          <label class="price-choice" for="search_price_range_3">€€€</label>
+          
+          <input class="hidden" type="checkbox" value="4" name="search[price_range][]" id="search_price_range_4">
+          <label class="price-choice" for="search_price_range_4">€€€€</label>
+        </div>
+      </div>
+
+    <%= f.button :submit, "Done!" %>
+  <% end %>
+</div>
+
