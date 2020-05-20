@@ -7,45 +7,108 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # starts_at & ends_at are datetime type
-experience = Experience.new(
-  starts_at: "15-06-20 18:00",
-  ends_at: "15-06-20 21:00",
-  name: "Romantic"
-)
-experience.save
 
-activity = Activity.new(
-  name: "Romantic",
-  duration: 120
-)
-activity.save
+require 'json'
+require 'open-uri'
+require 'csv'
+API_KEY = ENV.fetch('YELP_API')
 
-item = Item.new(
-  name: "Chez",
-  description: "A cool place to eat",
-  address: "1 Awesome Way, Munich 80634",
-  availability: true,
-  open_time: "12:00",
-  close_time: "23:30",
-  rating: 8.3,
-  price: 0,
-  price_range: 3,
-  days_closed: 6
-)
+Activity.destroy_all
+Item.destroy_all
+OperatingHour.destroy_all
+ItemOperatingHour.destroy_all
 
-# assign an activity foreign key value to item
-item.activity = activity
-item.save
+activities = [
+  ['Dinner & Lunch', 120],
+  ['Bar', 90],
+  ['Club & Dance', 90],
+  ['Breakfast', 75],
+  ['Events, Shows & Movies', 150],
+  ['Theatres & Operas', 180],
+  ['Concerts & Festivals', 180],
+  ['Museums & Sites', 120],
+  ['Indoor Activity', 90],
+  ['Outdoor Activity', 180]
+]
 
-item_experience = ItemExperience.new(
-  travel_time: 30
-)
+# SEED ACTIVITIES
+activities.each do |value|
+  activity = Activity.new(
+    name: value[0],
+    duration: value[1]
+  )
+  # SAVE
+  activity.save
+end
 
-# assign an item foreign key value to item_experience
-item_experience.item = item
+csv_read_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
-# assign an experience foreign key value to item_experience
-item_experience.experience = experience
-item_experience.save
+CSV.foreach('categories.csv', csv_read_options) do |csv_row|
+  url = "https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=#{csv_row[0]}"
+  # url = 'https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=restaurants'
+  serialized_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
+  data = JSON.parse(serialized_data)
+  data['businesses'].each do |row|
+    location = row['location']
+    address_two = " #{location['address2']}" unless location['address2'].nil?
+    address_three = " #{location['address3']}" unless location['address3'].nil?
+    address_string = "#{location['address1']}#{address_two}#{address_three}, #{location['city']} #{location['zip_code']}"
 
-puts "finished!"
+    item = Item.new(
+      name: row['name'],
+      description: 'A cool place to eat',
+      address: address_string,
+      availability: true,
+      rating: row['rating'],
+      price_range: row['price'].size,
+      review_count: row['review_count']
+    )
+    activities = Activity.all
+    activities.each do |activity|
+      item.activity = activity if activity.name == csv_row[1]
+    end
+
+    # SAVE
+    item.save
+
+    url = "https://api.yelp.com/v3/businesses/#{row['id']}"
+    # url = "https://api.yelp.com/v3/businesses/HI7M_qC-q2P7U8a7kIfW6g"
+
+    ser_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
+    item_data = JSON.parse(ser_data)
+
+    # SEED OPERATING HOURS
+    hours = item_data['hours'][0]['open']
+    hours.each do |val|
+      operating_hours = OperatingHour.new(
+        day: val['day'],
+        open_time: val['start'],
+        close_time: val['end']
+      )
+      # SAVE
+      operating_hours.save
+
+      # SEED JOIN TABLE
+      item_operating_hours = ItemOperatingHour.new
+
+      item_operating_hours.item = item
+      item_operating_hours.operating_hour = operating_hours
+
+      # SAVE
+      item_operating_hours.save
+    end
+
+    images = item_data['photos']
+    images.each_with_index do |photo_url, ind|
+      # SEED PHOTOS
+      file = URI.open(photo_url)
+      item.photos.attach(
+        io: file,
+        filename: "#{row['name']}_#{ind}",
+        content_type: 'image/jpg'
+      )
+    end
+  end
+end
+
+puts 'Finished!'
