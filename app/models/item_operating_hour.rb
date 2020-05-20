@@ -1,4 +1,4 @@
 class ItemOperatingHour < ApplicationRecord
-  belongs_to :items
-  belongs_to :operating_hours
+  belongs_to :item
+  belongs_to :operating_hour
 end
