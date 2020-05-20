@@ -1,7 +1,7 @@
-.home-banner {
+.home_banner {
   background-size: cover;
   height: 650px;
-  margin-bottom: 220px;
+  margin-bottom: 150px;
 
     h1 {
     padding-top: 370px;
@@ -12,25 +12,36 @@
     }
 
     button {
-      margin-top: 16px;
+      margin-left: 960px;
       font-size: 36px;
       font-weight: lighter;
       box-shadow: 2px 2px 4px #333333;
+      text-shadow: 1px 1px 2px #333333;
     }
 
     .date_fox_elipse {
       background-position: center; /* Center the image */
       background-repeat: no-repeat; /* Do not repeat the image */
-      background-size: 1680px 370px; /* Resize the background image to cover the entire container */
+      background-size: 1450px 480px; /* Resize the background image to cover the entire container */
   }
     .elipse_text {
-        padding-top: 80px;
+          display: flex;
+          justify-content: space-between;
 
       p {
+        margin-top: 60px;
+        margin-left: 160px;
+        width: 580px;
         color: #f7f7f7;
         text-shadow: 2px 2px 4px #333333;
         font-size: 32px;
+        justify-content: space-between;
       }
+    }
+
+    .stars {
+      margin-left: 960px;
+      color: #00CCBC;
     }
 }
 
