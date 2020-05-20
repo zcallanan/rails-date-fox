@@ -1,26 +1,38 @@
 .home-banner {
   background-size: cover;
   height: 650px;
+  margin-bottom: 220px;
 
     h1 {
-    padding-top: 440px;
+    padding-top: 370px;
     font-weight: bold;
     font-size: 80px;
     color: #f7f7f7;
-    shadow: 5px 5px 8px #100303;
+    text-shadow: 2px 2px 4px #333333;
     }
 
     button {
+      margin-top: 16px;
       font-size: 36px;
       font-weight: lighter;
+      box-shadow: 2px 2px 4px #333333;
+    }
+
+    .date_fox_elipse {
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      background-size: 1680px 370px; /* Resize the background image to cover the entire container */
+  }
+    .elipse_text {
+        padding-top: 80px;
+
+      p {
+        color: #f7f7f7;
+        text-shadow: 2px 2px 4px #333333;
+        font-size: 32px;
+      }
     }
 }
 
-.date_fox_elipse {
-  background-image: url();
-  padding: 24px;
-  background-color: #6F4A85;
-  width: 80%;
-  border-radius: 45%;
-  position: relative;
-}
+
+
