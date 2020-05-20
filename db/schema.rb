@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_130719) do
+ActiveRecord::Schema.define(version: 2020_05_20_132253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,20 +85,13 @@ ActiveRecord::Schema.define(version: 2020_05_20_130719) do
     t.index ["activity_id"], name: "index_items_on_activity_id"
   end
 
-  create_table "items_operating_hours", id: false, force: :cascade do |t|
-    t.bigint "item_id", null: false
-    t.bigint "operating_hour_id", null: false
-    t.bigint "items_id", null: false
-    t.bigint "operating_hours_id", null: false
-    t.index ["items_id"], name: "index_items_operating_hours_on_items_id"
-    t.index ["operating_hours_id"], name: "index_items_operating_hours_on_operating_hours_id"
-  end
-
   create_table "operating_hours", force: :cascade do |t|
     t.integer "day"
-    t.boolean "open_today", default: false
+    t.boolean "open_today"
     t.time "open_time"
     t.time "close_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "search_activities", force: :cascade do |t|
@@ -149,8 +142,6 @@ ActiveRecord::Schema.define(version: 2020_05_20_130719) do
   add_foreign_key "item_kinds_items", "item_kinds", column: "item_kinds_id"
   add_foreign_key "item_kinds_items", "items", column: "items_id"
   add_foreign_key "items", "activities"
-  add_foreign_key "items_operating_hours", "items", column: "items_id"
-  add_foreign_key "items_operating_hours", "operating_hours", column: "operating_hours_id"
   add_foreign_key "search_activities", "activities"
   add_foreign_key "search_activities", "searches"
   add_foreign_key "searches", "users"

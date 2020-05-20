@@ -49,22 +49,22 @@ categories.each do |category|
       # description: "A cool place to eat",
       address: "#{location[address1]} #{location[address2]} #{location[address3]}, #{location[city]} #{location[zip_code]}",
       availability: true,
-      # open_time: "12:00",
-      # close_time: "23:30",
       rating: row.rating,
-      price: 0,
-      price_range: row.price
-      # days_closed: 6
+      price_range: row.price.size,
+      review_count: row.review_count
     )
     url = "https://api.yelp.com/v3/businesses/#{row.id}"
     url = "https://api.yelp.com/v3/businesses/HI7M_qC-q2P7U8a7kIfW6g"
 
-    key = "zrv6rYNLccDh3yIpg_XMM4Nwehcwu3KsbMPixAxNmbKSY_pDmjcB24h5XQzCRZjjOEsV4LrqymiubG5yqC_IdQfe1rHyoBupfrsaKia14gO8oYBYV4pzd-UOrejDXnYx"
 
-    ser_data = open(url, 'Authorization' => "Bearer #{key}").read
+    ser_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
     item_data = JSON.parse(ser_data)
-    item_data.each_with_index do |val, ind|
+
+    item_data.each do |x|
       hours = val['hours'][0]['open']
+    end
+    item_data.each_with_index do |val, ind|
+      hours
       day_values = (0..6).to_a
       hours.each do |day|
         if index == hours.length - 1
