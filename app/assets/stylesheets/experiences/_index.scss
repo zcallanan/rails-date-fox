@@ -1,0 +1,24 @@
+.search-form-container {
+  width: 30%;
+  margin: 50px auto;
+  position: relative;
+}
+
+.btn {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #5CA08B;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.btn:hover {
+  background: #5CA08B;
+  color: white;
+}
+
+.form-control {
+  border-radius: 20em;
+}
