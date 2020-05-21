@@ -9,6 +9,8 @@
     "bootstrap": "^4.5.0",
     "cloudinary": "^1.21.0",
     "flatpickr": "^4.6.3",
+    "nouislider": "^14.5.0",
+    "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
