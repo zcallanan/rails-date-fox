@@ -3,13 +3,16 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: %i[show]
 
   def index
-    @experiences = Experience.all
-    @items = Item.all
+    # @search = params[:search_id]
+    @search = Search.last
 
-    @price_range = params[:price_range]
-    @starts_at = params[:starts_at]
-    @ends_at = params[:ends_at]
-    @activity_array = params[:activity_ids]
+    @experiences = Experience.all
+
+    @city = @search.city
+    @price_range = @search.price_range
+    @starts_at = @search.starts_at
+    @ends_at = @search.ends_at
+    @activity_array = @search.activity_ids
 
     # need to create 3 experiences for the user at this point
     n = 0
@@ -21,6 +24,29 @@ class ExperiencesController < ApplicationController
       name: "Experience #{n}"
       )
     end
+
+     @items = YelpApiService.new(
+      location: @city,
+      radius: 10_000,
+      category: 'restaurants'
+     ).call
+
+    { 'Breakfast' => ['cafes', 'cafeteria', 'caribbean'] }
+
+
+
+
+
+    # Filter item by city
+    # Filter by duration
+    ## Filter item by starts at
+    ## Filter item by ends at
+    ## Are they open?
+    # Matches an activity
+
+    ## Does the activity fit their duration?
+
+    # Filter item by
 
 
     # sum = 0
@@ -61,7 +87,9 @@ class ExperiencesController < ApplicationController
     ## what activities selected, for each activity get top ranked items and store them in arrays
   end
 
-  def show; end
+  def show
+
+  end
 
   def new
   end
