@@ -49,11 +49,36 @@ activities.each do |value|
   activity.save
 end
 
-# csv_read_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+def item_operating_hours(item, operating_hours)
+  # SEED JOIN TABLE
+      item_operating_hours = ItemOperatingHour.new
 
-# CSV.foreach('categories.csv', csv_read_options) do |csv_row|
-  # url = "https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=#{csv_row[0]}"
-  url = 'https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=restaurants'
+      item_operating_hours.item = item
+      item_operating_hours.operating_hour = operating_hours
+
+      # SAVE
+      item_operating_hours.save
+end
+
+def operating_hours(array, item)
+  array.each do |hour|
+    operating_hours = OperatingHour.new(
+      day: hour['day'],
+      open_time: hour['start'],
+      close_time: hour['end']
+    )
+    # SAVE
+    operating_hours.save
+    item_operating_hours(item, operating_hours)
+  end
+end
+
+csv_read_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+
+CSV.foreach('categories.csv', csv_read_options) do |csv_row|
+  puts csv_row[0]
+  url = "https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=#{csv_row[0]}"
+  # url = 'https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=restaurants'
   serialized_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
   data = JSON.parse(serialized_data)
   data['businesses'].each do |row|
@@ -71,16 +96,16 @@ end
       price_range: price,
       review_count: row['review_count']
     )
-    act = Activity.all
-    item.activity = act[0]
-    # activities = Activity.all
-    # activities.each do |activity|
-    #   # item.activity = activity if activity.name == csv_row[1]
-    # end
+    # act = Activity.all
+    # item.activity = act[0]
+    activities = Activity.all
+    activities.each do |activity|
+      item.activity = activity if activity.name == csv_row[1]
+    end
 
     # SAVE
     item.save
-    puts "saved"
+    puts 'saved'
 
     url = "https://api.yelp.com/v3/businesses/#{row['id']}"
     # url = "https://api.yelp.com/v3/businesses/HI7M_qC-q2P7U8a7kIfW6g"
@@ -89,24 +114,11 @@ end
     item_data = JSON.parse(ser_data)
 
     # SEED OPERATING HOURS
-    hours = item_data['hours'][0]['open']
-    hours.each do |val|
-      operating_hours = OperatingHour.new(
-        day: val['day'],
-        open_time: val['start'],
-        close_time: val['end']
-      )
-      # SAVE
-      operating_hours.save
-
-      # SEED JOIN TABLE
-      item_operating_hours = ItemOperatingHour.new
-
-      item_operating_hours.item = item
-      item_operating_hours.operating_hour = operating_hours
-
-      # SAVE
-      item_operating_hours.save
+    if item_data.key?('hours')
+      hours = item_data['hours'][0]['open']
+      operating_hours(hours, item)
+    else
+      operating_hours([{ 'start' => '1200', 'end' => '1200', 'day' => 0 }], item)
     end
 
     images = item_data['photos']
@@ -120,6 +132,6 @@ end
       )
     end
   end
-# end
+end
 
 puts 'Finished!'

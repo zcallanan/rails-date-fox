@@ -1,5 +1,6 @@
 class ExperiencesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_experience, only: %i[show]
 
   def index
     @experiences = Experience.all
@@ -77,5 +78,7 @@ class ExperiencesController < ApplicationController
   def destroy
   end
 
-
+  def set_experience
+    @experience = Experience.find(params[:id])
+  end
 end
