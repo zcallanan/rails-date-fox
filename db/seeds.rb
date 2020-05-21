@@ -13,10 +13,10 @@ require 'open-uri'
 require 'csv'
 API_KEY = ENV.fetch('YELP_API')
 
-Activity.destroy_all
-Item.destroy_all
-OperatingHour.destroy_all
-ItemOperatingHour.destroy_all
+# Activity.destroy_all
+# Item.destroy_all
+# OperatingHour.destroy_all
+# ItemOperatingHour.destroy_all
 
 activities = [
   ['Dinner & Lunch', 120],
@@ -41,11 +41,11 @@ activities.each do |value|
   activity.save
 end
 
-csv_read_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+# csv_read_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 
-CSV.foreach('categories.csv', csv_read_options) do |csv_row|
-  url = "https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=#{csv_row[0]}"
-  # url = 'https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=restaurants'
+# CSV.foreach('categories.csv', csv_read_options) do |csv_row|
+  # url = "https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=#{csv_row[0]}"
+  url = 'https://api.yelp.com/v3/businesses/search?location=Munich&radius=10000&categories=restaurants'
   serialized_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
   data = JSON.parse(serialized_data)
   data['businesses'].each do |row|
@@ -53,23 +53,26 @@ CSV.foreach('categories.csv', csv_read_options) do |csv_row|
     address_two = " #{location['address2']}" unless location['address2'].nil?
     address_three = " #{location['address3']}" unless location['address3'].nil?
     address_string = "#{location['address1']}#{address_two}#{address_three}, #{location['city']} #{location['zip_code']}"
-
+    row['price'].nil? ? price = 1 : price = row['price'].size
     item = Item.new(
       name: row['name'],
       description: 'A cool place to eat',
       address: address_string,
       availability: true,
       rating: row['rating'],
-      price_range: row['price'].size,
+      price_range: price,
       review_count: row['review_count']
     )
-    activities = Activity.all
-    activities.each do |activity|
-      item.activity = activity if activity.name == csv_row[1]
-    end
+    act = Activity.all
+    item.activity = act[0]
+    # activities = Activity.all
+    # activities.each do |activity|
+    #   # item.activity = activity if activity.name == csv_row[1]
+    # end
 
     # SAVE
     item.save
+    puts "saved"
 
     url = "https://api.yelp.com/v3/businesses/#{row['id']}"
     # url = "https://api.yelp.com/v3/businesses/HI7M_qC-q2P7U8a7kIfW6g"
@@ -109,6 +112,6 @@ CSV.foreach('categories.csv', csv_read_options) do |csv_row|
       )
     end
   end
-end
+# end
 
 puts 'Finished!'

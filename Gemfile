@@ -16,8 +16,10 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'rack-mini-profiler'
 
 group :development do
+  gem 'bullet'
   gem 'web-console', '>= 3.3.0'
 end
 
