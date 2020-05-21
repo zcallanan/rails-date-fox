@@ -15,21 +15,21 @@ class ExperiencesController < ApplicationController
     @activity_array = @search.activity_ids
 
     # need to create 3 experiences for the user at this point
-    n = 0
-    3.times do
-      n += 1
-      experience_one = Experience.new(
-      starts_at: @starts_at,
-      ends_at: @ends_at,
-      name: "Experience #{n}"
-      )
-    end
+    # n = 0
+    # 3.times do
+    #   n += 1
+    #   Experience.create(
+    #     starts_at: @starts_at,
+    #     ends_at: @ends_at,
+    #     name: "Experience #{n}"
+    #   )
+    # end
 
-     @items = YelpApiService.new(
+    @items = YelpApiService.new(
       location: @city,
       radius: 10_000,
       category: 'restaurants'
-     ).call
+    ).call
 
     { 'Breakfast' => ['cafes', 'cafeteria', 'caribbean'] }
 
@@ -88,6 +88,7 @@ class ExperiencesController < ApplicationController
   end
 
   def show
+    @experience = Experience.find(params[:id])
 
   end
 

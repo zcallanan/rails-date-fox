@@ -2,21 +2,16 @@
 
 require "csv"
 
+SearchActivity.destroy_all
 ItemOperatingHour.destroy_all
+ItemExperience.destroy_all
 OperatingHour.destroy_all
 Photo.destroy_all
 Item.destroy_all
 Activity.destroy_all
 Experience.destroy_all
 
-n = 0
-3.times do
-  n += 1
-  experience = Experience.new(
-    name: "Experience #{n}"
-  )
-  experience.save
-end
+
 
 activities = [
   ["Dinner & Lunch", 120],
@@ -51,6 +46,19 @@ CSV.foreach("categories.csv", csv_read_options) do |csv_row|
 
   items.each do |item|
     item.update(activity: Activity.find_by(name: csv_row[1]))
+  end
+end
+
+n = 0
+3.times do
+  n += 1
+  experience = Experience.new(
+    name: "Experience #{n}"
+  )
+  experience.save
+
+  2.times do
+    experience.items << Item.all[(0..20).to_a.sample]
   end
 end
 
