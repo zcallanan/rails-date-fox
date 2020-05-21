@@ -10,6 +10,18 @@ class ExperiencesController < ApplicationController
     @ends_at = params[:ends_at]
     @activity_array = params[:activity_ids]
 
+    # need to create 3 experiences for the user at this point
+    n = 0
+    3.times do
+      n += 1
+      experience_one = Experience.new(
+      starts_at: @starts_at,
+      ends_at: @ends_at,
+      name: "Experience #{n}"
+      )
+    end
+
+
     # sum = 0
     # @activity_array.each do |activity|
     #   sum += activity.duration
