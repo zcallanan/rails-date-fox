@@ -15,3 +15,5 @@ const price_range = () => {
 };
 
 export { activities, price_range }
+
+// Checkbox
