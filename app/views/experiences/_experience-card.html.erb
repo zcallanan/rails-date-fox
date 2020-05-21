@@ -1,34 +1,22 @@
-<p>hello</p>
-
-<% 3.times do %>
-
-<% end %>
-
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+<div class="card-category">
   <div class="row">
-    <div class="col-4">
-      <h2>Experience</h2>
-    </div>
-    <div class="row">
-      <div class="col-4">
-        <%= render partial: 'item-card' %>
-      </div>
-      <div class="col-4">
-        <%= render partial: 'item-card' %>
-      </div>
-      <div class="col-4">
-        <%= render partial: 'item-card' %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <%#= link_to "Choose Experience", experience_path(experiences), class: "btn btn-primary" %>
-
+    <div class="">
+      <div  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+          <h2>Experience</h2>
+        </div>
+      <% 3.times do %>
+        <div class="row">
+          <div class="col">
+            <%= render 'item-card', items: items, experiences: experiences %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col">
+          <%= link_to "Choose Experience", experience_path(experiences), class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
-
   </div>
 </div>
-  <!-- <p><%= experiences.name %></p> -->
 
