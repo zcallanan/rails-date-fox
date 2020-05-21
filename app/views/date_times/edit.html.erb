@@ -1,0 +1,22 @@
+<%# Form for date_times %>
+
+<div class="search-form-container">
+
+<h2>How much time do you want to spend?</h2>
+
+  <%= simple_form_for @search do |f| %>
+    
+    <div class="date">
+      <%= f.input :starts_at, 
+                  as: :string, 
+                  placeholder: 'Start:',
+                  input_html: {class: "datepicker"} %>
+      <%= f.input :ends_at, 
+                  as: :string, 
+                  placeholder: 'End:',
+                  input_html: {class: "datepicker"} %>
+    </div>
+    <%= f.button :submit, "Done!", class: "btn" %>
+  <% end %>
+</div>
+

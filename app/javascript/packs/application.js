@@ -18,6 +18,5 @@ require("channels")
 
 import 'plugins/flatpickr'
 import "controllers"
-import { activities, price_range } from '../components/checkboxes'
-activities();
-price_range();
+import { choice } from '../components/checkboxes'
+choice();
