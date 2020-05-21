@@ -1,0 +1,93 @@
+.search-form-container {
+  width: 30%;
+  margin: 50px auto;
+  position: relative;
+}
+
+.btn {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #00CCBC;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.btn:hover {
+  background: #00CCBC;
+  color: white;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+// Style Activities Check-Boxes
+
+.form-post {
+  background: white;
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+// Checkboxes design
+.activity-choices {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.activity-choice {
+  background: #b7b7b7;
+  padding: 20px;
+  border-radius: 5px;
+  opacity: .4;
+  flex: 0 0 30%;
+  text-align: center;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  &.active {
+  background: #6362AF;
+  color: white;
+  opacity: 1;
+  }
+}
+
+.price-choices {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.price-choice {
+  background: #b7b7b7;
+  padding: 16px;
+  border-radius: 5px;
+  opacity: .4;
+  flex: 0 0 20%;
+  text-align: center;
+  &:hover {
+    opacity: 1;
+    cursor: pointer;
+  }
+  &.active {
+  background: #6362AF;
+  color: white;
+  opacity: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+}

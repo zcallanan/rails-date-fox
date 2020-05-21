@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_134551) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "city"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
