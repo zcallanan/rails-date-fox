@@ -1,0 +1,13 @@
+<%#= render "question_form", object: @search %>
+
+<%# Form for city %>
+<div class="search-form-container">
+
+ <h2>In which city do you want your experience?</h2>
+
+  <%= simple_form_for @search do |f| %>
+    <%= f.input :city %>
+    <%= f.button :submit, "Done!" %>
+  <% end %>
+  
+</div>

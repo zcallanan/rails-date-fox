@@ -1,19 +1,13 @@
-const activities = () => {
-  const cb_activity = document.querySelector('.activity-choice');
+const choice = () => {
+  const cb_activity = document.querySelectorAll('.choice');
 
-  cb_activity.addEventListener('click', (event) => {
-    event.currentTarget.classList.toggle("active");
+  cb_activity.forEach((choice) => {
+    choice.addEventListener("click", (event) => {
+      event.currentTarget.classList.toggle("active");
+    });
   });
+
 };
 
-const price_range = () => {
-  const cb_price = document.querySelector('.price-choice');
+export { choice }
 
-  cb_price.addEventListener('click', (event) => {
-    event.currentTarget.classList.toggle("active");
-  });
-};
-
-export { activities, price_range }
-
-// Checkbox
