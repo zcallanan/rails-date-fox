@@ -1,0 +1,23 @@
+<%# Form for activities %>
+
+<div class="search-form-container">
+
+<h2>What do you want to do?</h2>
+
+  <%= simple_form_for @search do |f| %>
+
+    <div class="form-group">
+      <label class="control-label"></label>
+      <input type="hidden" name="search[activity_ids][]" value="">
+        <div class="activity-choices">
+          <% @activities.each do |activity| %>
+            <input type="checkbox" class="hidden" value="<%= activity.id %>" name="search[activity_ids][]" id="search_activity_ids_<%= activity.id %>">
+            <label class="activity-choice choice" for="search_activity_ids_<%= activity.id %>"><%= activity.name %><br><i class="fa fa-check"></i></label>
+          <% end %>
+        </div>
+    </div>
+  
+    <%= f.button :submit, "Done!", class: 'btn' %>
+  <% end %>
+</div>
+
