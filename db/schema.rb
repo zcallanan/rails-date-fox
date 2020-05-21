@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_20_134551) do
+ActiveRecord::Schema.define(version: 2020_05_21_142417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2020_05_20_134551) do
     t.string "name"
     t.string "description"
     t.string "address"
-    t.boolean "availability"
+    t.boolean "availability", default: true, null: false
     t.integer "rating"
     t.integer "price_range"
-    t.bigint "activity_id", null: false
+    t.bigint "activity_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "review_count"
@@ -123,6 +123,14 @@ ActiveRecord::Schema.define(version: 2020_05_20_134551) do
     t.time "close_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "url"
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_photos_on_item_id"
   end
 
   create_table "search_activities", force: :cascade do |t|
@@ -177,6 +185,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_134551) do
   add_foreign_key "item_operating_hours", "items"
   add_foreign_key "item_operating_hours", "operating_hours"
   add_foreign_key "items", "activities"
+  add_foreign_key "photos", "items"
   add_foreign_key "search_activities", "activities"
   add_foreign_key "search_activities", "searches"
   add_foreign_key "searches", "users"

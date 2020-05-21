@@ -1,3 +1,4 @@
 class Experience < ApplicationRecord
-  has_many :items, through: :item_experiences, dependent: :delete_all
+  has_many :item_experiences
+  has_many :items, through: :item_experiences, dependent: :destroy
 end
