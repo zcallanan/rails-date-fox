@@ -64,6 +64,9 @@ GEM
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.3)
     cloudinary (1.12.0)
       aws_cf_signer
@@ -133,6 +136,8 @@ GEM
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
+    rack-mini-profiler (2.0.1)
+      rack (>= 1.2.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -209,6 +214,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    uniform_notifier (1.13.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.2)
@@ -232,6 +238,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
+  bullet
   cloudinary (~> 1.12.0)
   devise
   dotenv-rails
@@ -242,6 +249,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack-mini-profiler
   rails (= 6.0.3)
   redis
   sassc-rails

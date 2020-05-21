@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_180110) do
+ActiveRecord::Schema.define(version: 2020_05_21_142417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,29 +70,67 @@ ActiveRecord::Schema.define(version: 2020_05_19_180110) do
     t.index ["item_id"], name: "index_item_experiences_on_item_id"
   end
 
-  create_table "item_kinds", force: :cascade do |t|
-    t.string "name"
+  create_table "item_experiences_travel_kinds", force: :cascade do |t|
+    t.bigint "travel_kinds_id", null: false
+    t.bigint "item_experiences_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_experiences_id"], name: "index_item_experiences_travel_kinds_on_item_experiences_id"
+    t.index ["travel_kinds_id"], name: "index_item_experiences_travel_kinds_on_travel_kinds_id"
+  end
+
+  create_table "item_item_kinds", force: :cascade do |t|
+    t.bigint "item_kind_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_item_kinds_on_item_id"
+    t.index ["item_id"], name: "index_item_item_kinds_on_item_id"
+    t.index ["item_kind_id"], name: "index_item_item_kinds_on_item_kind_id"
+  end
+
+  create_table "item_kinds", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "item_operating_hours", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "operating_hour_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_operating_hours_on_item_id"
+    t.index ["operating_hour_id"], name: "index_item_operating_hours_on_operating_hour_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "address"
-    t.boolean "availability"
-    t.time "open_time"
-    t.time "close_time"
+    t.boolean "availability", default: true, null: false
     t.integer "rating"
     t.integer "price_range"
-    t.integer "price"
-    t.string "days_closed"
-    t.bigint "activity_id", null: false
+    t.bigint "activity_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "review_count"
     t.index ["activity_id"], name: "index_items_on_activity_id"
+  end
+
+  create_table "operating_hours", force: :cascade do |t|
+    t.integer "day"
+    t.time "open_time"
+    t.time "close_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "url"
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_photos_on_item_id"
   end
 
   create_table "search_activities", force: :cascade do |t|
@@ -112,15 +150,14 @@ ActiveRecord::Schema.define(version: 2020_05_19_180110) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "city"
     t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
   create_table "travel_kinds", force: :cascade do |t|
     t.string "name"
-    t.bigint "item_experience_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_experience_id"], name: "index_travel_kinds_on_item_experience_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -141,10 +178,15 @@ ActiveRecord::Schema.define(version: 2020_05_19_180110) do
   add_foreign_key "bookings", "users"
   add_foreign_key "item_experiences", "experiences"
   add_foreign_key "item_experiences", "items"
-  add_foreign_key "item_kinds", "items"
+  add_foreign_key "item_experiences_travel_kinds", "item_experiences", column: "item_experiences_id"
+  add_foreign_key "item_experiences_travel_kinds", "travel_kinds", column: "travel_kinds_id"
+  add_foreign_key "item_item_kinds", "item_kinds"
+  add_foreign_key "item_item_kinds", "items"
+  add_foreign_key "item_operating_hours", "items"
+  add_foreign_key "item_operating_hours", "operating_hours"
   add_foreign_key "items", "activities"
+  add_foreign_key "photos", "items"
   add_foreign_key "search_activities", "activities"
   add_foreign_key "search_activities", "searches"
   add_foreign_key "searches", "users"
-  add_foreign_key "travel_kinds", "item_experiences"
 end

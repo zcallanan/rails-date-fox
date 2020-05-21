@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #ffffff;
+  background: #D4F0ED;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +8,21 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 55px;
+  border-radius: 6px;
+}
+
+.nav-link {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  font-size: 21px !important;
+  color: #00CCBC !important;
+
+}
+
+.navbar-brand {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bolder;
+  font-size: 17px !important;
+  color: #00CCBC !important;
 }

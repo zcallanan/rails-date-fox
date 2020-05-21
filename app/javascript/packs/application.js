@@ -15,3 +15,8 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import 'plugins/flatpickr'
+import "controllers"
+import { choice } from '../components/checkboxes'
+choice();
