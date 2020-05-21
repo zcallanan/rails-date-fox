@@ -82,6 +82,7 @@ CSV.foreach('categories.csv', csv_read_options) do |csv_row|
   serialized_data = open(url, 'Authorization' => "Bearer #{API_KEY}").read
   data = JSON.parse(serialized_data)
   data['businesses'].each do |row|
+    puts row['id']
     location = row['location']
     address_two = " #{location['address2']}" unless location['address2'].nil?
     address_three = " #{location['address3']}" unless location['address3'].nil?
@@ -124,6 +125,7 @@ CSV.foreach('categories.csv', csv_read_options) do |csv_row|
     images = item_data['photos']
     images.each_with_index do |photo_url, ind|
       # SEED PHOTOS
+      puts photo_url
       file = URI.open(photo_url)
       item.photos.attach(
         io: file,
