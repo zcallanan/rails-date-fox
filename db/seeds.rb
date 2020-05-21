@@ -17,6 +17,14 @@ API_KEY = ENV.fetch('YELP_API')
 # Item.destroy_all
 # OperatingHour.destroy_all
 # ItemOperatingHour.destroy_all
+n = 0
+3.times do
+  n += 1
+  experience = Experience.new(
+    name: "Experience #{n}"
+  )
+  experience.save
+end
 
 activities = [
   ['Dinner & Lunch', 120],
