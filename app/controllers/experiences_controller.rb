@@ -4,6 +4,8 @@ class ExperiencesController < ApplicationController
   def index
     @experiences = Experience.all
     @items = Item.all
+    @search = Search.new
+    @item_kinds = ItemKind.all
 
     @price_range = params[:price_range]
     @starts_at = params[:starts_at]
