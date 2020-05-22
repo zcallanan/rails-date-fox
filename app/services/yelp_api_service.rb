@@ -21,7 +21,6 @@ class YelpApiService
       address_string = "#{location["address1"]}, #{location["city"]} #{location["zip_code"]}"
       price = row["price"].nil? ? 1 : row["price"].size
       item = Item.find_by(name: row["name"])
-
       # Only make new request if the same item is not already in a DB
       if item.nil?
         # A member call will only be made if item does not already exist
@@ -55,10 +54,11 @@ class YelpApiService
       end
 
       @items << item
-      return @items
+
 
     rescue OpenURI::HTTPError
       puts "Request failed, carry on"
     end
+    return @items
   end
 end

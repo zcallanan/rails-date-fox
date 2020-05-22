@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_142417) do
+ActiveRecord::Schema.define(version: 2020_05_21_213111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,15 @@ ActiveRecord::Schema.define(version: 2020_05_21_142417) do
     t.index ["search_id"], name: "index_search_activities_on_search_id"
   end
 
+  create_table "search_experiences", force: :cascade do |t|
+    t.bigint "search_id"
+    t.bigint "experience_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["experience_id"], name: "index_search_experiences_on_experience_id"
+    t.index ["search_id"], name: "index_search_experiences_on_search_id"
+  end
+
   create_table "searches", force: :cascade do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
@@ -188,5 +197,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_142417) do
   add_foreign_key "photos", "items"
   add_foreign_key "search_activities", "activities"
   add_foreign_key "search_activities", "searches"
+  add_foreign_key "search_experiences", "experiences"
+  add_foreign_key "search_experiences", "searches"
   add_foreign_key "searches", "users"
 end
