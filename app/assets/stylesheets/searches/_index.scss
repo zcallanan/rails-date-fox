@@ -92,3 +92,25 @@
   display: flex;
   justify-content: space-between;
 }
+
+// style for city-radio-buttons
+.cities {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: hidden;
+  align-items: center;
+  margin: 20px 0;
+}
+.city {
+  border-radius: 10px;
+  margin: 8px 8px;
+  padding: 16px;
+  background: #b7b7b7;
+  border-radius: 10px;
+}
+.city img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}

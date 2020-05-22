@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
     @activities = Activity.all
+    
   end
 
   def create
@@ -31,6 +32,7 @@ class SearchesController < ApplicationController
       elsif @search.price_range == 0
         redirect_to price_ranges_path(@search)
       else
+        raise
         # redirect_to experience_path(@search)
         redirect_to search_experiences_path(@search)
       end
@@ -43,7 +45,7 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(:city, :starts_at, :ends_at, price_range: [], activity_ids: [])
+    params.require(:search).permit(:city, :starts_at, :ends_at, :price_range, activity_ids: [])
   end
 
 end
