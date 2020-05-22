@@ -32,7 +32,6 @@ class SearchesController < ApplicationController
       elsif @search.price_range == 0
         redirect_to price_ranges_path(@search)
       else
-        raise
         # redirect_to experience_path(@search)
         redirect_to search_experiences_path(@search)
       end
