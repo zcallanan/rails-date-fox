@@ -14,6 +14,7 @@ class ExperiencesController < ApplicationController
     @price_range = test_price_range
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
+    @activity_array = []
     @activity_array = @search.activities
 
     # need to create 3 experiences for the user at this point
@@ -26,7 +27,7 @@ class ExperiencesController < ApplicationController
     #     name: "Experience #{n}"
     #   )
     # end
-    activity_items = {}
+    @activity_items = {}
     @activity_array.each do |activity|
       activity.activity_categories.each do |category|
         items = YelpApiService.new(
@@ -37,8 +38,10 @@ class ExperiencesController < ApplicationController
         ).call
         @items << items
       end
-      activity_items[activity.name] = @items.flatten
+      @activity_items[activity.name] = @items.flatten
     end
+
+
 
 
     # submit form with nothing but a @search
@@ -52,11 +55,11 @@ class ExperiencesController < ApplicationController
     #search.activities.name = @activity_array[...].name
 
 
-    @items = Item.where(
-      'price_range = ? \
-      AND search.activities = ?',
-      @price_range
-    ).order(rating: :desc)
+    # @items = Item.where(
+    #   'price_range = ? \
+    #   AND search.activities = ?',
+    #   @price_range
+    # ).order(rating: :desc)
 
 
 

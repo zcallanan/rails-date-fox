@@ -51,7 +51,8 @@ activities.each do |value|
     items = YelpApiService.new(
       location: 'Munich',
       radius: 10_000,
-      category: category.name
+      category: category.name,
+      price_range: 2
     ).call
     items.each do |item|
       item.update(activity: activity)
