@@ -3,16 +3,15 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: %i[show]
 
   def index
-    # @search = params[:search_id]
-    @search = Search.last
+    @search = Search.find(params[:search_id])
 
     @experiences = Experience.all
 
     @city = @search.city
-    @price_range = @search.price_range
+    # @price_range = @search.price_range.size
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
-    @activity_array = @search.activity_ids
+    @activity_array = @search.activities
 
     # need to create 3 experiences for the user at this point
     # n = 0
@@ -31,7 +30,10 @@ class ExperiencesController < ApplicationController
       category: 'restaurants'
     ).call
 
-    { 'Breakfast' => ['cafes', 'cafeteria', 'caribbean'] }
+    # @items = Item.where(
+    #   'price_range = ? AND search.activities = ?', @price_range,
+    # ).order(rating: :desc)
+
 
 
 
