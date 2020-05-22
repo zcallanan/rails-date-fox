@@ -4,12 +4,14 @@ class ExperiencesController < ApplicationController
 
   def index
     @search = Search.find(params[:search_id])
-
+    @items = []
     @experiences = Experience.all
     @search.experiences << @experiences.first
+    test_price_range = 2
 
     @city = @search.city
-    # @price_range = @search.price_range.size
+    # @price_range = @search.price_range
+    @price_range = test_price_range
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
     @activity_array = @search.activities
@@ -24,16 +26,37 @@ class ExperiencesController < ApplicationController
     #     name: "Experience #{n}"
     #   )
     # end
+    activity_items = {}
+    @activity_array.each do |activity|
+      activity.activity_categories.each do |category|
+        items = YelpApiService.new(
+          location: @city,
+          radius: 10_000,
+          category: category.name,
+          price_range: @price_range
+        ).call
+        @items << items
+      end
+      activity_items[activity.name] = @items.flatten
+    end
 
-    @items = YelpApiService.new(
-      location: @city,
-      radius: 10_000,
-      category: 'restaurants'
-    ).call
 
-    # @items = Item.where(
-    #   'price_range = ? AND search.activities = ?', @price_range,
-    # ).order(rating: :desc)
+    # submit form with nothing but a @search
+    # get 1, or 2, or variable activities - 1 activity gets 1 item of duration X
+    # if duration does allow all activities, then we need prioritize one activity over another
+    ## this could hard coded
+    # Restaurant Bar and something else
+    # We know duration fits all of them
+    # Get result
+
+    #search.activities.name = @activity_array[...].name
+
+
+    @items = Item.where(
+      'price_range = ? \
+      AND search.activities = ?',
+      @price_range
+    ).order(rating: :desc)
 
 
 

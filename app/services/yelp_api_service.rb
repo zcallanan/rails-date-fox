@@ -8,11 +8,12 @@ class YelpApiService
     @location = attrs[:location]
     @radius = attrs[:radius]
     @category = attrs[:category]
+    @price_range = attrs[:price_range]
     @items = []
   end
 
   def call
-    url = BASE_URI + "search?location=#{@location}&radius=#{@radius}&categories=#{@category}"
+    url = BASE_URI + "search?location=#{@location}&radius=#{@radius}&categories=#{@category}&price=#{@price_range}"
     serialized_data = URI.open(url, "Authorization" => "Bearer #{API_KEY}").read
     data = JSON.parse(serialized_data)
     data = data["businesses"]

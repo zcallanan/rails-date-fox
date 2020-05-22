@@ -8,23 +8,23 @@
 
     <div class="form-group">
       <div class="col-form-label pt-0"></div>
-      <input type="hidden" name="search[price_range][]" value="">
+      <input type="hidden" name="search[price_range]" value="">
         <div class="price-choices">
-          <input class="hidden" type="checkbox" value="1" name="search[price_range][]" id="search_price_range_1">
+          <input class="hidden" type="radio" value="1" name="search[price_range]" id="search_price_range_1">
           <label class="price-choice choice" for="search_price_range_1">€</label>
         
-          <input class="hidden" type="checkbox" value="2" name="search[price_range][]" id="search_price_range_2">
+          <input class="hidden" type="radio" value="2" name="search[price_range]" id="search_price_range_2">
           <label class="price-choice choice" for="search_price_range_2">€€</label>
         
-          <input class="hidden" type="checkbox" value="3" name="search[price_range][]" id="search_price_range_3">
+          <input class="hidden" type="radio" value="3" name="search[price_range]" id="search_price_range_3">
           <label class="price-choice choice" for="search_price_range_3">€€€</label>
           
-          <input class="hidden" type="checkbox" value="4" name="search[price_range][]" id="search_price_range_4">
+          <input class="hidden" type="radio" value="4" name="search[price_range]" id="search_price_range_4">
           <label class="price-choice choice" for="search_price_range_4">€€€€</label>
         </div>
       </div>
 
-   <%= f.button :submit, "Done!", class: "btn" %>
+   <%= f.button :submit, "Continue", class: "btn" %>
   <% end %>
 </div>
 

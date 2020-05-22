@@ -4,6 +4,7 @@ class SearchesController < ApplicationController
   def new
     @search = Search.new
     @activities = Activity.all
+
   end
 
   def create
@@ -43,7 +44,7 @@ class SearchesController < ApplicationController
   private
 
   def search_params
-    params.require(:search).permit(:city, :starts_at, :ends_at, price_range: [], activity_ids: [])
+    params.require(:search).permit(:city, :starts_at, :ends_at, :price_range, activity_ids: [])
   end
 
 end
