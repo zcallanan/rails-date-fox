@@ -2,9 +2,9 @@
 
 require "csv"
 
+SearchActivity.destroy_all
 ActivityCategory.destroy_all
 SearchExperience.destroy_all
-SearchActivity.destroy_all
 ItemOperatingHour.destroy_all
 ItemExperience.destroy_all
 OperatingHour.destroy_all
@@ -12,7 +12,7 @@ Photo.destroy_all
 Item.destroy_all
 Activity.destroy_all
 Experience.destroy_all
-
+# edit
 
 
 activities = [
