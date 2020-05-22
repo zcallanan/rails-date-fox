@@ -18,5 +18,6 @@ require("channels")
 
 import 'plugins/flatpickr'
 import "controllers"
-import { choice } from '../components/checkboxes'
+import { choice, select_city } from '../components/checkboxes'
 choice();
+select_city();
