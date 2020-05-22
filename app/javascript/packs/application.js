@@ -8,6 +8,12 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+document.addEventListener('turbolinks:load', () => {
+  // Call your functions here, e.g:
+  // initSelect2();
+  select_city();
+  choice();
+});
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -19,5 +25,4 @@ require("channels")
 import 'plugins/flatpickr'
 import "controllers"
 import { choice, select_city } from '../components/checkboxes'
-choice();
-select_city();
+
