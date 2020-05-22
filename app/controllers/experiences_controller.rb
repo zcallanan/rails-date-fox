@@ -39,7 +39,6 @@ class ExperiencesController < ApplicationController
       end
       activity_items[activity.name] = @items.flatten
     end
-    raise
 
 
     # submit form with nothing but a @search
