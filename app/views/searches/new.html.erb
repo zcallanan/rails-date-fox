@@ -3,11 +3,51 @@
 <%# Form for city %>
 <div class="search-form-container">
 
- <h2>In which city do you want your experience?</h2>
+ <h2>In which city do you want to find your date experience?</h2>
 
   <%= simple_form_for @search do |f| %>
-    <%= f.input :city %>
-    <%= f.button :submit, "Submit" %>
+
+    <div class="form-group">
+      <div class="col-form-label pt-0"></div>
+      <input type="hidden" name="search[city]" value="">
+        <div class="cities">
+          <div>
+            <input class="hidden" type="radio" value="Berlin" name="search[city]" id="search_city_1">
+            <%# <img src="https://images.unsplash.com/photo-1560930950-5cc20e80e392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> %>
+            <label class="price-choice choice" for="search_city_1">Berlin</label>
+          </div>
+
+          <div>
+            <input class="hidden" type="radio" value="Hamburg" name="search[city]" id="search_city_2">
+            <%# <img src="https://images.unsplash.com/photo-1560930950-5cc20e80e392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> %>
+            <label class="price-choice choice" for="search_city_2">Hamburg</label>
+          </div>
+
+          <div>
+            <input class="hidden" type="radio" value="Munich" name="search[city]" id="search_city_3">
+            <%# <img src="https://images.unsplash.com/photo-1560930950-5cc20e80e392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> %>
+            <label class="price-choice choice" for="search_city_3">Munich</label>
+          </div>
+
+          <div>
+            <input class="hidden" type="radio" value="Cologne" name="search[city]" id="search_city_4">
+            <%# <img src="https://images.unsplash.com/photo-1560930950-5cc20e80e392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> %>
+            <label class="price-choice choice" for="search_city_4">Cologne</label>
+          </div>
+
+          <div>
+            <input class="hidden" type="radio" value="Frankfurt" name="search[city]" id="search_city_5">
+            <%# <img src="https://images.unsplash.com/photo-1560930950-5cc20e80e392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"> %>
+            <label class="price-choice choice" for="search_city_5">Frankfurt</label>
+          </div>
+
+        </div>
+      </div>
+
+    <%= f.button :submit, "Continue", class: "btn" %>
   <% end %>
 
 </div>
+
+<%#= f.input :city %>
+<%#= f.button :submit, "Continue", class: 'btn' %>
