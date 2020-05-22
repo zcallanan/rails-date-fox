@@ -7,13 +7,13 @@
       <% 3.times do %>
         <div class="row">
           <div class="col">
-            <%= render 'item-card', items: items, experiences: experiences %>
+            <%= render 'item-card', items: items, searches: searches %>
           </div>
         </div>
       <% end %>
       <div class="row">
         <div class="col">
-          <%= link_to "Choose Experience", experience_path(experiences), class: "btn btn-primary" %>
+          <%= link_to "Choose Experience", search_experience_path(search_id: searches, id: searches.experiences[0]), class: "btn btn-primary" %>
         </div>
       </div>
     </div>

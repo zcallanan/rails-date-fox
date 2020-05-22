@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
     @search = Search.new
     @activities = Activity.all
   end
-  
+
   def create
     @search = Search.new(search_params)
     @search.user = current_user
@@ -31,10 +31,12 @@ class SearchesController < ApplicationController
       elsif @search.price_range == 0
         redirect_to price_ranges_path(@search)
       else
-        redirect_to experience_path(@search)
+        # redirect_to experience_path(@search)
+        redirect_to search_experiences_path(@search)
       end
     else
-      redirect_to experience_path(@search)
+      # redirect_to experience_path(@search)
+      redirect_to search_experiences_path(@search)
     end
   end
 
@@ -43,7 +45,7 @@ class SearchesController < ApplicationController
   def search_params
     params.require(:search).permit(:city, :starts_at, :ends_at, price_range: [], activity_ids: [])
   end
-  
+
 end
 
 # create controllers:
@@ -57,5 +59,5 @@ end
 # -> if save redirect to edit page with activities
 # activities controller
 # -> if save, show results in experiences
-# 
+#
 # SKip-button to show all experiences (in one city or in all available?!)

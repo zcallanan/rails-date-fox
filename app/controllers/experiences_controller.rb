@@ -3,35 +3,37 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: %i[show]
 
   def index
-    # @search = params[:search_id]
-    @search = Search.last
+    @search = Search.find(params[:search_id])
 
     @experiences = Experience.all
 
     @city = @search.city
-    @price_range = @search.price_range
+    # @price_range = @search.price_range.size
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
-    @activity_array = @search.activity_ids
+    @activity_array = @search.activities
 
     # need to create 3 experiences for the user at this point
-    n = 0
-    3.times do
-      n += 1
-      experience_one = Experience.new(
-      starts_at: @starts_at,
-      ends_at: @ends_at,
-      name: "Experience #{n}"
-      )
-    end
+    # n = 0
+    # 3.times do
+    #   n += 1
+    #   Experience.create(
+    #     starts_at: @starts_at,
+    #     ends_at: @ends_at,
+    #     name: "Experience #{n}"
+    #   )
+    # end
 
-     @items = YelpApiService.new(
+    @items = YelpApiService.new(
       location: @city,
       radius: 10_000,
       category: 'restaurants'
-     ).call
+    ).call
 
-    { 'Breakfast' => ['cafes', 'cafeteria', 'caribbean'] }
+    # @items = Item.where(
+    #   'price_range = ? AND search.activities = ?', @price_range,
+    # ).order(rating: :desc)
+
 
 
 
@@ -88,6 +90,7 @@ class ExperiencesController < ApplicationController
   end
 
   def show
+    @experience = Experience.find(params[:id])
 
   end
 
