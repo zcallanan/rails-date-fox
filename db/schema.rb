@@ -107,10 +107,10 @@ ActiveRecord::Schema.define(version: 2020_05_21_213111) do
     t.string "name"
     t.string "description"
     t.string "address"
-    t.boolean "availability", default: true, null: false
+    t.boolean "availability"
     t.integer "rating"
     t.integer "price_range"
-    t.bigint "activity_id"
+    t.bigint "activity_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "review_count"
