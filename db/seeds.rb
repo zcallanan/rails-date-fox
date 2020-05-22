@@ -2,6 +2,8 @@
 
 require "csv"
 
+ActivityCategory.destroy_all
+SearchExperience.destroy_all
 SearchActivity.destroy_all
 ItemOperatingHour.destroy_all
 ItemExperience.destroy_all
@@ -26,28 +28,51 @@ activities = [
   ["Outdoor Activity", 180]
 ]
 
+csv_read_options = {col_sep: ',', quote_char: '"', headers: :first_row}
+category_list = []
+CSV.foreach('categories.csv', csv_read_options) do |csv_row|
+  category_list << csv_row
+end
+
 # SEED ACTIVITIES
 activities.each do |value|
-  Activity.create!(
+  activity = Activity.create!(
     name: value[0],
     duration: value[1]
   )
-end
+  category_list.each do |row|
+    if row[1] == activity.name
+      activity.activity_categories << ActivityCategory.create!(name: row[0])
+    end
+  end
 
-csv_read_options = {col_sep: ",", quote_char: '"', headers: :first_row}
-
-CSV.foreach("categories.csv", csv_read_options) do |csv_row|
-  puts csv_row[0]
-  items = YelpApiService.new(
-    location: "Munich",
-    radius: 10_000,
-    category: csv_row[0]
-  ).call
-
-  items.each do |item|
-    item.update(activity: Activity.find_by(name: csv_row[1]))
+  activity.activity_categories.each do |category|
+    puts category.name
+    items = YelpApiService.new(
+      location: 'Munich',
+      radius: 10_000,
+      category: category.name
+    ).call
+    items.each do |item|
+      item.update(activity: activity)
+    end
   end
 end
+
+# csv_read_options = {col_sep: ",", quote_char: '"', headers: :first_row}
+
+# CSV.foreach("categories.csv", csv_read_options) do |csv_row|
+#   puts csv_row[0]
+#   items = YelpApiService.new(
+#     location: "Munich",
+#     radius: 10_000,
+#     category: csv_row[0]
+#   ).call
+
+#   items.each do |item|
+#     item.update(activity: Activity.find_by(name: csv_row[1]))
+#   end
+# end
 
 n = 0
 3.times do
