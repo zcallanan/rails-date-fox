@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_213111) do
+ActiveRecord::Schema.define(version: 2020_05_22_075950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 2020_05_21_213111) do
     t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "activity_categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "activity_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_activity_categories_on_activity_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -183,6 +191,7 @@ ActiveRecord::Schema.define(version: 2020_05_21_213111) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activity_categories", "activities"
   add_foreign_key "bookings", "experiences"
   add_foreign_key "bookings", "users"
   add_foreign_key "item_experiences", "experiences"
