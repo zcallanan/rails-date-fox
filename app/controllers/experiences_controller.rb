@@ -6,6 +6,7 @@ class ExperiencesController < ApplicationController
     @search = Search.find(params[:search_id])
 
     @experiences = Experience.all
+    @search.experiences << @experiences.first
 
     @city = @search.city
     # @price_range = @search.price_range.size
