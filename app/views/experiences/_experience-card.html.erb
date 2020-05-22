@@ -4,13 +4,14 @@
       <div  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
           <h2>Experience</h2>
         </div>
-      <% 3.times do %>
-        <div class="row">
-          <div class="col">
-            <%= render 'item-card', items: items, searches: searches %>
+        <% items.each do |item| %>
+          <div class="row">
+            <div class="col">
+              <%= render 'item-card', items: item, searches: searches %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+
       <div class="row">
         <div class="col">
           <%= link_to "Choose Experience", search_experience_path(search_id: searches, id: searches.experiences[0]), class: "btn btn-primary" %>

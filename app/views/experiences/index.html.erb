@@ -2,14 +2,14 @@
   <div class="col-3">
 
   </div>
-  <div class="col-3">
-    <%= render 'experience-card', items: @items[1], searches: @search %>
-  </div>
-  <div class="col-3">
-    <%= render 'experience-card', items: @items[1], searches: @search %>
-  </div>
-  <div class="col-3">
-    <%= render 'experience-card', items: @items[1], searches: @search %>
-  </div>
+
+    <% @activity_items.each do |_key, value| %>
+      <% result = value.sample(3) %>
+      <div class="col-3">
+      <%= render 'experience-card', items: result, searches: @search %>
+    </div>
+    <% end  %>
+
+
 </div>
 
