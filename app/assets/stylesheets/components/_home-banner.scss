@@ -1,48 +1,53 @@
 .home_banner {
-  background-size: cover;
-  height: 650px;
-  margin-bottom: 150px;
+    background-size: cover;
+    height: 850px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
 
     h1 {
-    padding-top: 370px;
     font-weight: bold;
     font-size: 80px;
     color: #f7f7f7;
     text-shadow: 2px 2px 4px #333333;
+    padding-top: 20px;
+    text-align: center;
     }
 
     button {
-      margin-left: 895px;
       font-size: 36px;
-      font-weight: lighter;
       box-shadow: 2px 2px 4px #333333;
       text-shadow: 1px 1px 2px #333333;
+
+      a {
+        color: white;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
     }
 
     .date_fox_elipse {
-      background-position: center; /* Center the image */
-      background-repeat: no-repeat; /* Do not repeat the image */
-      background-size: 1350px 480px; /* Resize the background image to cover the entire container */
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 300px;
+    padding-top: 25px;
+    margin-bottom: -40px;
   }
     .elipse_text {
           display: flex;
           justify-content: space-between;
+          text-align: center;
 
       p {
-        margin-top: 60px;
-        margin-left: 250px;
-        width: 580px;
         color: #f7f7f7;
         text-shadow: 2px 2px 4px #333333;
-        font-size: 32px;
-        justify-content: space-between;
+        font-size: 36px;
       }
-    }
-
-    .stars {
-      margin-left: 100px;
-      color: #00CCBC;
-      text-shadow: 1px 1px 2px #333333;
     }
 }
 
