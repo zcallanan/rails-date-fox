@@ -1,9 +1,11 @@
-<div class="row">
+<div class="class container">
+  <div class="row">
   <% @search.experiences.each do |experience| %>
     <div class="col-4">
       <%= render 'experience-card', searches: @search, experience: experience %>
     </div>
   <% end %>
+</div>
 </div>
 
 

@@ -11,6 +11,8 @@ class YelpItemService
     second = nil
     third = nil
     result_array = [[], [], []]
+
+    # create result array to funnel items to experiences
     @activity_items.each_value do |value|
       sorted_array = value.sort_by(&:rating).reverse
       item_list = sorted_array[0..(sorted_array.size / 2)]
@@ -21,6 +23,7 @@ class YelpItemService
       end
     end
 
+    # determine whether there is enough time for all activities during the date
     activity_duration_list = @activity_array.pluck(:duration)
     activity_duration = activity_duration_list.sum
 
@@ -38,6 +41,7 @@ class YelpItemService
   private
 
   def assign_item_objects(first, second, third, item_list)
+    # Return an array of items with no duplicates
     if first.nil?
       first = item_list.sample
       second = item_list.sample
@@ -50,7 +54,7 @@ class YelpItemService
       third = item_list.sample
       assign_item_objects(first, second, third, item_list)
     else
-      return [first, second, third]
+      [first, second, third]
     end
   end
 end
