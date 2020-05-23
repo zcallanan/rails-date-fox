@@ -55,25 +55,10 @@ activities.each do |value|
       price_range: 2
     ).call
     items.each do |item|
-      item.update(activity: activity)
+      item.update!(activity: activity)
     end
   end
 end
-
-# csv_read_options = {col_sep: ",", quote_char: '"', headers: :first_row}
-
-# CSV.foreach("categories.csv", csv_read_options) do |csv_row|
-#   puts csv_row[0]
-#   items = YelpApiService.new(
-#     location: "Munich",
-#     radius: 10_000,
-#     category: csv_row[0]
-#   ).call
-
-#   items.each do |item|
-#     item.update(activity: Activity.find_by(name: csv_row[1]))
-#   end
-# end
 
 n = 0
 3.times do
@@ -88,4 +73,4 @@ n = 0
   end
 end
 
-puts "Finished!"
+puts 'Finished!'
