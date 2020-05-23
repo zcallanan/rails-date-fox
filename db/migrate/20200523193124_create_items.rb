@@ -5,13 +5,11 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :address
       t.boolean :availability, default: true, null: false
-      t.time :open_time
-      t.time :close_time
       t.integer :rating
       t.integer :price_range
-      t.integer :price
-      t.string :days_closed
+      t.integer :review_count
       t.references :activity, foreign_key: true
+      t.references :item_category, foreign_key: true
 
       t.timestamps
     end
