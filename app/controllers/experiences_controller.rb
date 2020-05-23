@@ -7,6 +7,7 @@ class ExperiencesController < ApplicationController
     @activity_items = {}
     @activity_array = []
     @experience_items = []
+    @item_categories = ItemCategory.all
 
     # form values
     @search = Search.find(params[:search_id])
@@ -20,7 +21,9 @@ class ExperiencesController < ApplicationController
     # for each activity, call yelp index api to get a list of items per activity category
 
     @activity_array.each do |activity|
-      activity.activity_categories.each do |category|
+      @item_categories.each do |category|
+        next if activity.name != category.activity_reference
+
         items = YelpApiService.new(
           location: @city,
           radius: 10_000,
@@ -29,10 +32,10 @@ class ExperiencesController < ApplicationController
         ).call
         @items << items
 
-        # associate each item with an activity
+        # associate each item with an activity & category
 
         @items.flatten.each do |item|
-          item.update!(activity: activity)
+          item.update!(activity: activity, item_category: category)
         end
       end
 

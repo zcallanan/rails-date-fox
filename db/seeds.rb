@@ -3,32 +3,33 @@
 require "csv"
 
 SearchActivity.destroy_all
-ActivityCategory.destroy_all
+
 SearchExperience.destroy_all
 ItemOperatingHour.destroy_all
 ItemExperience.destroy_all
 OperatingHour.destroy_all
 Photo.destroy_all
 Item.destroy_all
+ItemCategory.destroy_all
 Activity.destroy_all
 Experience.destroy_all
 # edit
 
 
 activities = [
-  ["Dinner & Lunch", 120],
-  ["Bar", 90],
-  ["Club & Dance", 90],
-  ["Breakfast", 75],
-  ["Events, Shows & Movies", 150],
-  ["Theatres & Operas", 180],
-  ["Concerts & Festivals", 180],
-  ["Museums & Sites", 120],
-  ["Indoor Activity", 90],
-  ["Outdoor Activity", 180]
+  ['Dinner & Lunch', 120],
+  ['Bar', 90],
+  ['Club & Dance', 90],
+  ['Breakfast', 75],
+  ['Events, Shows & Movies', 150],
+  ['Theatres & Operas', 180],
+  ['Concerts & Festivals', 180],
+  ['Museums & Sites', 120],
+  ['Indoor Activity', 90],
+  ['Outdoor Activity', 180]
 ]
 
-csv_read_options = {col_sep: ',', quote_char: '"', headers: :first_row}
+csv_read_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 category_list = []
 CSV.foreach('categories.csv', csv_read_options) do |csv_row|
   category_list << csv_row
@@ -41,35 +42,24 @@ activities.each do |value|
     duration: value[1]
   )
   category_list.each do |row|
-    if row[1] == activity.name
-      activity.activity_categories << ActivityCategory.create!(name: row[0])
-    end
-  end
+    next if row[1] != activity.name
 
-  activity.activity_categories.each do |category|
-    puts category.name
+    item_category = ItemCategory.create!(
+      name: row[0],
+      activity_reference: row[1],
+      alias: row[2]
+    )
+
+    puts item_category.name
     items = YelpApiService.new(
       location: 'Munich',
       radius: 10_000,
-      category: category.name,
+      category: item_category.name,
       price_range: 2
     ).call
     items.each do |item|
-      item.update!(activity: activity)
+      item.update!(activity: activity, item_category: item_category)
     end
-  end
-end
-
-n = 0
-3.times do
-  n += 1
-  experience = Experience.new(
-    name: "Experience #{n}"
-  )
-  experience.save
-
-  2.times do
-    experience.items << Item.all[(0..20).to_a.sample]
   end
 end
 
