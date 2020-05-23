@@ -1,15 +1,11 @@
-<div class="row">
-  <div class="col-3">
-
-  </div>
-
-    <% @activity_items.each do |_key, value| %>
-      <% result = value.sample(3) %>
-      <div class="col-3">
-      <%= render 'experience-card', items: result, searches: @search %>
+<div class="class container">
+  <div class="row">
+  <% @search.experiences.each do |experience| %>
+    <div class="col-4">
+      <%= render 'experience-card', searches: @search, experience: experience %>
     </div>
-    <% end  %>
-
-
+  <% end %>
 </div>
+</div>
+
 

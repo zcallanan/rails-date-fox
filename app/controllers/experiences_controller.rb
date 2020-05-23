@@ -3,31 +3,22 @@ class ExperiencesController < ApplicationController
   before_action :set_experience, only: %i[show]
 
   def index
-    @search = Search.find(params[:search_id])
     @items = []
-    @experiences = Experience.all
-    @search.experiences << @experiences.first
-    test_price_range = 2
+    @activity_items = {}
+    @activity_array = []
+    @experience_items = []
 
+    # form values
+    @search = Search.find(params[:search_id])
+    @search.experiences = [] # remove any previous experiences tied to this search
     @city = @search.city
-    # @price_range = @search.price_range
-    @price_range = test_price_range
+    @price_range = @search.price_range
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
-    @activity_array = []
     @activity_array = @search.activities
 
-    # need to create 3 experiences for the user at this point
-    # n = 0
-    # 3.times do
-    #   n += 1
-    #   Experience.create(
-    #     starts_at: @starts_at,
-    #     ends_at: @ends_at,
-    #     name: "Experience #{n}"
-    #   )
-    # end
-    @activity_items = {}
+    # for each activity, call yelp index api to get a list of items per activity category
+
     @activity_array.each do |activity|
       activity.activity_categories.each do |category|
         items = YelpApiService.new(
@@ -37,83 +28,37 @@ class ExperiencesController < ApplicationController
           price_range: @price_range
         ).call
         @items << items
+
+        # associate each item with an activity
+
+        @items.flatten.each do |item|
+          item.update!(activity: activity)
+        end
       end
+
+      # hash where {activity.name => array of items for that activity }
       @activity_items[activity.name] = @items.flatten
     end
 
+    # determine what items are assigned to each (out of 3) experiences
 
+    @experience_items = YelpItemService.new(
+      activity_array: @activity_array,
+      activity_items: @activity_items,
+      starts_at: @starts_at,
+      ends_at: @ends_at
+    ).call
 
+    # assign each experience to the user's @search
+    3.times do
+      experience = Experience.create!
+      @search.experiences << experience
+    end
 
-    # submit form with nothing but a @search
-    # get 1, or 2, or variable activities - 1 activity gets 1 item of duration X
-    # if duration does allow all activities, then we need prioritize one activity over another
-    ## this could hard coded
-    # Restaurant Bar and something else
-    # We know duration fits all of them
-    # Get result
-
-    #search.activities.name = @activity_array[...].name
-
-
-    # @items = Item.where(
-    #   'price_range = ? \
-    #   AND search.activities = ?',
-    #   @price_range
-    # ).order(rating: :desc)
-
-
-
-
-
-
-    # Filter item by city
-    # Filter by duration
-    ## Filter item by starts at
-    ## Filter item by ends at
-    ## Are they open?
-    # Matches an activity
-
-    ## Does the activity fit their duration?
-
-    # Filter item by
-
-
-    # sum = 0
-    # @activity_array.each do |activity|
-    #   sum += activity.duration
-    # end
-    # average_duration = sum / @activity_kinds.size
-
-
-    # @items = Item.where("price_range = ?", "#{@price_range.size}").order(rating: :desc)
-    # model would be...
-    # scope :search_by_price_range, lambda { |price|
-    #   where("price_range = ?", "#{price}")
-    # }
-    # controller/service
-    # @items = @items.search_by_price_range(@price_range.size)
-
-
-
-
-    # what activities you have selected 1 activity = 1 item per experience
-    # Calculate duration from search starts and ends datetime
-    # With total duration, compare against duration of experience + travel time default to generate number of items
-    # filter by price first, then duration, then rating
-    ## top average duration
-    ## if it exceeds desired duration, remove 1 or go with lowest duration items
-    # @message activity you are looking for exceeds your duration
-    # select items with the best rating
-    # add items to an array
-    # If user wants a different item
-    # @item = Item.find(params[:id])
-
-    # form is sending params
-    # filter items by price_range params
-    # sort items by rating params
-    # group items by activity type
-    # randomly select one item per activity type and store in one of three arrays
-    ## what activities selected, for each activity get top ranked items and store them in arrays
+    # append items to each experience
+    @experience_items.each_with_index do |item_list, index|
+      @search.experiences[index].items << item_list
+    end
   end
 
   def show
