@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_094646) do
+ActiveRecord::Schema.define(version: 2020_05_25_182231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(version: 2020_05_25_094646) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "item_attributes", force: :cascade do |t|
+    t.string "activity_reference"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "item_categories", force: :cascade do |t|
     t.string "name"
     t.string "alias"
@@ -101,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_094646) do
     t.string "description"
     t.string "address"
     t.boolean "availability", default: true, null: false
-    t.integer "rating"
+    t.float "rating"
     t.integer "price_range"
     t.integer "review_count"
     t.bigint "activity_id"
@@ -110,6 +117,15 @@ ActiveRecord::Schema.define(version: 2020_05_25_094646) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["activity_id"], name: "index_items_on_activity_id"
     t.index ["item_category_id"], name: "index_items_on_item_category_id"
+  end
+
+  create_table "join_item_attrs", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "item_attribute_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_attribute_id"], name: "index_join_item_attrs_on_item_attribute_id"
+    t.index ["item_id"], name: "index_join_item_attrs_on_item_id"
   end
 
   create_table "operating_hours", force: :cascade do |t|
@@ -187,6 +203,8 @@ ActiveRecord::Schema.define(version: 2020_05_25_094646) do
   add_foreign_key "item_operating_hours", "operating_hours"
   add_foreign_key "items", "activities"
   add_foreign_key "items", "item_categories"
+  add_foreign_key "join_item_attrs", "item_attributes"
+  add_foreign_key "join_item_attrs", "items"
   add_foreign_key "photos", "items"
   add_foreign_key "search_activities", "activities"
   add_foreign_key "search_activities", "searches"
