@@ -34,15 +34,7 @@ class ExperiencesController < ApplicationController
         @items << items
 
         # create an array of 4 attributes to be added to an item
-        attribute_list = []
-        @item_attributes.each do |attribute|
-          next if activity.name != attribute.activity_reference
-
-          attribute_list << attribute
-        end
-        attributes = []
-        attributes << attribute_list.sample(4)
-        attributes.flatten!
+        attributes = generate_attributes(@item_attributes, activity)
 
         # associate each item with an activity, category, and 4 attributes
         @items.flatten.each do |item|
@@ -88,26 +80,23 @@ class ExperiencesController < ApplicationController
     @itinerary = calculate_date_schedule(@search, @experience)
   end
 
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def set_experience
     @experience = Experience.find(params[:id])
   end
 
   private
+
+  def generate_attributes(item_attributes, activity)
+    attribute_list = []
+    item_attributes.each do |attribute|
+      next if activity.name != attribute.activity_reference
+
+      attribute_list << attribute
+    end
+    attributes = []
+    attributes << attribute_list.sample(4)
+    attributes.flatten!
+  end
 
   def calculate_date_schedule(search, experience)
     itinerary = []
