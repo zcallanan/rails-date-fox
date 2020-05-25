@@ -65,8 +65,10 @@ class ExperiencesController < ApplicationController
   end
 
   def show
+    @search = Search.find(params[:search_id])
     @experience = Experience.find(params[:id])
 
+    @itinerary = calculate_date_schedule(@search, @experience)
   end
 
   def new
@@ -86,5 +88,23 @@ class ExperiencesController < ApplicationController
 
   def set_experience
     @experience = Experience.find(params[:id])
+  end
+
+  private
+
+  def calculate_date_schedule(search, experience)
+    itinerary = []
+    itinerary << search.starts_at.strftime('%I:%M %p')
+    activity_time = @search.starts_at.to_time
+    travel_time = 30
+    experience.items.each_with_index do |item, index|
+      activity_time += item.activity.duration * 60
+      itinerary << activity_time.strftime('%I:%M %p')
+      if index < @experience.items.size - 1
+        activity_time += travel_time * 60
+        itinerary << activity_time.strftime('%I:%M %p')
+      end
+    end
+    itinerary
   end
 end
