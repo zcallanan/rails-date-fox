@@ -6,4 +6,6 @@ class Item < ApplicationRecord
   has_many :item_operating_hours
   has_many :operating_hours, through: :item_operating_hours
   has_many :photos
+  has_many :join_item_attrs
+  has_many :item_attributes, through: :join_item_attrs
 end
