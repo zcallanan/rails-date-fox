@@ -4,89 +4,15 @@
 </div>
 
 <div class="container">
-  <div class="border border-success">
-    <div class="frame d-flex p-3">
-      <div class="info">
-        <div class="time p-2">7pm</div>
-        <div class="place p-2">Bar</div>
-      </div>
-      <div class="show-card d-flex">
-          <h2 class="card-name">Barroom München</h2>
-          <div class="card-text">
-            <h5 class="type">Cocktail Bar
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </h5>
-            <p>Selected cocktails and a journey into the world of rum from the Caribbean, Latin America, Panama, India and Australia are waiting for you. Come and visit us, leave the stress behind and enjoy the classic atmosphere of Barroom.</p>
-          </div>
-        <div class="map" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1590064396/Bildschirmfoto_2020-05-21_um_14.28.52_ifxgsi.png')"></div>
-        <div class="card-button">
-          <button type="button" class="btn btn-primary btn p-1 m-1">Show details</button>
-          <button type="button" class="btn btn-primary btn p-1 m-1">New suggestion</button>
-          <button type="button" class="btn btn-primary btn p-1 m-1">Make reservation</button>
-        </div>
-      </div>
-    </div>
-  <div class="travel">
-    <div class="travel-time"> 30 min | Travel options Uber Taxi Train Bus Bike Scooter Walk</div>
-  </div>
-  <div class="frame d-flex p-3">
-    <div class="info">
-      <div class="time p-2">8.30pm</div>
-      <div class="place p-2">Restaurant</div>
-    </div>
-    <div class="show-card d-flex">
-        <h2 class="card-name">Rue des Halles</h2>
-      <div class="card-text">
-        <h5 class="type">France
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          </h5>
-        <p>We often drive past the beautiful house not far from Wiener Platz and look longingly into the windows behind which the guests of the Rue des Halles enjoy. - Do they really? You hear this, you hear that. A reason to look for yourself.</p>
-      </div>
+  <% n = 0 %>
+  <% @experience.items.each do |item| %>
+    <%= render 'show_card', search: @search, item: item %>
+    <% n += 1 %>
 
-      <div class="map" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1590065217/Bildschirmfoto_2020-05-21_um_14.46.42_gtpy9b.png')"></div>
-      <div class="card-button">
-        <button type="button" class="btn btn-primary btn p-1 m-1">Show details</button>
-        <button type="button" class="btn btn-primary btn p-1 m-1">New suggestion</button>
-        <button type="button" class="btn btn-primary btn p-1 m-1">Make reservation</button>
-      </div>
-    </div>
-  </div>
-  <div class="travel">
-    <div class="travel-time"> 30 min | Travel options Uber Taxi Train Bus Bike Scooter Walk</div>
-  </div>
-  <div class="frame d-flex p-3">
-    <div class="info">
-      <div class="time p-2">11pm</div>
-      <div class="place p-2">Bar</div>
-    </div>
-    <div class="show-card d-flex">
-        <h2 class="card-name">Hotel for seasions</h2>
-        <div class="card-text">
-          <h5 class="type">Hotel Bar
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </h5>
-          <p>As a typical American bar, the Jahreszeiten Bar at the Hotel Vier Jahreszeiten Kempinski Munich combines cosy niches with royal flair, which lets the history of the house live on until today.</p>
-        </div>
-      <div class="map" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1590065585/Bildschirmfoto_2020-05-21_um_14.52.48_g30dt5.png')"></div>
-      <div class="card-button">
-        <button type="button" class="btn btn-primary btn p-1 m-1">Show details</button>
-        <button type="button" class="btn btn-primary btn p-1 m-1">New suggestion</button>
-        <button type="button" class="btn btn-primary btn p-1 m-1">Make reservation</button>
-      </div>
-    </div>
-  </div>
+    <% if n < @experience.items.size %>
+      <%= render 'show_travel_card' %>
+    <% end %>
+  <% end %>
   </div>
 </div>
 <div class="footer d-flex justify-content-center">

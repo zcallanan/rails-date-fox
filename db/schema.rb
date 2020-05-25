@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_202531) do
+ActiveRecord::Schema.define(version: 2020_05_25_094646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,7 +150,6 @@ ActiveRecord::Schema.define(version: 2020_05_23_202531) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer "price_range", default: 0
-    t.string "activity_kind"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
