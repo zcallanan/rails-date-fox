@@ -3,6 +3,9 @@ class DateTimesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[edit]
 
   def edit
+    unless @search.present?
+      @search = Search.new
+    end
   end
 
   private
