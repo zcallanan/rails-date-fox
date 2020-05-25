@@ -60,28 +60,6 @@ class ExperiencesController < ApplicationController
       @activity_items[activity.name] = @items.flatten
     end
 
-    # assign 4 random attributes to an item
-    # @activity_items.each do |activity_key, item_array|
-    #   @activity_array.each do |activity|
-    #     next if activity_key != activity.name
-    #       item_array.each do |item|
-    #         attribute_list = []
-    #         @item_attributes.each do |attribute|
-    #           next if activity.name != attribute.activity_reference
-
-    #           attribute_list << attribute
-    #         end
-    #         attributes = []
-    #         attributes << attribute_list.sample(4)
-    #         attributes.flatten!
-    #         attributes.each do |attrs|
-    #           item.item_attributes << attrs
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
-
     # determine what items are assigned to each (out of 3) experiences
 
     @experience_items = YelpItemService.new(
