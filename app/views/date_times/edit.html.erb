@@ -1,22 +1,26 @@
 <%# Form for date_times %>
 
-<div class="search-form-container">
+<%= render 'shared/progress_bar' %>
 
-<h2>How much time do you want to spend?</h2>
+<div class="center">
+  <div class="search-form-container">
 
-  <%= simple_form_for @search do |f| %>
-    
-    <div class="date">
-      <%= f.input :starts_at, 
-                  as: :string, 
-                  placeholder: 'Start:',
-                  input_html: {class: "datepicker"} %>
-      <%= f.input :ends_at, 
-                  as: :string, 
-                  placeholder: 'End:',
-                  input_html: {class: "datepicker"} %>
-    </div>
-    <%= f.button :submit, "Continue", class: "btn" %>
-  <% end %>
+  <h2>How much time do you want to spend?</h2>
+
+    <%= simple_form_for @search do |f| %>
+      
+      <div class="date">
+        <%= f.input :starts_at, 
+                    as: :string, 
+                    placeholder: 'Start:',
+                    input_html: {class: "datepicker"} %>
+        <%= f.input :ends_at, 
+                    as: :string, 
+                    placeholder: 'End:',
+                    input_html: {class: "datepicker"} %>
+      </div>
+      <%= f.button :submit, "Continue", class: "btn"%>
+    <% end %>
+  </div>
 </div>
 

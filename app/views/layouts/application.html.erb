@@ -10,7 +10,13 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <% unless controller_name == 'cities' || 
+              controller_name == 'date_times' ||
+              controller_name == 'activities' ||
+              controller_name == 'price_ranges' %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+
     <%= render 'shared/flashes' %>
     <%= yield %>
 

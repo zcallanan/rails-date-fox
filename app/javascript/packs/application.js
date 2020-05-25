@@ -13,6 +13,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   select_city();
   choice();
+  progress();
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -25,4 +26,4 @@ document.addEventListener('turbolinks:load', () => {
 import 'plugins/flatpickr'
 import "controllers"
 import { choice, select_city } from '../components/checkboxes'
-
+import { progress } from '../components/progress_bar'

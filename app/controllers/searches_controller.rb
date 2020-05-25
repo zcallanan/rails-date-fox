@@ -8,11 +8,11 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(search_params)
+    @search = Search.new
     @search.user = current_user
 
     if @search.save
-      redirect_to date_times_path(@search)
+      redirect_to cities_path(@search)
     else
       render :new
     end
@@ -20,25 +20,47 @@ class SearchesController < ApplicationController
 
   def update
     @search = Search.find(params[:id])
+    url = Rails.application.routes.recognize_path(request.referrer)
+
     unless params[:activity_ids].nil?
+      @search.activities.destroy_all
+      # Creating the search activities for a given search
       params[:activity_ids].each do |a|
         SearchActivity.create(search: @search, activity: Activity.find(a.to_i)) unless a == ""
       end
     end
 
+
     if @search.update!(search_params)
-      if @search.activities.empty?
+    #   if @search.activities.empty?
+    #     raise
+    #     redirect_to activities_path(@search)
+    #   elsif @search.price_range == 0
+    #     redirect_to price_ranges_path(@search)
+    #   else
+    #     # redirect_to experience_path(@search)
+    #     redirect_to search_experiences_path(@search)
+    #   end
+    # else
+    #   # redirect_to experience_path(@search)
+    #   redirect_to search_experiences_path(@search)
+      if url[:controller] == 'cities'
+        redirect_to date_times_path(@search)
+      end
+
+      if url[:controller] == 'date_times'
         redirect_to activities_path(@search)
-      elsif @search.price_range == 0
+      end
+
+      if url[:controller] == 'activities'
         redirect_to price_ranges_path(@search)
-      else
-        # redirect_to experience_path(@search)
+      end
+
+      if url[:controller] == 'price_ranges'
         redirect_to search_experiences_path(@search)
       end
-    else
-      # redirect_to experience_path(@search)
-      redirect_to search_experiences_path(@search)
     end
+
   end
 
   private

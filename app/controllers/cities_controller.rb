@@ -1,10 +1,8 @@
-class ActivitiesController < ApplicationController
+class CitiesController < ApplicationController
   before_action :set_search
   skip_before_action :authenticate_user!, only: %i[edit]
-
+  
   def edit
-    # @search.activities = []
-    @activities = Activity.all
   end
 
   private
@@ -12,4 +10,5 @@ class ActivitiesController < ApplicationController
   def set_search
     @search = Search.find(params[:search_id])
   end
+
 end
