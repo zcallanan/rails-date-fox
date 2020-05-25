@@ -17,7 +17,7 @@ class YelpApiService
     serialized_data = URI.open(url, "Authorization" => "Bearer #{API_KEY}").read
     data = JSON.parse(serialized_data)
     data = data["businesses"]
-    data.each do |row|
+    data[0...5].each do |row|
       location = row["location"]
       address_string = "#{location["address1"]}, #{location["city"]} #{location["zip_code"]}"
       price = row["price"].nil? ? 1 : row["price"].size
@@ -40,7 +40,7 @@ class YelpApiService
         item_data = JSON.parse(ser_data)
 
         # Create item photos
-        item.photos.create!(item_data["photos"].map { |url| {url: url} })
+        # item.photos.create!(item_data["photos"].map { |url| {url: url} })
 
         # Create opening hours
         if item_data.key?("hours")

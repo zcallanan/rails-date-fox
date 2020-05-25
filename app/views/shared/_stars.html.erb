@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center align-items-center">
+  <p><%= item.rating %>&nbsp</p>
+  <% (1..5).to_a.each_with_index do |value, index| %>
+    <% if index < item.rating %>
+      <i class="fas fa-star stars"></i>
+    <% else %>
+      <i class="far fa-star stars"></i>
+    <% end %>
+  <% end  %>
+  <p>&nbsp<%= link_to "(#{item.review_count})", "#" %></p>
+</div>
