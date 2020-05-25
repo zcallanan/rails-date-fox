@@ -11,7 +11,7 @@
   </head>
   <body>
 
-    <% unless controller_name == 'cities' || 
+    <% unless controller_name == 'cities' ||
               controller_name == 'date_times' ||
               controller_name == 'activities' ||
               controller_name == 'price_ranges' %>
@@ -21,7 +21,6 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
 
-    <%= yield %>
     <%= render 'shared/flashes' %>
     <%#= javascript_pack_tag 'application' %>
   </body>

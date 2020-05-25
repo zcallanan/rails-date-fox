@@ -14,7 +14,25 @@ Item.destroy_all
 ItemCategory.destroy_all
 Activity.destroy_all
 Experience.destroy_all
+Search.destroy_all
 
+bar_images = [
+  'https://unsplash.com/photos/GXXYkSwndP4',
+  'https://unsplash.com/photos/-V-ENAd192g',
+  'https://unsplash.com/photos/7rjfWvO5tz0',
+  'https://unsplash.com/photos/iwWJFIlnDm4',
+  'https://unsplash.com/photos/_CpF-Za8crc',
+  'https://unsplash.com/photos/-V-ENAd192g'
+]
+
+restaurant_images = [
+  'https://unsplash.com/photos/nmpW_WwwVSc',
+  'https://unsplash.com/photos/I79Pgmhmy5M',
+  'https://unsplash.com/photos/0I9jSdBwydg',
+  'https://unsplash.com/photos/5IZwgy5LJp8',
+  'https://unsplash.com/photos/kgjQ1AGDwE0',
+  'https://unsplash.com/photos/1ktlYkBZZF4'
+]
 
 activities = [
   ['Dinner & Lunch', 120],
@@ -90,8 +108,10 @@ activities.each do |value|
       ).call
       items.each do |item|
         item.update!(activity: activity, item_category: item_category)
-        item_attributes.each do |att|
-          item.item_attributes << att
+        next if item.item_attributes.size > 4
+          item_attributes.each do |att|
+            item.item_attributes << att
+          end
         end
       end
     end
