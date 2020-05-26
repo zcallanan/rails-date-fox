@@ -15,6 +15,11 @@
   margin-right: 50px;
   color: #f7f7f7;
   text-shadow: 2px 2px 4px #333333;
+
+}
+.social > h3 > i:hover {
+  color: black;
+  transform: scale(1.3)
 }
 
 .fox {
@@ -24,11 +29,14 @@
 }
 
 .partner {
-  padding: 5px;
+  display: flex;
   color: #f7f7f7;
-  text-shadow: 2px 2px 4px #333333;
-  margin-left: 50px;
+  margin-left: 10px;
   margin-right: 50px;
+}
+
+.partner > div{
+  margin-right: 15px;
 }
 
 .footer-text {
@@ -42,8 +50,9 @@
 
 
 .fox {
-  color: gray;
-  text-shadow: none;
+  color: white;
+  margin-left: auto;
+  font-size: 16px;
 }
 
 .fa-award:before {
@@ -52,5 +61,13 @@
 }
 
 .first-icon.second-icon {
+  margin-top:5px; /*to have the space above the image*/
+  margin-bottom:4px; /*to have the space under the image*/
+  margin-right: 5px;
+}
 
+.rating {
+  font-size: 11px;
+  padding-left: 2px;
+  padding-top: 3px;
 }
