@@ -12,64 +12,67 @@ class ExperiencesController < ApplicationController
 
     # form values
     @search = Search.find(params[:search_id])
-    @search.experiences = [] # remove any previous experiences tied to this search
+    @experiences = @search.experiences
     @city = @search.city
     @price_range = @search.price_range
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
     @activity_array = @search.activities
 
+    # check if experiences have items
+    n = 0
+    @experiences.each do |experience|
+      n += 1 unless experience.items.empty?
+    end
+
     # for each activity, call yelp index api to get a list of items per activity category
 
-    @activity_array.each do |activity|
-      @item_categories.each do |category|
-        next if activity.name != category.activity_reference
+    if n.zero?
 
-        items = YelpApiService.new(
-          location: @city,
-          radius: 10_000,
-          category: category.name,
-          price_range: @price_range
-        ).call
-        @items << items
+      @activity_array.each do |activity|
+        @item_categories.each do |category|
+          next if activity.name != category.activity_reference
 
-        # create an array of 4 attributes to be added to an item
-        attributes = generate_attributes(@item_attributes, activity)
+          items = YelpApiService.new(
+            location: @city,
+            radius: 10_000,
+            category: category.name,
+            price_range: @price_range
+          ).call
+          @items << items
 
-        # associate each item with an activity, category, and 4 attributes
-        @items.flatten.each do |item|
-          item.update!(activity: activity) if item.activity.nil?
-          item.update!(item_category: category) if item.item_category.nil?
-          next if item.item_attributes.size > 4
+          # create an array of 4 attributes to be added to an item
+          attributes = generate_attributes(@item_attributes, activity)
 
-          attributes.each do |attrs|
-            item.item_attributes << attrs
+          # associate each item with an activity, category, and 4 attributes
+          @items.flatten.each do |item|
+            item.update!(activity: activity) if item.activity.nil?
+            item.update!(item_category: category) if item.item_category.nil?
+            next if item.item_attributes.size > 4
+
+            attributes.each do |attrs|
+              item.item_attributes << attrs
+            end
           end
         end
+
+        # hash where {activity.name => array of items for that activity }
+        @activity_items[activity.name] = @items.flatten
       end
 
-      # hash where {activity.name => array of items for that activity }
-      @activity_items[activity.name] = @items.flatten
-    end
+      # determine what items are assigned to each (out of 3) experiences
 
-    # determine what items are assigned to each (out of 3) experiences
+      @experience_items = YelpItemService.new(
+        activity_array: @activity_array,
+        activity_items: @activity_items,
+        starts_at: @starts_at,
+        ends_at: @ends_at
+      ).call
 
-    @experience_items = YelpItemService.new(
-      activity_array: @activity_array,
-      activity_items: @activity_items,
-      starts_at: @starts_at,
-      ends_at: @ends_at
-    ).call
-
-    # assign each experience to the user's @search
-    3.times do
-      experience = Experience.create!
-      @search.experiences << experience
-    end
-
-    # append items to each experience
-    @experience_items.each_with_index do |item_list, index|
-      @search.experiences[index].items << item_list
+      # append items to each experience
+      @experience_items.each_with_index do |item_list, index|
+        @search.experiences[index].items << item_list
+      end
     end
   end
 
@@ -80,11 +83,11 @@ class ExperiencesController < ApplicationController
     @itinerary = calculate_date_schedule(@search, @experience)
   end
 
+  private
+
   def set_experience
     @experience = Experience.find(params[:id])
   end
-
-  private
 
   def generate_attributes(item_attributes, activity)
     attribute_list = []
