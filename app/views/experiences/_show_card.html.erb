@@ -16,7 +16,7 @@
     <div class="name">
       <h2><%= item.name %></h2>
     </div>
-      <img src="<%#= item.photos.first.url %>" class="item-photo"/>
+      <img src="<%= item.image_url%>" class="item-photo"/>
   </div>
   <div class="card-text">
     <h5 class="type"><%= item.item_category.alias %>

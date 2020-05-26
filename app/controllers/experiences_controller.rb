@@ -26,10 +26,9 @@ class ExperiencesController < ApplicationController
     end
 
     # for each activity, call yelp index api to get a list of items per activity category
-
     if n.zero?
-
       @activity_array.each do |activity|
+
         @items = []
         @item_categories.each do |category|
           next if activity.name != category.activity_reference
@@ -58,17 +57,16 @@ class ExperiencesController < ApplicationController
             end
           end
         end
-        # hash where {activity.name => array of items for that activity }
-        all_items = Item.all
+
+        @items = Item.all
         result = []
-        all_items.each do |i|
+        @items.each do |i|
           result << i if activity.name == i.activity.name
         end
-
         @activity_items[activity.name] = result
       end
 
-      # determine what items are assigned to each (out of 3) experiences
+    # determine what items are assigned to each (out of 3) experiences
 
       @experience_items = YelpItemService.new(
         activity_array: @activity_array,
@@ -83,6 +81,7 @@ class ExperiencesController < ApplicationController
       end
     end
   end
+
 
   def show
     @search = Search.find(params[:search_id])

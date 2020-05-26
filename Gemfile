@@ -18,8 +18,6 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'rack-mini-profiler'
 
-gem 'gon'
-
 group :development do
   gem 'bullet'
   gem 'web-console', '>= 3.3.0'
