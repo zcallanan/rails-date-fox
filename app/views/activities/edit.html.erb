@@ -14,8 +14,10 @@
         <input type="hidden" name="search[activity_ids][]" value="">
           <div class="activity-choices">
             <% @activities.each do |activity| %>
-              <input type="checkbox" class="hidden" value="<%= activity.id %>" name="search[activity_ids][]" id="search_activity_ids_<%= activity.id %>">
-              <label class="activity-choice choice" for="search_activity_ids_<%= activity.id %>"><%= activity.name %><br><i class="fa fa-check"></i></label>
+              <div class="activity-container">
+                <input type="checkbox" class="hidden" value="<%= activity.id %>" name="search[activity_ids][]" id="search_activity_ids_<%= activity.id %>">
+                <label class="activity-choice choice" for="search_activity_ids_<%= activity.id %>"><%= activity.name %></label>
+              </div>
             <% end %>
           </div>
       </div>
