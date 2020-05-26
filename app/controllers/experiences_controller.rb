@@ -8,6 +8,7 @@ class ExperiencesController < ApplicationController
     @activity_array = []
     @experience_items = []
     @item_categories = ItemCategory.all
+    @item_attributes = ItemAttribute.all
 
     # form values
     @search = Search.find(params[:search_id])
@@ -19,7 +20,7 @@ class ExperiencesController < ApplicationController
     @activity_array = @search.activities
 
     # for each activity, call yelp index api to get a list of items per activity category
-    #
+
     @activity_array.each do |activity|
       @item_categories.each do |category|
         next if activity.name != category.activity_reference
@@ -32,10 +33,18 @@ class ExperiencesController < ApplicationController
         ).call
         @items << items
 
-        # associate each item with an activity & category
+        # create an array of 4 attributes to be added to an item
+        attributes = generate_attributes(@item_attributes, activity)
 
+        # associate each item with an activity, category, and 4 attributes
         @items.flatten.each do |item|
-          item.update!(activity: activity, item_category: category)
+          item.update!(activity: activity) if item.activity.nil?
+          item.update!(item_category: category) if item.item_category.nil?
+          next if item.item_attributes.size > 4
+
+          attributes.each do |attrs|
+            item.item_attributes << attrs
+          end
         end
       end
 
@@ -71,26 +80,23 @@ class ExperiencesController < ApplicationController
     @itinerary = calculate_date_schedule(@search, @experience)
   end
 
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
   def set_experience
     @experience = Experience.find(params[:id])
   end
 
   private
+
+  def generate_attributes(item_attributes, activity)
+    attribute_list = []
+    item_attributes.each do |attribute|
+      next if activity.name != attribute.activity_reference
+
+      attribute_list << attribute
+    end
+    attributes = []
+    attributes << attribute_list.sample(4)
+    attributes.flatten!
+  end
 
   def calculate_date_schedule(search, experience)
     itinerary = []

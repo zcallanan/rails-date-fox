@@ -1,73 +1,121 @@
-<div class="home_banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1589977367/date_pic_pttcw6.png')">
+<div class="home_banner" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590486487/Banner_image_2_tldqik.png')">
   <div class="home_banner_content">
-     <h1>Plan your perfect date experience.</h1>
+   <h1>Plan your perfect date experience.</h1>
 
-    <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/daf8fgekl/image/upload/v1589980934/Picture1_heakxg.png')">
-      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p></div>
-        <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a href="/searches/new">Let's go</a> </button></div>   
-        </div>
-       
+    <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590408849/Shape_landing_page_m2nvkr.png')">
+      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p>
+      </div>
+     
+      <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a><%= link_to "Let's go", searches_path(Search.new), method: :post %></a> </button></div> 
+    </div>
 
   </div>
-    
 </div>
-</div>
-  <div class="container">
-    <div class="logo_bar d-flex p-5 justify-content-center">
-      <h2 class="col-4"> <strong>1.000+</strong> restaurants</h2>
-      <h2 class="col-3"> <strong>2.500+</strong> bars</h2>
-      <h2 class="col-3"> <strong>500+</strong> events</h2>
-    </div>
-    <div class="testimonials p-5">
-      <div class="d-flex justify-content-center">
-        <div class="col-4">
-          <h3>Ben (30)</h3>
-            <p>"Best date of my life. DateFox took me to amazing places, the restaurant and bar selection matched exactly what I was looking for."</p>
-        </div>
-        <div class="col-4">
-          <h3>Sven (30)</h3>
-            <p>"I was surprised how easy DateFox makes it to plan a date. I would recommend to everyone, even couples!"</p>
-        </div>
-        <div class="col-4">
-          <h3>Andy (30)</h3>
-            <p>"I never would have though to find these cool places. This was my first succesful date. Thank you, DateFox!"</p>
-        </div>
+
+  <div class="container homepage_container">
+    <div class="logo_bar d-flex justify-content-center">
+      <div class="col-4">
+        <h3 class="logo_bar"> <strong class="numbers_lp">1,000+</strong> restaurants</h3>
+           <p class="landing_page_icon fas fa-utensils"></p>
+      </div>
+      <div class="col-4">
+        <h3 class="logo_bar"> <strong class="numbers_lp">2,500+</strong> bars</h3>
+           <p class="landing_page_icon fas fa-glass-martini-alt"></p>
+      </div>
+      <div class="col-4">
+        <h3 class="logo_bar"> <strong class="numbers_lp">500+</strong> events</h3>
+           <p class="landing_page_icon fas fa-music"></p>
       </div>
     </div>
-      <div class="collection d-flex p-5">
-        <div class="row justify-content-center text-center">
-          <h2>Our top dating experiences in Munich</h2>
-            <div class="item col-4 text-center">
-              <h3>Item</h3>
-            </div>
-            <div class="item col-4 text-center">
-              <h3>Item</h3>
-            </div>
-            <div class="item col-4 text-center">
-              <h3>Item</h3>
-            </div>
-        </div>
-      </div>
+    <div class="col-4">
+      <h3 class="logo_bar"> <strong class="numbers_lp">500+</strong> events</h3>
+      <p class="landing_page_icon fas fa-music"></p>
+    </div>
   </div>
-    <div class="footer d-flex justify-content-center">
-      <div class="contact p-3">
-        <div class="fox"> <h5><i class="far fa-copyright"></i> by Date Fox</h5> </div>
+
+    <div class="Top_dating_experiences p-5">
+      <h2 class="text-center"> <strong class="numbers_lp customers_header">What our customers say</strong></h2>
+      <div class="row justify-content-center testimonial_card_top">
+        <div class="d-flex testimonial_card testimonial_border">
+          <div>
+            <h2>Ben (30)</h2>
+            <p>"I had the best date of my life. DateFox took me to amazing places, the restaurants and bars matched exactly what I was looking for."</p>
+          </div>
+          <img src='https://kitt.lewagon.com/placeholder/users/Benhendriks' class="testimonial_user avatar-bordered"/>
+         </div>
+        <div class="testimonial_card testimonial_border">
+          <div>
+            <h2>Ena (28)</h2>
+            <p>"I was surprised about how easy DateFox makes it to plan a date. No more googling around for hours. I can recommend to everyone, even couples!"</p>
+          </div>
+            <img src='https://kitt.lewagon.com/placeholder/users/Enajahic' class="testimonial_user avatar-bordered"/>
+        </div>
+        <div class="testimonial_card">
+          <div>
+            <h2>Sven (39)</h2>
+            <p>"I never would have thought to find these cool places. The whole booking process was super easy. My date is now in love with me. Thank you, DateFox!"</p>
+          </div>
+            <img src='https://kitt.lewagon.com/placeholder/users/Svenfran' class="testimonial_user avatar-bordered"/>
+        </div>
+        <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
       </div>
-      <div class="social p-3">
-        <h3>
-          <i class="fab fa-facebook-square"></i>
-          <i class="fab fa-instagram"></i>
-          <i class="fas fa-envelope-square"></i>
-          <i class="fab fa-linkedin"></i>
-          <i class="fab fa-twitter-square"></i>
-        </h3>
-      </div>
-      <div class="partner p-3">
-        <h5>
-          <i class="fas row fa-award p-1">  Award 2020</i>
-          <i class="fas row fa-certificate p-1">  Best dating</i>
-          <i class="fab row fa-asymmetrik p-1">  Award</i>
-          <i class="fab row fa-staylinked p-1">  Red Dot</i>
-        </h5>
+      <div class="testimonial_card">
+        <div>
+          <h2>Thomas (27)</h2>
+          <p>"I never would have thought to find these cool places. This was my first succesful date. Thank you, DateFox!"</p>
+        </div>
+        <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
       </div>
     </div>
+  </div>
+
+  <div class="Top_dating_experiences p-5">
+    <h2 class="text-center"> <strong class="numbers_lp top_3_header">Top dating experiences in Munich</strong></h2>
+    <div class="row justify-content-center top_3_card_top">
+      <div class="d-flex top_3_card top_3_border">
+        <div>
+          <h2>Wine & Dine</h2>
+          <img src="https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421040/Wine_and_dine_qovdzb.jpg" alt=""/>
+          <button type="button" class="top_3_button">Show details</buttoOk!n>
+          </div>
+        </div>
+        <div class="top_3_card top_3_border">
+          <div>
+            <h2>Italian nights</h2>
+            <img src="https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421040/Italian_kzzwdn.jpg" alt=""/>
+            <button type="button" class="top_3_button">Show details</button>
+          </div>
+        </div>
+        <div class="top_3_card">
+          <div>
+            <h2>Cocktail classics</h2>
+            <img src="https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421041/Cocktails_qhqahk.jpg" alt=""/>
+            <button type="button" class="top_3_button">Show details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer d-flex">
+
+    <div class="social p-3">
+      <h3>
+        <i class="fab fa-facebook-square"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fas fa-envelope-square"></i>
+        <i class="fab fa-linkedin"></i>
+        <i class="fab fa-twitter-square"></i>
+      </h3>
+      <h3>
+        <p style="font-size: 15px"> Do you need help? Call: +49(0)89 12-34-56 </p>
+      </h3>
+    </div>
+    <div class="partner p-3">
+     <img class="first-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Trustpilot_logo.png" alt="#" width="128" height="52,8">
+     <img class="second-icon" src="https://www.motioncut.co.uk/wp-content/uploads/2018/11/ssl-logo-300x166.png" alt="#" width="120" height="64">
+   </div>
+ </div>
+ <div class="contact p-3">
+  <div class="fox"> <h5><i class="far fa-copyright"></i> by Date Fox • Conditions of Use • Privacy Notice</h5> </div>
+</div>

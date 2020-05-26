@@ -1,13 +1,19 @@
 <div class="card-product">
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <h2><%= item.name %></h2>
-      <p>Category</p>
-      <%#= raise %>
+      <p><%= item.item_category.alias %></p>
+    </div>
+    <div class="col-5">
+      <div class="br-wrapper br-theme-fontawesome-stars">
+          <%= render 'shared/stars', item: item %>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <img src="<%= item.photos.first.url %>" class="item-photo"/>
+  <div class="row">'
+    <% if item.photos.any? %>
+      <img src="<%= item.photos.first.url %>" class="item-photo"/>
+    <% end %>
     <div class="card-product-infos">
       <p> Description would go here</p>
     </div>

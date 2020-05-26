@@ -1,20 +1,20 @@
 <div class="card-category">
+  <div class="text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url()">
+    <h2>Experience</h2>
+  </div>
   <div class="row">
-      <div  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
-        <h2>Experience</h2>
+    <% experience.items.each do |item| %>
+      <div class="row flex-grow-1">
+        <div class="col flex-grow-1">
+          <%= render 'item-card', item: item, searches: searches %>
+        </div>
       </div>
-        <% experience.items.each do |item| %>
-          <div class="row">
-            <div class="col">
-              <%= render 'item-card', item: item, searches: searches %>
-            </div>
-          </div>
-        <% end %>
-          <div class="row">
-            <div class="col">
-              <%= link_to "Choose Experience", search_experience_path(search_id: searches, id: experience), class: "btn btn-primary" %>
-            </div>
-          </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <%= link_to "Choose Experience", search_experience_path(search_id: searches, id: experience), class: "btn btn-primary text-center" %>
+    </div>
   </div>
 </div>
 
