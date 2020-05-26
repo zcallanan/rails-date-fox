@@ -1,0 +1,31 @@
+.action-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  margin-top: 20px;
+  width: 280px;
+  height: 350px;
+  border: 1px solid #100303;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+
+  .action-text {
+    padding: 10px 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .call {
+    margin: 10px auto;
+
+    .action {
+      padding: 10px 38px;
+      font-size: 16px;
+      font-weight: lighter;
+    }
+  }
+}
