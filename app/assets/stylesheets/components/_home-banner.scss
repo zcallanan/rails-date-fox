@@ -52,9 +52,13 @@
         text-shadow: 2px 2px 4px #333333;
         font-size: 36px;
       }
-    }
-   
+    }  
   }
 
+  .homepage_container {
+    max-width: unset !important;
+    width: 57vw !important;
+    padding: 0px !important;
+  }
 
 

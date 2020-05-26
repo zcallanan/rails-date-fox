@@ -1,30 +1,31 @@
-<div class="home_banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1589977367/date_pic_pttcw6.png')">
+<div class="home_banner" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590486487/Banner_image_2_tldqik.png')">
   <div class="home_banner_content">
    <h1>Plan your perfect date experience.</h1>
 
-   <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590408849/Shape_landing_page_m2nvkr.png')">
-    <div class="elipse_text"> <p>High class dating tailored to your personal needs</p></div>
-    <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a href="/searches/new">Let's go</a> </button></div>
+    <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590408849/Shape_landing_page_m2nvkr.png')">
+      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p>
+      </div>
+     
+      <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a><%= link_to "Let's go", searches_path(Search.new), method: :post %></a> </button></div> 
+    </div>
 
   </div>
-
-
-
-  <% link_to 'create search', searches_path(Search.new), method: :post %>
-
-</div>
 </div>
 
-<div class="container">
-
-  <div class="logo_bar d-flex justify-content-center">
-    <div class="col-4">
-      <h3 class="logo_bar"> <strong class="numbers_lp">1,000+</strong> restaurants</h3>
-      <p class="landing_page_icon fas fa-utensils"></p>
-    </div>
-    <div class="col-4">
-      <h3 class="logo_bar"> <strong class="numbers_lp">2,500+</strong> bars</h3>
-      <p class="landing_page_icon fas fa-glass-martini-alt"></p>
+  <div class="container homepage_container">
+    <div class="logo_bar d-flex justify-content-center">
+      <div class="col-4">
+        <h3 class="logo_bar"> <strong class="numbers_lp">1,000+</strong> restaurants</h3>
+           <p class="landing_page_icon fas fa-utensils"></p>
+      </div>
+      <div class="col-4">
+        <h3 class="logo_bar"> <strong class="numbers_lp">2,500+</strong> bars</h3>
+           <p class="landing_page_icon fas fa-glass-martini-alt"></p>
+      </div>
+      <div class="col-4">
+        <h3 class="logo_bar"> <strong class="numbers_lp">500+</strong> events</h3>
+           <p class="landing_page_icon fas fa-music"></p>
+      </div>
     </div>
     <div class="col-4">
       <h3 class="logo_bar"> <strong class="numbers_lp">500+</strong> events</h3>
@@ -32,20 +33,29 @@
     </div>
   </div>
 
-  <div class="Top_dating_experiences p-5">
-    <h2 class="text-center"> <strong class="numbers_lp customers_header">What our customers say</strong></h2>
-    <div class="row justify-content-center testimonial_card_top">
-      <div class="d-flex testimonial_card testimonial_border">
-        <div>
-          <h2>Ben (30)</h2>
-          <p>"Best date of my life. DateFox took me to amazing places, the restaurants and bars matched exactly what I was looking for."</p>
+    <div class="Top_dating_experiences p-5">
+      <h2 class="text-center"> <strong class="numbers_lp customers_header">What our customers say</strong></h2>
+      <div class="row justify-content-center testimonial_card_top">
+        <div class="d-flex testimonial_card testimonial_border">
+          <div>
+            <h2>Ben (30)</h2>
+            <p>"I had the best date of my life. DateFox took me to amazing places, the restaurants and bars matched exactly what I was looking for."</p>
+          </div>
+          <img src='https://kitt.lewagon.com/placeholder/users/Benhendriks' class="testimonial_user avatar-bordered"/>
+         </div>
+        <div class="testimonial_card testimonial_border">
+          <div>
+            <h2>Ena (28)</h2>
+            <p>"I was surprised about how easy DateFox makes it to plan a date. No more googling around for hours. I can recommend to everyone, even couples!"</p>
+          </div>
+            <img src='https://kitt.lewagon.com/placeholder/users/Enajahic' class="testimonial_user avatar-bordered"/>
         </div>
-        <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
-      </div>
-      <div class="testimonial_card testimonial_border">
-        <div>
-          <h2>Susan (32)</h2>
-          <p>"I was surprised how easy DateFox makes it to plan a date. I would recommend to everyone, even couples!"</p>
+        <div class="testimonial_card">
+          <div>
+            <h2>Sven (39)</h2>
+            <p>"I never would have thought to find these cool places. The whole booking process was super easy. My date is now in love with me. Thank you, DateFox!"</p>
+          </div>
+            <img src='https://kitt.lewagon.com/placeholder/users/Svenfran' class="testimonial_user avatar-bordered"/>
         </div>
         <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
       </div>
