@@ -3,14 +3,16 @@
   height: 200px;
   background-color: #6362AF;
   display: flex;
+  justify-content: space-between !important;
   padding: 36px;
 }
 
 .social {
+  align :left;
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-left: 250px;
-  margin-right: 250px;
+  margin-left: 50px;
+  margin-right: 50px;
   color: #f7f7f7;
   text-shadow: 2px 2px 4px #333333;
 }
@@ -18,10 +20,37 @@
 .fox {
   text-shadow: 2px 2px 4px #333333;
   color: #f7f7f7;
+  margin-left: 26px;
 }
 
 .partner {
   padding: 5px;
   color: #f7f7f7;
   text-shadow: 2px 2px 4px #333333;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.footer-text {
+  margin-bottom: 2px;
+  padding-left: 5px;
+}
+
+.far fa-copyright {
+  font-size: 16px;
+}
+
+
+.fox {
+  color: gray;
+  text-shadow: none;
+}
+
+.fa-award:before {
+  content: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQOTCu9pDccuQdMbq-N8W4NjKs_K301utr9aGziA-PjnSPSuJqE&usqp=CAU) !important;
+
+}
+
+.first-icon.second-icon {
+
 }
