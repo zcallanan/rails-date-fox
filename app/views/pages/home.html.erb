@@ -4,11 +4,8 @@
 
     <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590408849/Shape_landing_page_m2nvkr.png')">
       <div class="elipse_text"> <p>High class dating tailored to your personal needs</p></div>
-        <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a href="/searches/new">Let's go</a> </button></div>
-
-        <% link_to 'create search', searches_path(Search.new), method: :post %>
-
-        </div>
+        <%= link_to "Let's go", searches_path(Search.new), method: :post, class: "banner_button btn btn-success btn-lg" %>
+    </div>
   </div>
 
 </div>
