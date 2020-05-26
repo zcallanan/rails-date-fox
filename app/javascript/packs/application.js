@@ -13,6 +13,7 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   select_city();
   choice();
+  progress();
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -22,7 +23,8 @@ document.addEventListener('turbolinks:load', () => {
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+
 import 'plugins/flatpickr'
 import "controllers"
 import { choice, select_city } from '../components/checkboxes'
-
+import { progress } from '../components/progress_bar'
