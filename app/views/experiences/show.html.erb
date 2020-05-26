@@ -7,7 +7,7 @@
 <div class="container p-0">
   <div class="row">
     <% n = 0 %>
-    <div class="col-10">
+    <div class="col-10 p-0">
       <% @experience.items.each do |item| %>
         <%= render 'show_card', search: @search, item: item %>
         <% n += 1 %>
@@ -16,7 +16,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-2">
+    <div class="col-2 p-0">
       <div class="action-box">
         <div class="action-text">
           <input type="checkbox">
