@@ -34,6 +34,14 @@ restaurant_images = [
   'https://unsplash.com/photos/1ktlYkBZZF4'
 ]
 
+museum_images = [
+  'https://unsplash.com/photos/WJ0ISNjpvxo',
+  'https://unsplash.com/photos/AHV8vqJIuqU',
+  'https://unsplash.com/photos/ejMAw1aXDhA',
+  'https://unsplash.com/photos/hQvfZr3E2GM',
+  'https://unsplash.com/photos/ysp8FJIL0TM'
+]
+
 activities = [
   ['Dinner & Lunch', 120],
   ['Bar', 90],
@@ -64,6 +72,7 @@ activities.each do |value|
     name: value[0],
     duration: value[1]
   )
+
   attribute_list.each do |attribute|
     attributes = []
     next if attribute[0] != activity.name
@@ -109,9 +118,17 @@ activities.each do |value|
       items.each do |item|
         item.update!(activity: activity, item_category: item_category)
         next if item.item_attributes.size > 4
-          item_attributes.each do |att|
-            item.item_attributes << att
-          end
+
+        item_attributes.each do |att|
+          item.item_attributes << att
+        end
+
+        if item.activity.name == 'Dinner & Lunch'
+          item.image_url = restaurant_images.sample
+        elsif item.activity.name == 'Bar'
+          item.image_url = bar_images.sample
+        elsif item.activity.name == 'Museums & Sites'
+          item.image_url = museum_images.sample
         end
       end
     end
