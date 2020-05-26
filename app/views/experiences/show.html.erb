@@ -2,17 +2,38 @@
     <h1>Experience</h1>
 </div>
 
+
+
 <div class="container p-0">
-  <% n = 0 %>
-  <% @experience.items.each do |item| %>
-    <%= render 'show_card', search: @search, item: item %>
-    <% n += 1 %>
-    <% if n < @experience.items.size %>
-      <%= render 'show_travel_card' %>
-    <% end %>
-  <% end %>
+  <div class="row">
+    <% n = 0 %>
+    <div class="col-10">
+      <% @experience.items.each do |item| %>
+        <%= render 'show_card', search: @search, item: item %>
+        <% n += 1 %>
+        <% if n < @experience.items.size %>
+          <%= render 'show_travel_card' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-2">
+      <div class="action-box">
+        <div class="action-text">
+          <input type="checkbox">
+            <span class="checkmark"></span>
+          <input type="checkbox">
+            <span class="checkmark"></span>
+          <input type="checkbox">
+             <span class="checkmark"></span>
+          <input type="checkbox">
+             <span class="checkmark"></span>
+        </div>
+        <div class="call">
+          <%= link_to "Book your pefect date", "#", class: "action btn btn-primary" %>
+        </div>
+      </div>
+    </div>
   </div>
-    <div class="button"><button type="button" class="btn btn-primary btn-lg p-3">BOOK YOUR PEFECT DATE NOW</button></div>
 </div>
 
 

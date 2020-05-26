@@ -5,6 +5,7 @@
   height: 350px;
 
     .card-name {
+      padding-left: 10px;
       width: 45%;
       display: flex;
       flex-direction: column;
@@ -22,12 +23,11 @@
     }
 
     .card-text {
-      margin:  auto 20px;
       width: 45%;
-      padding: 10px;
+      padding: 50px 20px;
 
         p {
-          font-size: 20px;
+          font-size: 16px;
         }
 
       .type {
@@ -41,11 +41,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   width: 10%;
   font-size: 16px;
 
+    .circle {
+      border: 1px solid #100303;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+    }
+
     .time {
       color: #100303;
+    }
+
+    .time-line {
+      flex: 1 0 auto;
+      border-left: 1px solid #100303;
     }
 
     .time-end {
@@ -54,16 +67,47 @@
 }
 
 .travel {
-  margin: 10% auto;
+  height: 150px;
+  width: 100%;
+  padding-top: 50px 10px;
   display: flex;
-  justify-content: center;
 }
-.travel-time {
-  display: flex;
-  justify-content: space-between;
-  width: 60%;
-  font-size: 16px;
-  color: #100303;
-}
+  .icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 25%;
+    align-items: center;
+    width: 100%;
+
+    .icon {
+      font-size: 24px;
+      color: white;
+    }
+
+    .icon:hover {
+      color: white;
+    }
+  }
+
+  .travel-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10%;
+    font-size: 16px;
+    color: #100303;
+
+      .line {
+      flex: 1 0 auto;
+      border-left: 1px dashed #100303;
+      }
+
+      .circle {
+        border: 1px solid #100303;
+        border-radius: 50%;
+        width: 10px;
+        height: 10px;
+      }
+  }
 
 
