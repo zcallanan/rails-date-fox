@@ -3,18 +3,16 @@
      <h1>Plan your perfect date experience.</h1>
 
     <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590408849/Shape_landing_page_m2nvkr.png')">
-      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p></div>
-        <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a href="/searches/new">Let's go</a> </button></div>
+      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p>
+      </div>
+     
+      <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a><%= link_to "Let's go", searches_path(Search.new), method: :post %></a> </button></div> 
+    </div>
 
-        <% link_to 'create search', searches_path(Search.new), method: :post %>
-
-        </div>
   </div>
+</div>
 
-</div>
-</div>
   <div class="container">
-
     <div class="logo_bar d-flex justify-content-center">
       <div class="col-4">
         <h3 class="logo_bar"> <strong class="numbers_lp">1,000+</strong> restaurants</h3>
@@ -36,23 +34,23 @@
         <div class="d-flex testimonial_card testimonial_border">
           <div>
             <h2>Ben (30)</h2>
-            <p>"Best date of my life. DateFox took me to amazing places, the restaurants and bars matched exactly what I was looking for."</p>
+            <p>"I had the best date of my life. DateFox took me to amazing places, the restaurants and bars matched exactly what I was looking for."</p>
           </div>
-          <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
+          <img src='https://kitt.lewagon.com/placeholder/users/Benhendriks' class="testimonial_user avatar-bordered"/>
          </div>
         <div class="testimonial_card testimonial_border">
           <div>
-            <h2>Susan (32)</h2>
-            <p>"I was surprised how easy DateFox makes it to plan a date. I would recommend to everyone, even couples!"</p>
+            <h2>Ena (28)</h2>
+            <p>"I was surprised how easy DateFox makes it to plan a date. No more googling around for hours, awesome. I can recommend to everyone, even couples!"</p>
           </div>
-            <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
+            <img src='https://kitt.lewagon.com/placeholder/users/Enajahic' class="testimonial_user avatar-bordered"/>
         </div>
         <div class="testimonial_card">
           <div>
-            <h2>Thomas (27)</h2>
-            <p>"I never would have thought to find these cool places. This was my first succesful date. Thank you, DateFox!"</p>
+            <h2>Sven (39)</h2>
+            <p>"I never would have thought to find these cool places. The whole booking process was super easy. My date is now in love with me. Thank you, DateFox!"</p>
           </div>
-            <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
+            <img src='https://kitt.lewagon.com/placeholder/users/Svenfran' class="testimonial_user avatar-bordered"/>
         </div>
       </div>
     </div>
