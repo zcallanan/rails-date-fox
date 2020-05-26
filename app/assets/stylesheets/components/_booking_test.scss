@@ -1,0 +1,88 @@
+.booking_banner {
+    background-size: cover;
+    height: 750px;
+    margin-bottom: 70px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+
+    h1 {
+    font-weight: bold;
+    font-size: 60px;
+    color: #f7f7f7;
+    text-shadow: 2px 2px 4px #333333;
+    padding-top: 20px;
+    text-align: center;
+    }
+
+    button {
+      font-size: 36px;
+      box-shadow: 2px 2px 4px #333333;
+      text-shadow: 1px 1px 2px #333333;
+
+      a {
+        color: white;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
+    .booking_banner_content{
+      margin-bottom: 40px;
+    }
+
+      p {
+        color: #f7f7f7;
+        text-shadow: 2px 2px 4px #333333;
+        font-size: 36px;
+      }  
+  }
+
+  .booking_container{
+      max-width: unset !important;
+      width: 57vw !important;
+      padding: 0px !important;
+    }
+
+
+.booking_summary {
+  background-color: #F1F8F7;
+  margin: 16px;
+  font-size: 20px;
+}
+
+.booking_border {
+  border-right: 1px solid rgb(230,230,230);
+}
+
+.tips_card {
+  font-family: Quicksand;
+}
+
+.booking_summary_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
+  height: $card-height;
+  word-wrap: break-word;
+  background-color: white;
+  background-clip: border-box;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); ;
+}
+
+.booking_tips_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
+  height: $card-height;
+  word-wrap: break-word;
+  background-color: white;
+  background-clip: border-box;
+  border: $card-border-width solid $card-border-color;
+  @include border-radius($card-border-radius);
+}
