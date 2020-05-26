@@ -1,4 +1,63 @@
-.collection {
+.Top_dating_experiences {
   background-color: #F1F8F7;
-  margin: 16px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 16px;
+  margin-right: 16px;
+  border-radius: 15px;
+}
+
+.top_3_card img {
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.top_3_card p {
+  opacity: .5;
+}
+
+.top_3_card {
+  text-align: center;
+  padding: 20px;
+  width: 390px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.top_3_border {
+ 	border-right: 1px solid rgb(230,230,230);
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.top_3_card_top {
+	margin-top: 20px;	
+}
+
+.top_3_header {
+  margin-bottom: 10px;
+}
+
+.top_3_button {
+  background-color: #6362AF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  width: 250px;
+  border-radius: 10px;
+}
+
+
+.top_3_button:hover {
+  background-color: #00CCBC;
+  color: white;
 }

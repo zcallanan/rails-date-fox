@@ -3,17 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title>Date Fox</title>
     <%= csrf_meta_tags %>
-    <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+
+    <% unless controller_name == 'cities' ||
+              controller_name == 'date_times' ||
+              controller_name == 'activities' ||
+              controller_name == 'price_ranges' %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+
     <%= render 'shared/flashes' %>
     <%= yield %>
 
-    <%= javascript_pack_tag 'application' %>
+    <%= render 'shared/flashes' %>
+    <%#= javascript_pack_tag 'application' %>
   </body>
 </html>

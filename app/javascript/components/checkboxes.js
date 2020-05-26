@@ -12,8 +12,6 @@ const choice = () => {
 
 
 // Adding a class to an element and removing it from the previous one
-
-
 const select_city = () => {
   const cities = document.querySelectorAll('.select');
 
@@ -23,9 +21,9 @@ const select_city = () => {
         cities.forEach((city) => {
           city.classList.remove("active")
         });
-        if (event.currentTarget.classList.contains('active')) {
-          event.currentTarget.classList.remove("active")
-        };
+        // if (event.currentTarget.classList.contains('active')) {
+        //   event.currentTarget.classList.remove("active")
+        // };
         event.currentTarget.classList.add("active"); 
       });
 
