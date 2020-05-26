@@ -6,10 +6,13 @@
   top: 0;
   margin-top: 20px;
   width: 280px;
-  height: 350px;
-  border: 1px solid #100303;
+  height: 650px;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+
+  h5 {
+    font-weight: bold;
+  }
 
   .action-text {
     padding: 10px 10%;
@@ -17,6 +20,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    .logo img {
+      width: 270px;
+      height: 78px;
+    }
   }
 
   .call {
@@ -29,3 +37,4 @@
     }
   }
 }
+
