@@ -1,7 +1,7 @@
 .experience-show-banner {
   background-size: cover;
   height: 350px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 
     h1 {
     padding-top: 150px;
@@ -9,15 +9,6 @@
     font-weight: bold;
     font-size: 50px;
     color: #f7f7f7;
-    text-shadow: 2px 2px 4px #333333;
-    }
-
-    button {
-      margin-left: 1000px;
-      margin-top: 40px;
-      font-size: 24px;
-      font-weight: lighter;
-      box-shadow: 2px 2px 4px #333333;
-      text-shadow: 1px 1px 2px #333333;
+    text-shadow: 2px 2px 4px rgba(0,0,0,.3);
     }
 }

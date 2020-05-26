@@ -13,7 +13,7 @@ class YelpApiService
   end
 
   def call
-    url = BASE_URI + "search?location=#{@location}&radius=#{@radius}&categories=#{@category}&price=#{@price_range}"
+    url = BASE_URI + "search?location=#{@location}&radius=#{@radius}&categories=#{@category}"
     serialized_data = URI.open(url, "Authorization" => "Bearer #{API_KEY}").read
     data = JSON.parse(serialized_data)
     data = data["businesses"]
@@ -52,14 +52,11 @@ class YelpApiService
             )
           end
         end
+        @items << item
       end
-
-      @items << item
-
-
     rescue OpenURI::HTTPError
       puts "Request failed, carry on"
     end
-    return @items
+    @items
   end
 end
