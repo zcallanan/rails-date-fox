@@ -6,17 +6,17 @@
 <% f=@itinerary[5] if item== @experience.items.third %>
 <div class="show-card">
   <div class="info">
-    <div class="time p-2"> <%= i %></div>
+    <div class="time"> <%= i %></div>
     <div class="circle"></div>
     <div class="time-line"></div>
      <div class="circle"></div>
-    <div class="time-end p-2"> <%= f %></div>
+    <div class="time-end"> <%= f %></div>
   </div>
   <div class="card-name">
     <div class="name">
       <h2><%= item.name %></h2>
     </div>
-      <img src="<%= item.photos.first.url %>" class="item-photo"/>
+      <img src="<%#= item.photos.first.url %>" class="item-photo"/>
   </div>
   <div class="card-text">
     <h5 class="type"><%= item.item_category.alias %>
