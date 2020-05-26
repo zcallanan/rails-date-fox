@@ -10,10 +10,9 @@
       </div>
     </div>
   </div>
-  <div class="row">'
-    <% if item.photos.any? %>
-      <img src="<%= item.photos.first.url %>" data-target="item.photo" class="item-photo"/>
-    <% end %>
+  <div class="row">
+    <img src="<%= item.image_url %>" data-target="item.photo" class="item-photo"/>
+
     <div class="card-product-infos">
       <p> Description would go here</p>
     </div>
@@ -36,9 +35,6 @@
 
     <div class="col-4">
       <p>i</p>
-    </div>
-    <div class="col-4">
-      <%= link_to "Details", item_path(item), class: "btn btn-primary" %>
     </div>
 
   </div>
