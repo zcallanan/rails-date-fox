@@ -33,7 +33,6 @@
   align-items: center;
 }
 
-
 .form-control {
   border-radius: 10px;
 }
@@ -59,7 +58,7 @@
   display: inline-block;
   justify-content: center;
   font-size: small;
-  font-weight: 600;
+  font-weight: 700;
   background: white;
   width: 100px;
   height: 100px;
@@ -103,7 +102,7 @@
   display: inline-block;
   justify-content: center;
   font-size: small;
-  font-weight: 600;
+  font-weight: 700;
   background: white;
   // border: darkslategrey 1px solid;
   width: 80px;
@@ -149,6 +148,7 @@
   align-items: center;
   margin: 20px 0;
 }
+
 .city {
   display: flex;
   // position: relative;
@@ -166,17 +166,20 @@
   flex-direction: column;
   justify-content: center;
   label {
+    // width: 100px;
+    height: 4rem;
     display: flex;
     // position: absolute;
+    left: 50%;
     color: white;
-    margin: 0;
+    margin: 0px;
     font-weight: bold;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   &:hover {
     border: white 4px solid;
-    cursor: pointer;
   }
   &.activated {
     border: #00ccbc 4px solid;
@@ -184,7 +187,6 @@
 }
 
 // Style for progress bar
-
 .tasks {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
