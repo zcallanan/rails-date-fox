@@ -116,6 +116,5 @@ activities.each do |value|
       end
     end
   end
-end
 
 puts 'Finished!'
