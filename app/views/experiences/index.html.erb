@@ -1,7 +1,7 @@
-<div class="class container">
+<div class="class">
   <div class="row">
   <% @search.experiences.each do |experience| %>
-    <div class="col-4">
+    <div class="col-sm-4">
       <%= render 'experience-card', searches: @search, experience: experience %>
     </div>
   <% end %>

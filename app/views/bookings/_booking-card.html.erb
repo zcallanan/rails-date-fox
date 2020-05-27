@@ -26,21 +26,6 @@
       </div>
       <% end %>
     </div>
-
-    <div class="">
-      <%= link_to "New Suggestion", refresh_search_path(searches,
-      item_id: item.id),
-      method: :post,
-      remote: false,
-      id: "replace",
-      class: "new-suggestion btn",
-      data: {
-        item_id: item.id,
-        search_id: searches.id,
-        item_refresh_url: refresh_search_path(searches)
-      }  %>
-    </div>
-
-
   </div>
+
 </div>
