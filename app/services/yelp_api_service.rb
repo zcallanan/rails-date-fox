@@ -24,11 +24,9 @@ class YelpApiService
       item = Item.find_by(name: row["name"])
       # Only make new request if the same item is not already in a DB
       if item.nil?
-        raise
         # A member call will only be made if item does not already exist
         item = Item.create!(
           name: row["name"],
-          description: "",
           address: address_string,
           rating: row["rating"],
           price_range: price,

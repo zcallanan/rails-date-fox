@@ -95,13 +95,16 @@ class ExperiencesController < ApplicationController
           if activity.id == item.activity_id
             if activity.name == 'Bar'
               item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
+              item.update!(description: add_description(activity, bar, item)) if item.description.nil?
               bar += 1
             elsif activity.name == 'Dinner & Lunch'
               item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
+              item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
               restaurant += 1
             elsif activity.name == 'Museums & Sites'
               item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
-              restaurant += 1
+              item.update!(description: add_description(activity, museum, item)) if item.description.nil?
+              museum += 1
             end
 
           end
@@ -169,6 +172,30 @@ class ExperiencesController < ApplicationController
         return activity_items_reordered
       end
     end
+  end
+
+  def add_description(activity, index, item)
+    bar_descriptions = [
+      "#{item.name} in the heart of Munich is among local's favorites for state of the art drinks and atmosphere.",
+      "#{item.name} is best know for its well crafted drinks and excellent service, and you will always find a fun crowd.",
+      "#{item.name} boosts a special atmosphere that you will love once you enter. The drinks selection is among the city's finest."
+    ]
+
+    restaurant_descriptions = [
+      "#{item.name} in one of Munich's most popular neighbourhoods delivers a quality of dishes that is hard to beat anywhere else in the city.",
+      "#{item.name} has established a reputation for excellent food and service. Make sure to have one of their excellent wines!",
+      "#{item.name} manages to combine a laid-back atmosphere with truly high-class service and a menu that will make you smile."
+    ]
+
+    museum_descriptions = [
+      "#{item.name} is a great place to unwind and learn about various facets of Munich's past and present.",
+      "#{item.name} is always a great place to discover and relax in the beautiful gardens nearby. Careful, it's romantic!",
+      "#{item.name} could keep you busy for hours with its wide range of things to discover. But don't rush, you can always come back."
+    ]
+
+    return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
+    return bar_descriptions[index] if activity.name == 'Bar'
+    return museum_descriptions[index] if activity.name == 'Museums & Sites'
   end
 
   def add_image(activity, index)
