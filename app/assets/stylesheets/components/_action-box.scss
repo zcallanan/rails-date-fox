@@ -3,12 +3,13 @@
   flex-direction: column;
   justify-content: space-between;
   position: sticky;
-  top: 0;
-  margin-top: 20px;
+  top: 70px;
+  margin-left: 10px;
+  margin-bottom: 12px;
   width: 310px;
   height: 550px;
   border-radius: 5px;
-  box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
 
   h5 {
     margin: 0px;
@@ -23,8 +24,8 @@
     justify-content: space-between;
 
     .logo img {
-      width: 280px;
-      height: 78px;
+      width: 250px;
+      height: 68px;
     }
 
     p {
@@ -36,9 +37,8 @@
     margin: 10px auto;
 
     .action {
-      padding: 10px 61px;
-      font-size: 20px;
-      font-weight: ligther;
+      padding: 10px 10px;
+      font-size: 18px;
     }
   }
 }

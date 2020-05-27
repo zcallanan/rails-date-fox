@@ -2,16 +2,49 @@
   <div class="booking_banner_content">
     <h1>Congratulations!</h1>
     <h1>You have booked your personal date experience.</h1>
-  </div>
-    
+  </div>    
 </div>
+             
 
+</div>
   <div class="container booking_container">
     <div class="booking_summary p-5">
       <div class="d-flex justify-content-between">
           <div class="col-md-8 p-3 booking_cards booking_summary_card">
             <p class=""><strong>Your experience</strong></p>
             <p class=""><small>List items</small></p>
+
+            <% @items.each_with_index do |item, index| %>
+              <div class="row">
+                <div class="col-2">
+                  <% i=@itinerary[0] if item== @items.first %>
+                  <% f=@itinerary[1] if item== @items.first %>
+                  <% i=@itinerary[2] if item== @items.second %>
+                  <% f=@itinerary[3] if item== @items.second %>
+                  <% i=@itinerary[4] if item== @items.third %>
+                  <% f=@itinerary[5] if item== @items.third %>
+                  <div class="show-card">
+                    <div class="info">
+                      <div class="time"> <%= i %></div>
+                      <div class="circle"></div>
+                      <div class="time-line"></div>
+                      <div class="circle"></div>
+                      <div class="time-end"> <%= f %></div>
+                    </div>
+                  </div>
+                  <% if index < @items.size - 1 %>
+                    <%= render 'booking-travel-line' %>
+                  <% end %>
+                </div>
+
+                <div class="col-10">
+                    <%= render 'booking-card', item: item, items: @items %>
+                    <% if  index < @items.size - 1 %>
+                      <%= render 'booking-travel-card' %>
+                    <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
 
           <div class="col-md-3 p-3 booking_cards booking_summary_card d-flex flex-column align-items-center justify-content-around">
@@ -31,29 +64,8 @@
           <div class="col-3 mx-3 booking_tip_card align-items-center justify-content-around d-flex" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421040/Wine_and_dine_qovdzb.jpg)">Do something          
           </div>
         </div>
-                   
+
       </div>
     </div>
     </div>
   </div>
-
-
-
-  <div class="footer d-flex">
-    <div class="social p-3">
-      <h3>
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fas fa-envelope-square"></i>
-        <i class="fab fa-linkedin"></i>
-        <i class="fab fa-twitter-square"></i>
-      </h3>
-      <h3>
-        <p style="font-size: 15px"> Do you need help? Call: +49(0)89 12-34-56 </p></h3>
-        <h4 class="fox">©by DateFox • Conditions of Use • Privacy Notice</h4>
-    </div>
-    <div class="partner p-3">
-     <div><img class="first-icon" src="https://www.hugocarter.co.uk/wp-content/uploads/2019/03/Trustpilot-Rated-Excellent-Hugo-Carter-Silent-Windows-logo.png" alt="#" width="120" height="51,8">
-     <h5 class="rating">  4.9 of 5 (1,407 reviews)</h5></div>
-     <img class="second-icon" src="https://www.motioncut.co.uk/wp-content/uploads/2018/11/ssl-logo-300x166.png" alt="#" width="120" height="64">
-   </div>
