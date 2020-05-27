@@ -122,15 +122,15 @@ class ExperiencesController < ApplicationController
 
   def calculate_date_schedule(search, experience)
     itinerary = []
-    itinerary << search.starts_at.strftime('%I:%M %p')
+    itinerary << search.starts_at.strftime('%l:%M %p')
     activity_time = @search.starts_at.to_time
     travel_time = 30
     experience.items.each_with_index do |item, index|
       activity_time += item.activity.duration * 60
-      itinerary << activity_time.strftime('%I:%M %p')
+      itinerary << activity_time.strftime('%l:%M %p')
       if index < @experience.items.size - 1
         activity_time += travel_time * 60
-        itinerary << activity_time.strftime('%I:%M %p')
+        itinerary << activity_time.strftime('%l:%M %p')
       end
     end
     itinerary
