@@ -56,25 +56,29 @@
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   background-color: white;
 }
+.booking_card_keepinmind {
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
 .booking_summary_card {
   position: relative;
   display: flex;
   flex-direction: column;
   // height: 300px;
   word-wrap: break-word;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   }
 .booking_button_card {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 150px;
 }
 .booking_tips_card {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 200px;
 }
 .bookings_button {
   background-color: #6362AF;
@@ -83,10 +87,11 @@
   padding: 15px 32px;
   text-align: center;
   display: inline-block;
-  font-size: 20px;
-  width: 280px;
+  font-size: 16px;
+  width: 180px;
   border-radius: 10px;
   margin-bottom: 20px;
+  font-family: Quicksand;
 }
 .booking_tip_card {
   text-align: center;
@@ -94,14 +99,58 @@
   width: 390px;
   padding-left: 20px;
   padding-right: 20px;
-}
-.booking_tip_card img {
-  width: 250px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  color: white;
+  font-family: Quicksand;
   border-radius: 10px;
+  font-weight: bolder;
 }
+
+.booking_tip_card_text{
+  text-align: center;
+  padding: 20px;
+  width: 390px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #6362AF;
+  font-family: Quicksand;
+  border-radius: 10px;
+  font-weight: bolder;
+}
+
+.booking_tip_card_smiley{
+  text-align: center;
+  padding: 20px;
+  width: 390px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #6362AF;
+  font-family: Quicksand;
+  border-radius: 10px;
+  font-size: 30px;
+}
+
 .bookings_button:hover {
   background-color: #00CCBC;
   color: white;
+}
+
+.bookings_header {
+  color: #6362AF;
+  font-family: Quicksand;
+  margin-left: 12px;
+  font-size: 24px;
+}
+
+.tip_font {
+  color: #6362AF;
+  font-family: Quicksand;
+  margin-left: 12px;
+  font-size: 24px;
+}
+
+.logo_bookings img {
+  width: 170px;
+  height: 48px;
+  margin-left: 2px;
+  margin-bottom: 10px;
 }
