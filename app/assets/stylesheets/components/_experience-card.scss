@@ -1,21 +1,23 @@
 .card-category {
+  font-family: 'Quicksand', sans-serif;
   margin-top: 100px;
   margin-bottom: 50px;
-  background: #D4F0ED;
+  background: #B2B1D7;
   padding: 18px;
   border-radius: 4px;
   .bg-img {
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    padding-left: 18px;
     align-items: center;
-    height: 180px;
+    height: 120px;
     background-size: cover;
     background-position: center;
     h2 {
       font-family: 'Quicksand', sans-serif;
       color: white;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-      margin: 0 auto;
+      margin: 0;
     }
   }
 }
