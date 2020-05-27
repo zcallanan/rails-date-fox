@@ -82,7 +82,6 @@ class ExperiencesController < ApplicationController
     end
   end
 
-
   def show
     @search = Search.find(params[:search_id])
     @experience = Experience.find(params[:id])
