@@ -33,9 +33,9 @@ class ExperiencesController < ApplicationController
     end
 
     # check if experiences have items
-    n = 0
+    n = 3
     @experiences.each do |experience|
-      n += 1 unless experience.items.empty?
+      n -= 1 if experience.items.empty?
     end
 
     # for each activity, call yelp index api to get a list of items per activity category
@@ -61,7 +61,6 @@ class ExperiencesController < ApplicationController
           @items.flatten.each do |item|
             item.update!(activity: activity) if item.activity.nil?
             item.update!(item_category: category) if item.item_category.nil?
-            item.update!(image_url: add_image(activity)) if item.image_url.nil?
 
             next if item.item_attributes.size > 4
 
@@ -87,6 +86,30 @@ class ExperiencesController < ApplicationController
         starts_at: @starts_at,
         ends_at: @ends_at
       ).call
+
+      bar = 0
+      restaurant = 0
+      museum = 0
+      @activity_array.each do |activity|
+        @experience_items.flatten.each do |item|
+          if activity.id == item.activity_id
+            if activity.name == 'Bar'
+              item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
+              item.update!(description: add_description(activity, bar, item)) if item.description.nil?
+              bar += 1
+            elsif activity.name == 'Dinner & Lunch'
+              item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
+              item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
+              restaurant += 1
+            elsif activity.name == 'Museums & Sites'
+              item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
+              item.update!(description: add_description(activity, museum, item)) if item.description.nil?
+              museum += 1
+            end
+
+          end
+        end
+      end
 
       # append items to each experience
       @experience_items.each_with_index do |item_list, index|
@@ -151,13 +174,37 @@ class ExperiencesController < ApplicationController
     end
   end
 
-  def add_image(activity)
+  def add_description(activity, index, item)
+    bar_descriptions = [
+      "#{item.name} in the heart of Munich is among local's favorites for state of the art drinks and atmosphere.",
+      "#{item.name} is best know for its well crafted drinks and excellent service, and you will always find a fun crowd.",
+      "#{item.name} boosts a special atmosphere that you will love once you enter. The drinks selection is among the city's finest."
+    ]
+
+    restaurant_descriptions = [
+      "#{item.name} in one of Munich's most popular neighbourhoods delivers a quality of dishes that is hard to beat anywhere else in the city.",
+      "#{item.name} has established a reputation for excellent food and service. Make sure to have one of their excellent wines!",
+      "#{item.name} manages to combine a laid-back atmosphere with truly high-class service and a menu that will make you smile."
+    ]
+
+    museum_descriptions = [
+      "#{item.name} is a great place to unwind and learn about various facets of Munich's past and present.",
+      "#{item.name} is always a great place to discover and relax in the beautiful gardens nearby. Careful, it's romantic!",
+      "#{item.name} could keep you busy for hours with its wide range of things to discover. But don't rush, you can always come back."
+    ]
+
+    return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
+    return bar_descriptions[index] if activity.name == 'Bar'
+    return museum_descriptions[index] if activity.name == 'Museums & Sites'
+  end
+
+  def add_image(activity, index)
     bar_images = [
       'https://images.unsplash.com/photo-1514933651103-005eec06c04b',
       'https://images.unsplash.com/photo-1491333078588-55b6733c7de6',
       'https://images.unsplash.com/photo-1529502669403-c073b74fcefb',
       'https://images.unsplash.com/photo-1436018626274-89acd1d6ec9d',
-      'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727',
+      'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727'
     ]
 
     restaurant_images = [
@@ -170,14 +217,14 @@ class ExperiencesController < ApplicationController
     ]
 
     museum_images = [
-      'https://images.unsplash.com/photo-1586884542514-f6bef0283446',
+      'https://images.unsplash.com/photo-1586884542514-f6bef0283446?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80',
       'https://images.unsplash.com/photo-1584652868574-0669f4292976',
       'https://images.unsplash.com/photo-1566099191530-598e878ebd8b',
       'https://images.unsplash.com/photo-1580539924857-755cdc6aa3c2',
       'https://images.unsplash.com/photo-1566127444941-8e124ffbc59e'
     ]
-    return restaurant_images.sample if activity.name == 'Dinner & Lunch'
-    return bar_images.sample if activity.name == 'Bar'
-    return museum_images.sample if activity.name == 'Museums & Sites'
+    return restaurant_images[index] if activity.name == 'Dinner & Lunch'
+    return bar_images[index] if activity.name == 'Bar'
+    return museum_images[index] if activity.name == 'Museums & Sites'
   end
 end

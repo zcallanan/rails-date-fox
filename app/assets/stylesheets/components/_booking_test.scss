@@ -20,6 +20,16 @@
       box-shadow: 2px 2px 4px #333333;
       text-shadow: 1px 1px 2px #333333;
 
+      //background-color: #4CAF50; /* Green */
+      //border: none;
+      //color: white;
+      //padding: 15px 32px;
+      //text-align: center;
+      //text-decoration: none;
+      //display: inline-block;
+      //font-size: 16px;
+
+
       a {
         color: white;
       }
@@ -46,7 +56,6 @@
       padding: 0px !important;
     }
 
-
 .booking_summary {
   background-color: #F1F8F7;
   margin: 16px;
@@ -65,6 +74,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
+  
   min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
   height: $card-height;
   word-wrap: break-word;
@@ -86,3 +97,4 @@
   border: $card-border-width solid $card-border-color;
   @include border-radius($card-border-radius);
 }
+

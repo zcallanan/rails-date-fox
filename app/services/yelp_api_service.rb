@@ -27,7 +27,6 @@ class YelpApiService
         # A member call will only be made if item does not already exist
         item = Item.create!(
           name: row["name"],
-          description: "",
           address: address_string,
           rating: row["rating"],
           price_range: price,
@@ -57,6 +56,7 @@ class YelpApiService
     rescue OpenURI::HTTPError
       puts "Request failed, carry on"
     end
+
     @items
   end
 end
