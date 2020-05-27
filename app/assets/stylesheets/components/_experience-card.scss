@@ -1,1 +1,22 @@
+.card-category {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  background: #D4F0ED;
+  padding: 18px;
+  border-radius: 4px;
+  .bg-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    h2 {
+      font-family: 'Quicksand', sans-serif;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      margin: 0 auto;
+    }
+  }
+}
 

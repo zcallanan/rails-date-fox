@@ -1,6 +1,6 @@
 <div class="card-product" data-controller="item">
   <div class="row">
-    <div class="col-7">
+    <div class="col-7 category">
       <h2 data-target="item.name"><%= item.name %></h2>
       <p data-target="item.alias"><%= item.item_category.alias %></p>
     </div>
@@ -10,22 +10,30 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="flex">
     <img src="<%= item.image_url %>" data-target="item.photo" class="item-photo"/>
 
     <div class="card-product-infos">
-      <p> Description would go here</p>
+      <p>Bar,<%= item.name %> in the heart of Munich is among local's favorites for state of the art drinks and atmosphere.</p>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-4">
-      <%= link_to "Replace", refresh_search_path(searches,
+  <div class="flex attr-container">
+    <div class="attributes">
+      <% item.item_attributes.each do |attribute|%>
+      <div class="attribute">
+        <p><%= attribute.name %></p>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="">
+      <%= link_to "New Suggestion", refresh_search_path(searches,
       item_id: item.id),
       method: :post,
       remote: false,
       id: "replace",
-      class: "replace btn btn-primary",
+      class: "new-suggestion btn",
       data: {
         item_id: item.id,
         search_id: searches.id,
@@ -33,9 +41,6 @@
       }  %>
     </div>
 
-    <div class="col-4">
-      <p>i</p>
-    </div>
 
   </div>
 </div>
