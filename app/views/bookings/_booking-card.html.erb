@@ -1,0 +1,31 @@
+<div class="card-product" data-controller="item">
+  <div class="row">
+    <div class="col-7 category">
+      <h2 data-target="item.name"><%= item.name %></h2>
+      <p data-target="item.alias"><%= item.item_category.alias %></p>
+    </div>
+    <div class="col-5">
+      <div class="br-wrapper br-theme-fontawesome-stars">
+          <%= render 'shared/stars', item: item %>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <img src="<%= item.image_url %>" data-target="item.photo" class="item-photo"/>
+
+    <div class="card-product-infos">
+      <p>Bar,<%= item.name %> in the heart of Munich is among local's favorites for state of the art drinks and atmosphere.</p>
+    </div>
+  </div>
+
+  <div class="flex attr-container">
+    <div class="attributes">
+      <% item.item_attributes.each do |attribute|%>
+      <div class="attribute">
+        <p><%= attribute.name %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
