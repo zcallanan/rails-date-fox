@@ -94,14 +94,17 @@ class ExperiencesController < ApplicationController
         @experience_items.flatten.each do |item|
           if activity.id == item.activity_id
             if activity.name == 'Bar'
+              item.update!(image_url: nil, description: nil)
               item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
               item.update!(description: add_description(activity, bar, item)) if item.description.nil?
               bar += 1
             elsif activity.name == 'Dinner & Lunch'
+              item.update!(image_url: nil, description: nil)
               item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
               item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
               restaurant += 1
             elsif activity.name == 'Museums & Sites'
+              item.update!(image_url: nil, description: nil)
               item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
               item.update!(description: add_description(activity, museum, item)) if item.description.nil?
               museum += 1
