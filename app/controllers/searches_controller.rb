@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[new]
+  skip_before_action :authenticate_user!, only: %i[new create]
 
   def new
     @search = Search.new
@@ -12,6 +12,11 @@ class SearchesController < ApplicationController
     @search.user = current_user
 
     if @search.save
+      # assign each experience to the user's @search
+      3.times do
+        experience = Experience.create!
+        @search.experiences << experience
+      end
       redirect_to cities_path(@search)
     else
       render :new
@@ -60,10 +65,61 @@ class SearchesController < ApplicationController
         redirect_to search_experiences_path(@search)
       end
     end
+  end
 
+  def refresh
+    @search = Search.find(params[:id])
+    @items = Item.all
+    @item = Item.find(params[:item_id])
+    experience_item_array = []
+    activity_id = nil
+    new_item = nil
+    @search.experiences.each do |experience|
+      experience.items.each do |item|
+        # if the item to be removed is found
+        if item == @item
+          # capture the item's activity
+          activity_id = item.activity_id
+          # remove item from experience
+          item.destroy
+
+          item_list = []
+          @items.each do |x|
+            # build a list of items for the activity that lost an item
+            next if x.activity_id != activity_id
+
+            item_list << x
+          end
+          new_item = sample_item(item_list, experience_item_array)
+          experience.items << new_item
+        end
+      end
+    end
+
+    redirect_to search_experiences_path(@search)
+
+    # item_card = render_to_string(
+    #         partial: 'experiences/item-card',
+    #         locals: { item: new_item, searches: @search }
+    #       )
+
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: { item: item_card } }
+    # end
   end
 
   private
+
+  def sample_item(item_list, experience_item_array)
+    # pick a random item for an activity
+    new_item = item_list.sample
+    # if the new item is a dupe, return false, else return item
+    experience_item_array.each do |item|
+      sample_item(item_list, experience_item_array) if new_item == item
+    end
+    new_item
+  end
 
   def search_params
     params.require(:search).permit(:city, :starts_at, :ends_at, :price_range, activity_ids: [])

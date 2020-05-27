@@ -17,21 +17,28 @@ Experience.destroy_all
 Search.destroy_all
 
 bar_images = [
-  'https://unsplash.com/photos/GXXYkSwndP4',
-  'https://unsplash.com/photos/-V-ENAd192g',
-  'https://unsplash.com/photos/7rjfWvO5tz0',
-  'https://unsplash.com/photos/iwWJFIlnDm4',
-  'https://unsplash.com/photos/_CpF-Za8crc',
-  'https://unsplash.com/photos/-V-ENAd192g'
+  'https://images.unsplash.com/photo-1514933651103-005eec06c04b',
+  'https://images.unsplash.com/photo-1491333078588-55b6733c7de6',
+  'https://images.unsplash.com/photo-1529502669403-c073b74fcefb',
+  'https://images.unsplash.com/photo-1436018626274-89acd1d6ec9d',
+  'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727',
 ]
 
 restaurant_images = [
-  'https://unsplash.com/photos/nmpW_WwwVSc',
-  'https://unsplash.com/photos/I79Pgmhmy5M',
-  'https://unsplash.com/photos/0I9jSdBwydg',
-  'https://unsplash.com/photos/5IZwgy5LJp8',
-  'https://unsplash.com/photos/kgjQ1AGDwE0',
-  'https://unsplash.com/photos/1ktlYkBZZF4'
+  'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
+  'https://images.unsplash.com/photo-1525610553991-2bede1a236e2',
+  'https://images.unsplash.com/photo-1544739313-6fad02872377',
+  'https://images.unsplash.com/photo-1589769105893-3cfe4c0c8851',
+  'https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf',
+  'https://images.unsplash.com/photo-1563507466372-c61871fff681'
+]
+
+museum_images = [
+  'https://images.unsplash.com/photo-1586884542514-f6bef0283446?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80',
+  'https://images.unsplash.com/photo-1584652868574-0669f4292976',
+  'https://images.unsplash.com/photo-1566099191530-598e878ebd8b',
+  'https://images.unsplash.com/photo-1580539924857-755cdc6aa3c2',
+  'https://images.unsplash.com/photo-1566127444941-8e124ffbc59e'
 ]
 
 activities = [
@@ -64,6 +71,7 @@ activities.each do |value|
     name: value[0],
     duration: value[1]
   )
+
   attribute_list.each do |attribute|
     attributes = []
     next if attribute[0] != activity.name
@@ -108,13 +116,23 @@ activities.each do |value|
       ).call
       items.each do |item|
         item.update!(activity: activity, item_category: item_category)
+
+        if item.activity.name == 'Dinner & Lunch'
+          item.update!(image_url: restaurant_images.sample)
+        elsif item.activity.name == 'Bar'
+          item.update!(image_url: bar_images.sample)
+        elsif item.activity.name == 'Museums & Sites'
+          item.update!(image_url: museum_images.sample)
+        end
+
         next if item.item_attributes.size > 4
-          item_attributes.each do |att|
-            item.item_attributes << att
-          end
+
+        item_attributes.each do |att|
+          item.item_attributes << att
         end
       end
     end
   end
+end
 
 puts 'Finished!'

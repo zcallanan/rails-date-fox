@@ -3,12 +3,9 @@
    <h1>Plan your perfect date experience.</h1>
 
     <div class="date_fox_elipse d-flex align-items-center justify-content-around" style="background-image: url('https://res.cloudinary.com/dwmqtysj3/image/upload/v1590408849/Shape_landing_page_m2nvkr.png')">
-      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p>
-      </div>
-     
-      <div class="banner_button"><button type="button" class="btn btn-success btn-lg"> <a><%= link_to "Let's go", searches_path(Search.new), method: :post %></a> </button></div> 
+      <div class="elipse_text"> <p>High class dating tailored to your personal needs</p></div>
+        <%= link_to "Let's go", searches_path(Search.new), method: :post, class: "banner_button btn btn-success btn-lg" %>
     </div>
-
   </div>
 </div>
 
@@ -27,10 +24,7 @@
            <p class="landing_page_icon fas fa-music"></p>
       </div>
     </div>
-    <div class="col-4">
-      <h3 class="logo_bar"> <strong class="numbers_lp">500+</strong> events</h3>
-      <p class="landing_page_icon fas fa-music"></p>
-    </div>
+
   </div>
 
     <div class="Top_dating_experiences p-5">
@@ -59,13 +53,7 @@
         </div>
         <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
       </div>
-      <div class="testimonial_card">
-        <div>
-          <h2>Thomas (27)</h2>
-          <p>"I never would have thought to find these cool places. This was my first succesful date. Thank you, DateFox!"</p>
-        </div>
-        <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="testimonial_user avatar-bordered"/>
-      </div>
+
     </div>
   </div>
 
@@ -108,14 +96,13 @@
         <i class="fab fa-twitter-square"></i>
       </h3>
       <h3>
-        <p style="font-size: 15px"> Do you need help? Call: +49(0)89 12-34-56 </p>
-      </h3>
+        <p style="font-size: 15px"> Do you need help? Call: +49(0)89 12-34-56 </p></h3>
+        <h4 class="fox">©by Date Fox • Conditions of Use • Privacy Notice</h4>
     </div>
     <div class="partner p-3">
-     <img class="first-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Trustpilot_logo.png" alt="#" width="128" height="52,8">
+     <div><img class="first-icon" src="https://www.hugocarter.co.uk/wp-content/uploads/2019/03/Trustpilot-Rated-Excellent-Hugo-Carter-Silent-Windows-logo.png" alt="#" width="120" height="51,8">
+     <h5 class="rating">  4.9 of 5 (1,407 reviews)</h5></div>
+
      <img class="second-icon" src="https://www.motioncut.co.uk/wp-content/uploads/2018/11/ssl-logo-300x166.png" alt="#" width="120" height="64">
    </div>
  </div>
- <div class="contact p-3">
-  <div class="fox"> <h5><i class="far fa-copyright"></i> by Date Fox • Conditions of Use • Privacy Notice</h5> </div>
-</div>

@@ -11,14 +11,8 @@
   </head>
   <body>
 
-    <% unless controller_name == 'cities' ||
-              controller_name == 'date_times' ||
-              controller_name == 'activities' ||
-              controller_name == 'price_ranges' %>
-      <%= render 'shared/navbar' %>
-    <% end %>
+    <%= render 'shared/navbar' %>
 
-    <%= render 'shared/flashes' %>
     <%= yield %>
 
     <%= render 'shared/flashes' %>
