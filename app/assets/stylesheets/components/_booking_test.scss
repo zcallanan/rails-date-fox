@@ -1,7 +1,7 @@
 .booking_banner {
     background-size: cover;
     height: 750px;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
@@ -16,9 +16,14 @@
     }
 
     button {
-      font-size: 36px;
-      box-shadow: 2px 2px 4px #333333;
-      text-shadow: 1px 1px 2px #333333;
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
 
       a {
         color: white;
@@ -46,43 +51,77 @@
       padding: 0px !important;
     }
 
-
 .booking_summary {
   background-color: #F1F8F7;
   margin: 16px;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .booking_border {
   border-right: 1px solid rgb(230,230,230);
 }
 
-.tips_card {
-  font-family: Quicksand;
+.booking_cards {
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
 .booking_summary_card {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
-  height: $card-height;
+  height: 300px;
   word-wrap: break-word;
-  background-color: white;
-  background-clip: border-box;
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); ;
+  margin-bottom: 50px;
+  }
+
+.booking_button_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
 }
 
 .booking_tips_card {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
-  height: $card-height;
-  word-wrap: break-word;
-  background-color: white;
-  background-clip: border-box;
-  border: $card-border-width solid $card-border-color;
-  @include border-radius($card-border-radius);
+}
+
+.tip_font {
+  color: #6362AF;
+  font-size: 32px;
+}
+
+.bookings_button {
+  background-color: #6362AF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  width: 280px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.booking_tip_card {
+  height: 150px;
+  border-radius: 10px;
+  color: white;
+}
+
+.booking_tip_card img {
+  width: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.bookings_button:hover {
+  background-color: #00CCBC;
+  color: white;
 }
