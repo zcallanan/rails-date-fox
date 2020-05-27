@@ -11,6 +11,8 @@ class YelpItemService
     second = nil
     third = nil
     result_array = [[], [], []]
+    item_list = []
+    sorted_array = []
 
     # create result array to funnel items to experiences
     @activity_items.each_value do |value|
@@ -50,11 +52,11 @@ class YelpItemService
     if first == second
       second = item_list.sample
       assign_item_objects(first, second, third, item_list)
-    elsif first == third || second == third
+    end
+    if first == third || second == third
       third = item_list.sample
       assign_item_objects(first, second, third, item_list)
-    else
-      [first, second, third]
     end
+    [first, second, third]
   end
 end

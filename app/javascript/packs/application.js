@@ -7,13 +7,16 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+// import Rails from '@rails/ujs';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   select_city();
+  select_price();
   choice();
   progress();
+  // Rails.start();
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -26,5 +29,8 @@ document.addEventListener('turbolinks:load', () => {
 
 import 'plugins/flatpickr'
 import "controllers"
-import { choice, select_city } from '../components/checkboxes'
+import { choice, select_city, select_price } from '../components/checkboxes'
 import { progress } from '../components/progress_bar'
+
+
+
