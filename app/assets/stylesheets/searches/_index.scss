@@ -40,7 +40,7 @@
 // Checkboxes design
 .activity-choices {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 20px 0;
 }
@@ -76,7 +76,7 @@
     cursor: pointer;
   }
   &.active {
-  background: #222222;
+  background: #6362AF;
   color: white;
   opacity: 1;
   }
@@ -121,7 +121,7 @@
     cursor: pointer;
   }
   &.active {
-  background: #222222;
+  background: #6362AF;
   color: white;
   opacity: 1;
   }
@@ -142,7 +142,7 @@
 // style for city-radio-buttons
 .cities {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
   align-items: center;
@@ -188,6 +188,7 @@
 
 // Style for progress bar
 .tasks {
+  margin-top: 65px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   width: 100vw;

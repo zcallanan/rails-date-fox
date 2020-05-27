@@ -3,27 +3,33 @@
   flex-direction: column;
   justify-content: space-between;
   position: sticky;
-  top: 0;
-  margin-top: 20px;
-  width: 280px;
-  height: 650px;
+  top: 70px;
+  margin-left: 10px;
+  margin-bottom: 12px;
+  width: 310px;
+  height: 550px;
   border-radius: 5px;
-  box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.3);
 
   h5 {
+    margin: 0px;
     font-weight: bold;
   }
 
   .action-text {
-    padding: 10px 10%;
+    padding: 10px 6%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     .logo img {
-      width: 270px;
-      height: 78px;
+      width: 250px;
+      height: 68px;
+    }
+
+    p {
+      margin: 0px;
     }
   }
 
@@ -31,9 +37,8 @@
     margin: 10px auto;
 
     .action {
-      padding: 10px 38px;
-      font-size: 16px;
-      font-weight: lighter;
+      padding: 10px 10px;
+      font-size: 18px;
     }
   }
 }

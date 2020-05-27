@@ -5,6 +5,7 @@ class ExperiencesController < ApplicationController
   def index
     @items = []
     @activity_items = {}
+
     @activity_array = []
     @experience_items = []
     @item_categories = ItemCategory.all
@@ -18,6 +19,18 @@ class ExperiencesController < ApplicationController
     @starts_at = @search.starts_at
     @ends_at = @search.ends_at
     @activity_array = @search.activities
+
+    incr = 0
+    @activity_array.each do |activity|
+      if activity.name == 'Dinner & Lunch' || activity.name == 'Bar' || activity.name == 'Museums & Sites'
+        incr += 1
+      end
+    end
+    if incr == 3
+      @activity_items['Museums & Sites'] = nil
+      @activity_items['Dinner & Lunch'] = nil
+      @activity_items['Bar'] = nil
+    end
 
     # check if experiences have items
     n = 0
@@ -66,7 +79,7 @@ class ExperiencesController < ApplicationController
         @activity_items[activity.name] = result
       end
 
-    # determine what items are assigned to each (out of 3) experiences
+      # determine what items are assigned to each (out of 3) experiences
 
       @experience_items = YelpItemService.new(
         activity_array: @activity_array,
@@ -81,7 +94,6 @@ class ExperiencesController < ApplicationController
       end
     end
   end
-
 
   def show
     @search = Search.find(params[:search_id])
@@ -122,6 +134,21 @@ class ExperiencesController < ApplicationController
       end
     end
     itinerary
+  end
+
+  def reorder_hash(activity_items, activity_items_reordered)
+    activity_items.each do |key, value|
+      if key == 'Museums & Sites' && activity_items_reordered.size.zero?
+        activity_items_reordered['Museums & Sites'] = value
+        reorder_hash(activity_items, activity_items_reordered)
+      elsif key == 'Dinner & Lunch' && activity_items_reordered.size == 1
+        activity_items_reordered['Dinner & Lunch'] = value
+        reorder_hash(activity_items, activity_items_reordered)
+      elsif key == 'Bar' && activity_items_reordered.size == 2
+        activity_items_reordered['Bar'] = value
+        return activity_items_reordered
+      end
+    end
   end
 
   def add_image(activity)
