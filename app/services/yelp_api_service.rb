@@ -24,6 +24,7 @@ class YelpApiService
       item = Item.find_by(name: row["name"])
       # Only make new request if the same item is not already in a DB
       if item.nil?
+        raise
         # A member call will only be made if item does not already exist
         item = Item.create!(
           name: row["name"],
@@ -57,6 +58,7 @@ class YelpApiService
     rescue OpenURI::HTTPError
       puts "Request failed, carry on"
     end
+
     @items
   end
 end
