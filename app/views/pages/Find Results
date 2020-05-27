@@ -1,0 +1,17 @@
+Searching 233 files for "homepage_container"
+
+/Users/floriangrossmann/code/date-fox/app/assets/stylesheets/components/_home-banner.scss:
+   56    }
+   57
+   58:   .homepage_container {
+   59      max-width: unset !important;
+   60      width: 90vw !important;
+
+/Users/floriangrossmann/code/date-fox/app/views/pages/home.html.erb:
+   10  </div>
+   11
+   12:   <div class="container homepage_container">
+   13      <div class="logo_bar d-flex justify-content-center">
+   14        <div class="col-4">
+
+2 matches across 2 files
