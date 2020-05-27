@@ -5,22 +5,37 @@
 <div class="center">
   <div class="search-form-container">
 
-  <h2>How much time do you want to spend?</h2>
+    <h2>How much time do you want to spend?</h2>
 
-    <%= simple_form_for @search do |f| %>
-      
-      <div class="date">
+      <%= simple_form_for @search do |f| %>
+        <input type="hidden" name="_method" value="patch">
+        <input type="hidden" name="authenticity_token" value="Boe8v68jjTDbncfCN/ynKUGF51DGUSryOXYaZzOjHbFqULT1aofg2ZF3PDqrCYrat24h1RbaSDI0v4rfjefPaw==">
+        
+        <div class="date">
+          <div class="form-group string optional search_starts_at form-group-valid">
+            <label class="string optional hidden" for="search_starts_at">Starts at</label>
+            <input class="form-control is-valid string optional datepicker" placeholder="Start:" type="text" value="" name="search[starts_at]" id="search_starts_at">
+          </div>
+          <div class="form-group string optional search_ends_at form-group-valid">
+            <label class="string optional hidden" for="search_ends_at">Ends at</label>
+            <input class="form-control is-valid string optional datepicker" placeholder="End:" type="text" value="" name="search[ends_at]" id="search_ends_at">
+            </div>
+        </div>
+        <%= f.button :submit, "Continue", class: "btn"%>
+      <% end %>
+  </div>
+</div>
+
+
+
+      <%# <div class="date">
         <%= f.input :starts_at, 
                     as: :string, 
                     placeholder: 'Start:',
                     input_html: {class: "datepicker"} %>
-        <%= f.input :ends_at, 
+        <%#= f.input :ends_at, 
                     as: :string, 
                     placeholder: 'End:',
                     input_html: {class: "datepicker"} %>
-      </div>
-      <%= f.button :submit, "Continue", class: "btn"%>
-    <% end %>
-  </div>
-</div>
-
+      <%# </div> %>
+      <%#= f.button :submit, "Continue", class: "btn"%>

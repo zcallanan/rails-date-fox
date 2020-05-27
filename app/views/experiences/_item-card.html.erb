@@ -1,8 +1,8 @@
-<div class="card-product">
+<div class="card-product" data-controller="item">
   <div class="row">
     <div class="col-7">
-      <h2><%= item.name %></h2>
-      <p><%= item.item_category.alias %></p>
+      <h2 data-target="item.name"><%= item.name %></h2>
+      <p data-target="item.alias"><%= item.item_category.alias %></p>
     </div>
     <div class="col-5">
       <div class="br-wrapper br-theme-fontawesome-stars">
@@ -10,10 +10,9 @@
       </div>
     </div>
   </div>
-  <div class="row">'
-    <% if item.photos.any? %>
-      <img src="<%= item.photos.first.url %>" class="item-photo"/>
-    <% end %>
+  <div class="row">
+    <img src="<%= item.image_url %>" data-target="item.photo" class="item-photo"/>
+
     <div class="card-product-infos">
       <p> Description would go here</p>
     </div>
@@ -21,14 +20,21 @@
 
   <div class="row">
     <div class="col-4">
-      <%= link_to "Replace", "#", class: "replace btn btn-primary"  %>
+      <%= link_to "Replace", refresh_search_path(searches,
+      item_id: item.id),
+      method: :post,
+      remote: false,
+      id: "replace",
+      class: "replace btn btn-primary",
+      data: {
+        item_id: item.id,
+        search_id: searches.id,
+        item_refresh_url: refresh_search_path(searches)
+      }  %>
     </div>
 
     <div class="col-4">
       <p>i</p>
-    </div>
-    <div class="col-4">
-      <%= link_to "Details", item_path(item), class: "btn btn-primary" %>
     </div>
 
   </div>
