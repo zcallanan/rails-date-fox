@@ -217,21 +217,21 @@ class ExperiencesController < ApplicationController
 
   def long_description(activity, index, item)
     bar_descriptions = [
-      "1 - #{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmohsphere and first class service. Dating sucess guaranteed, even for programmers!",
-      "2 - #{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmohsphere and first class service. Dating sucess guaranteed, even for programmers!",
-      "3 - #{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmohsphere and first class service. Dating sucess guaranteed, even for programmers!"
+      "#{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmosphere and outstanding service.",
+      "#{item.name} harkens back to the romantic nostalgia of a forgotten time. A time when neighbors gathered to share their stories over good drinks – make sure to ask the barkeeper for the most recent creations in this hidden gem.",
+      "#{item.name} is very refreshing, simple, yet elegant. If you’re lucky, you’ll catch one of their live music acts. Well known for its wide range of cocktails, the barfood can compete with some of the restaurants in the city as well."
     ]
 
     restaurant_descriptions = [
-      "1 - #{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can.",
-      "2 - #{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can.",
-      "3 - #{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can."
+      "#{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can.",
+      "#{item.name} has created rustic and elegant dishes that showcase the restaurant’s relationship with local farms and purveyors—speaking to time-honored techniques with a focus on offerings best shared with your significant other.",
+      "#{item.name} offers nationally renowned steaks—dry aged and hand-cut on premises by the restaurant's own butchers—the freshest of seafood, creative sides and irresistible desserts prepared on-site every day. You cannot go wrong here!"
     ]
 
     museum_descriptions = [
-      "1 - #{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past and present. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend.",
-      "2 - #{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past and present. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend.",
-      "3 - #{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past and present. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend."
+      "#{item.name} is one of the most interesting places in Munich to go for some cultural education. With a wide range of digital gimmicks, the staff will surely keep you entertained and make the visit more fun than you may expect.",
+      "#{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend.",
+      "#{item.name} is among the largest of its size and offers something for everyone. Close to a million visitors per year speak for itself. Make sure to book tickets in advance, especially on weekends the queues get very long."
     ]
 
     return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
