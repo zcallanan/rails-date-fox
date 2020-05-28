@@ -1,9 +1,24 @@
+<div class="experience-show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1590058200/Bildschirmfoto_2020-05-21_um_12.49.05_f7r7qj.png')">
+    <h1>Your dating experience</h1>
+</div>
+
+<% url =["https://images.unsplash.com/photo-1497644083578-611b798c60f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
+          "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80",
+          "https://images.unsplash.com/photo-1575057584359-7e7464d0913e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+        ] 
+%>
+
 <div class="class">
   <div class="row">
-  <% @search.experiences.each do |experience| %>
-    <div class="col-sm-4">
-      <%= render 'experience-card', searches: @search, experience: experience %>
-    </div>
+  <% i = 0 %>
+  <% @search.experiences.each_with_index do |experience, index| %>
+      <% if index == i %>
+        <% @img = url[i] %>
+        <div class="col-sm-4">
+          <%= render 'experience-card', searches: @search, experience: experience, img: @img, i: i %>
+        </div>
+      <% end %>
+    <% i += 1 %>
   <% end %>
   </div>
 </div>
