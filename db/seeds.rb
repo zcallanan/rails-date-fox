@@ -2,6 +2,7 @@
 
 require "csv"
 
+Booking.destroy_all
 JoinItemAttr.destroy_all
 SearchActivity.destroy_all
 SearchExperience.destroy_all
