@@ -1,10 +1,12 @@
 .home_banner {
   background-size: cover;
-  height: 950px;
-  margin-bottom: 30px;
+  height: calc(100vh - 66px);
+  margin-bottom: 50px;
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
+  background-position: center;
+ 
 
   h1 {
   font-weight: bold;
@@ -21,6 +23,7 @@
     text-shadow: 1px 1px 2px #333333;
     margin-top: 10px;
     margin-right: -10px;
+    font-weight: bold;
 
     a {
       color: white;
@@ -58,7 +61,7 @@
 
   .homepage_container {
     max-width: unset !important;
-    width: 60vw !important;
+    width: 78vw !important;
     padding: 0px !important;
     margin: 0 auto !important;
   }
