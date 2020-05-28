@@ -41,33 +41,33 @@ class ExperiencesController < ApplicationController
     # for each activity, call yelp index api to get a list of items per activity category
     if n.zero?
       @activity_array.each do |activity|
-        @items = []
-        @item_categories.each do |category|
-          next if activity.name != category.activity_reference
+        # @items = []
+        # @item_categories.each do |category|
+        #   next if activity.name != category.activity_reference
 
-          items = YelpApiService.new(
-            location: @city,
-            radius: 10_000,
-            category: category.name,
-            price_range: @price_range
-          ).call
-          @items << items
+        #   items = YelpApiService.new(
+        #     location: @city,
+        #     radius: 10_000,
+        #     category: category.name,
+        #     price_range: @price_range
+        #   ).call
+        #   @items << items
 
-          # create an array of 4 attributes to be added to an item
-          attributes = generate_attributes(@item_attributes, activity)
+        #   # create an array of 4 attributes to be added to an item
+        #   attributes = generate_attributes(@item_attributes, activity)
 
-          # associate each item with an activity, category, and 4 attributes
-          @items.flatten.each do |item|
-            item.update!(activity: activity) if item.activity.nil?
-            item.update!(item_category: category) if item.item_category.nil?
+        #   # associate each item with an activity, category, and 4 attributes
+        #   @items.flatten.each do |item|
+        #     item.update!(activity: activity) if item.activity.nil?
+        #     item.update!(item_category: category) if item.item_category.nil?
 
-            next if item.item_attributes.size > 4
+        #     next if item.item_attributes.size > 4
 
-            attributes.each do |attrs|
-              item.item_attributes << attrs
-            end
-          end
-        end
+        #     attributes.each do |attrs|
+        #       item.item_attributes << attrs
+        #     end
+        #   end
+        # end
 
         @items = Item.all
         result = []
@@ -93,30 +93,29 @@ class ExperiencesController < ApplicationController
       museum = 0
       @activity_array.each do |activity|
         @experience_items.flatten.each do |item|
-          if activity.id == item.activity_id
-            if activity.name == 'Bar'
-              item.update!(image_url: nil, description: nil, long_description: nil)
-              item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
-              item.update!(description: add_description(activity, bar, item)) if item.description.nil?
-              item.update!(long_description: long_description(activity, bar, item)) if item.long_description.nil?
-              item.update!(priority: 3) if item.priority != 3
-              bar += 1
-            elsif activity.name == 'Dinner & Lunch'
-              item.update!(image_url: nil, description: nil, long_description: nil)
-              item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
-              item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
-              item.update!(long_description: long_description(activity, restaurant, item)) if item.long_description.nil?
-              item.update!(priority: 2) if item.priority != 2
-              restaurant += 1
-            elsif activity.name == 'Museums & Sites'
-              item.update!(image_url: nil, description: nil, long_description: nil)
-              item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
-              item.update!(description: add_description(activity, museum, item)) if item.description.nil?
-              item.update!(long_description: long_description(activity, museum, item)) if item.long_description.nil?
-              item.update!(priority: 1) if item.priority != 1
-              museum += 1
-            end
+          if item.activity_id.nil? == false
+            if activity.id == item.activity_id
+              if activity.name == 'Bar'
+                item.update!(image_url: nil, long_description: nil)
+                item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
+                item.update!(long_description: long_description(activity, bar, item)) if item.long_description.nil?
+                item.update!(priority: 3) if item.priority != 3
+                bar += 1
+              elsif activity.name == 'Dinner & Lunch'
+                item.update!(image_url: nil, long_description: nil)
+                item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
+                item.update!(long_description: long_description(activity, restaurant, item)) if item.long_description.nil?
+                item.update!(priority: 2) if item.priority != 2
+                restaurant += 1
+              elsif activity.name == 'Museums & Sites'
+                item.update!(image_url: nil, long_description: nil)
+                item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
+                item.update!(long_description: long_description(activity, museum, item)) if item.long_description.nil?
+                item.update!(priority: 1) if item.priority != 1
+                museum += 1
+              end
 
+            end
           end
         end
       end
@@ -149,14 +148,14 @@ class ExperiencesController < ApplicationController
   end
 
   def generate_attributes(item_attributes, activity)
-    attribute_list = []
+    ten_attribute_list = []
     item_attributes.each do |attribute|
       next if activity.name != attribute.activity_reference
 
-      attribute_list << attribute
+      ten_attribute_list << attribute
     end
     attributes = []
-    attributes << attribute_list.sample(4)
+    attributes << ten_attribute_list.sample(4)
     attributes.flatten!
   end
 
@@ -191,29 +190,29 @@ class ExperiencesController < ApplicationController
     end
   end
 
-  def add_description(activity, index, item)
-    bar_descriptions = [
-      "#{item.name} in the heart of Munich is among local's favorites for state of the art drinks and atmosphere.",
-      "#{item.name} is best know for its well crafted drinks and excellent service, and you will always find a fun crowd.",
-      "#{item.name} boosts a special atmosphere that you will love once you enter. The drinks selection is among the city's finest."
-    ]
+  # def add_description(activity, index, item)
+  #   bar_descriptions = [
+  #     "#{item.name} in the heart of Munich is among local's favorites for state of the art drinks and atmosphere.",
+  #     "#{item.name} is best know for its well crafted drinks and excellent service, and you will always find a fun crowd.",
+  #     "#{item.name} boosts a special atmosphere that you will love once you enter. The drinks selection is among the city's finest."
+  #   ]
 
-    restaurant_descriptions = [
-      "#{item.name} in one of Munich's most popular neighbourhoods delivers a quality of dishes that is hard to beat anywhere else in the city.",
-      "#{item.name} has established a reputation for excellent food and service. Make sure to have one of their excellent wines!",
-      "#{item.name} manages to combine a laid-back atmosphere with truly high-class service and a menu that will make you smile."
-    ]
+  #   restaurant_descriptions = [
+  #     "#{item.name} in one of Munich's most popular neighbourhoods delivers a quality of dishes that is hard to beat anywhere else in the city.",
+  #     "#{item.name} has established a reputation for excellent food and service. Make sure to have one of their excellent wines!",
+  #     "#{item.name} manages to combine a laid-back atmosphere with truly high-class service and a menu that will make you smile."
+  #   ]
 
-    museum_descriptions = [
-      "#{item.name} is a great place to unwind and learn about various facets of Munich's past and present.",
-      "#{item.name} is always a great place to discover and relax in the beautiful gardens nearby. Careful, it's romantic!",
-      "#{item.name} could keep you busy for hours with its wide range of things to discover. But don't rush, you can always come back."
-    ]
+  #   museum_descriptions = [
+  #     "#{item.name} is a great place to unwind and learn about various facets of Munich's past and present.",
+  #     "#{item.name} is always a great place to discover and relax in the beautiful gardens nearby. Careful, it's romantic!",
+  #     "#{item.name} could keep you busy for hours with its wide range of things to discover. But don't rush, you can always come back."
+  #   ]
 
-    return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
-    return bar_descriptions[index] if activity.name == 'Bar'
-    return museum_descriptions[index] if activity.name == 'Museums & Sites'
-  end
+  #   return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
+  #   return bar_descriptions[index] if activity.name == 'Bar'
+  #   return museum_descriptions[index] if activity.name == 'Museums & Sites'
+  # end
 
   def long_description(activity, index, item)
     bar_descriptions = [
