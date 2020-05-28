@@ -8,7 +8,7 @@
   <div class="container booking_container">
     <div class="booking_summary p-4">
       <div class="d-flex justify-content-between">
-          <div class="col-md-9 p-3 mr-3 booking_cards booking_summary_card">
+          <div class="col-md-9 p-3 mr-4 booking_cards booking_summary_card">
             <p class="bookings_header"><strong>Your personal date experience</strong></p>
             <% @ordered_items.each_with_index do |item, index| %>
               <div class="row">
@@ -21,7 +21,7 @@
                   <% f=@itinerary[5] if item== @ordered_items.third %>
 
 
-                <div class="col-12">
+                <div class="col-11">
                     <%= render 'booking-card', item: item, items: @items %>
                 </div>
               </div>
