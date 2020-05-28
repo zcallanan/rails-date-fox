@@ -1,8 +1,21 @@
 .logo_bar {
   background-color: #F1F8F7;
   font-size: 30px;
-  margin-top: 5px;
+  margin-top: 0px;
+  margin-bottom: 50px;
 	padding-top: 20px;
+  padding-bottom: 20px;
+  align-content: space-around;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.logo_bar_content {
+  background-color: #F1F8F7;
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-top: 20px;
   padding-bottom: 20px;
   align-content: space-around;
   text-align: center;
