@@ -41,33 +41,33 @@ class ExperiencesController < ApplicationController
     # for each activity, call yelp index api to get a list of items per activity category
     if n.zero?
       @activity_array.each do |activity|
-        @items = []
-        @item_categories.each do |category|
-          next if activity.name != category.activity_reference
+        # @items = []
+        # @item_categories.each do |category|
+        #   next if activity.name != category.activity_reference
 
-          items = YelpApiService.new(
-            location: @city,
-            radius: 10_000,
-            category: category.name,
-            price_range: @price_range
-          ).call
-          @items << items
+        #   items = YelpApiService.new(
+        #     location: @city,
+        #     radius: 10_000,
+        #     category: category.name,
+        #     price_range: @price_range
+        #   ).call
+        #   @items << items
 
-          # create an array of 4 attributes to be added to an item
-          attributes = generate_attributes(@item_attributes, activity)
+        #   # create an array of 4 attributes to be added to an item
+        #   attributes = generate_attributes(@item_attributes, activity)
 
-          # associate each item with an activity, category, and 4 attributes
-          @items.flatten.each do |item|
-            item.update!(activity: activity) if item.activity.nil?
-            item.update!(item_category: category) if item.item_category.nil?
+        #   # associate each item with an activity, category, and 4 attributes
+        #   @items.flatten.each do |item|
+        #     item.update!(activity: activity) if item.activity.nil?
+        #     item.update!(item_category: category) if item.item_category.nil?
 
-            next if item.item_attributes.size > 4
+        #     next if item.item_attributes.size > 4
 
-            attributes.each do |attrs|
-              item.item_attributes << attrs
-            end
-          end
-        end
+        #     attributes.each do |attrs|
+        #       item.item_attributes << attrs
+        #     end
+        #   end
+        # end
 
         @items = Item.all
         result = []

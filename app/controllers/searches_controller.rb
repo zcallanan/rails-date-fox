@@ -95,7 +95,7 @@ class SearchesController < ApplicationController
 
           if activity.name == 'Bar'
             new_item.update!(image_url: nil, long_description: nil)
-            new_item.update!(image_url: add_image(activity, 3)) if new_item.image_url.nil?
+            new_item.update!(image_url: add_image(activity, 4)) if new_item.image_url.nil?
             new_item.update!(long_description: long_description(activity, 3, new_item)) if new_item.long_description.nil?
             new_item.update!(priority: 3) if new_item.priority != 3
           elsif activity.name == 'Dinner & Lunch'
@@ -148,7 +148,8 @@ class SearchesController < ApplicationController
     bar_descriptions = [
       "#{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmosphere and outstanding service.",
       "#{item.name} harkens back to the romantic nostalgia of a forgotten time. A time when neighbors gathered to share their stories over good drinks – make sure to ask the barkeeper for the most recent creations in this hidden gem.",
-      "#{item.name} is very refreshing, simple, yet elegant. If you’re lucky, you’ll catch one of their live music acts. Well known for its wide range of cocktails, the barfood can compete with some of the restaurants in the city as well."
+      "#{item.name} is very refreshing, simple, yet elegant. If you’re lucky, you’ll catch one of their live music acts. Well known for its wide range of cocktails, the barfood can compete with some of the restaurants in the city as well.",
+      "#{item.name} will immediately make you feel welcome with its cozy interior and friendly service. The best seats are at the bar because watching the barkeepers do their magic on the cocktails is worth the drinks already."
     ]
 
     restaurant_descriptions = [

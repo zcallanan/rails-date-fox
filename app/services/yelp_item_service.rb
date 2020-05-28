@@ -15,7 +15,6 @@ class YelpItemService
     @activity_items.each_value do |value|
       sorted_array = value.sort_by(&:rating).reverse
       item_array = []
-      # item_array = assign_item_objects(first, second, third, sorted_array)
       3.times do
         item_array << sorted_array.sample
       end
@@ -37,25 +36,5 @@ class YelpItemService
     # return
 
     total_activity_duration > date_duration ? result_array[0..(result_array.size - 1)] : result_array
-  end
-
-  private
-
-  def assign_item_objects(first, second, third, item_list)
-    # Return an array of items with no duplicates
-    if first.nil?
-      first = item_list.sample
-      second = item_list.sample
-      third = item_list.sample
-    end
-    if first == second
-      second = item_list.sample
-      assign_item_objects(first, second, third, item_list)
-    end
-    if first == third || second == third
-      third = item_list.sample
-      assign_item_objects(first, second, third, item_list)
-    end
-    [first, second, third]
   end
 end
