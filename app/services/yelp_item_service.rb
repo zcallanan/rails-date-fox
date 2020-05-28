@@ -7,19 +7,18 @@ class YelpItemService
   end
 
   def call
-    first = nil
-    second = nil
-    third = nil
+
     result_array = [[], [], []]
-    item_list = []
     sorted_array = []
 
     # create result array to funnel items to experiences
     @activity_items.each_value do |value|
       sorted_array = value.sort_by(&:rating).reverse
-      item_list = sorted_array[0..(sorted_array.size / 2)]
-
-      item_array = assign_item_objects(first, second, third, item_list)
+      item_array = []
+      # item_array = assign_item_objects(first, second, third, sorted_array)
+      3.times do
+        item_array << sorted_array.sample
+      end
       item_array.each_with_index do |val, index|
         result_array[index] << val
       end

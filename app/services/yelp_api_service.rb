@@ -32,6 +32,7 @@ class YelpApiService
           price_range: price,
           review_count: row["review_count"]
         )
+        puts item.name
 
         # Make a member request for item
         url = BASE_URI + row["id"]
