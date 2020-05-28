@@ -64,15 +64,24 @@ activities.each do |value|
       attribute[8],
       attribute[9],
       attribute[10]
-    ].sample(4)
+    ]
+
     attributes.flatten!
 
-    item_attributes = []
     attributes.each do |attrs|
-      item_attributes << ItemAttribute.create!(
+      ItemAttribute.create!(
         activity_reference: attribute[0],
         name: attrs
       )
+    end
+
+    all_attributes = ItemAttribute.all
+    ten_activity_attributes = []
+
+    all_attributes.each do |a|
+      if a.activity_reference == activity.name
+        ten_activity_attributes << a
+      end
     end
 
     category_list.each do |row|
@@ -85,19 +94,22 @@ activities.each do |value|
       )
 
       puts item_category.name
-      items = YelpApiService.new(
-        location: 'Munich',
-        radius: 10_000,
-        category: item_category.name,
-        price_range: 3
-      ).call
-      items.each do |item|
-        item.update!(activity: activity, item_category: item_category)
+      price = [2, 3]
+      price.each do |p|
+        items = YelpApiService.new(
+          location: 'Munich',
+          radius: 10_000,
+          category: item_category.name,
+          price_range: p
+        ).call
+        items.each do |item|
+          item.update!(activity: activity, item_category: item_category)
 
-        next if item.item_attributes.size > 4
+          next if item.item_attributes.size > 4
 
-        item_attributes.each do |att|
-          item.item_attributes << att
+          ten_activity_attributes.sample(4).each do |s|
+            item.item_attributes << s
+          end
         end
       end
     end

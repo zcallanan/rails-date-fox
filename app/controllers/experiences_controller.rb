@@ -93,30 +93,32 @@ class ExperiencesController < ApplicationController
       museum = 0
       @activity_array.each do |activity|
         @experience_items.flatten.each do |item|
-          if activity.id == item.activity_id
-            if activity.name == 'Bar'
-              item.update!(image_url: nil, description: nil, long_description: nil)
-              item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
-              item.update!(description: add_description(activity, bar, item)) if item.description.nil?
-              item.update!(long_description: long_description(activity, bar, item)) if item.long_description.nil?
-              item.update!(priority: 3) if item.priority != 3
-              bar += 1
-            elsif activity.name == 'Dinner & Lunch'
-              item.update!(image_url: nil, description: nil, long_description: nil)
-              item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
-              item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
-              item.update!(long_description: long_description(activity, restaurant, item)) if item.long_description.nil?
-              item.update!(priority: 2) if item.priority != 2
-              restaurant += 1
-            elsif activity.name == 'Museums & Sites'
-              item.update!(image_url: nil, description: nil, long_description: nil)
-              item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
-              item.update!(description: add_description(activity, museum, item)) if item.description.nil?
-              item.update!(long_description: long_description(activity, museum, item)) if item.long_description.nil?
-              item.update!(priority: 1) if item.priority != 1
-              museum += 1
-            end
+          if item.activity_id.nil? == false
+            if activity.id == item.activity_id
+              if activity.name == 'Bar'
+                item.update!(image_url: nil, description: nil, long_description: nil)
+                item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
+                item.update!(description: add_description(activity, bar, item)) if item.description.nil?
+                item.update!(long_description: long_description(activity, bar, item)) if item.long_description.nil?
+                item.update!(priority: 3) if item.priority != 3
+                bar += 1
+              elsif activity.name == 'Dinner & Lunch'
+                item.update!(image_url: nil, description: nil, long_description: nil)
+                item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
+                item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
+                item.update!(long_description: long_description(activity, restaurant, item)) if item.long_description.nil?
+                item.update!(priority: 2) if item.priority != 2
+                restaurant += 1
+              elsif activity.name == 'Museums & Sites'
+                item.update!(image_url: nil, description: nil, long_description: nil)
+                item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
+                item.update!(description: add_description(activity, museum, item)) if item.description.nil?
+                item.update!(long_description: long_description(activity, museum, item)) if item.long_description.nil?
+                item.update!(priority: 1) if item.priority != 1
+                museum += 1
+              end
 
+            end
           end
         end
       end
@@ -149,14 +151,14 @@ class ExperiencesController < ApplicationController
   end
 
   def generate_attributes(item_attributes, activity)
-    attribute_list = []
+    ten_attribute_list = []
     item_attributes.each do |attribute|
       next if activity.name != attribute.activity_reference
 
-      attribute_list << attribute
+      ten_attribute_list << attribute
     end
     attributes = []
-    attributes << attribute_list.sample(4)
+    attributes << ten_attribute_list.sample(4)
     attributes.flatten!
   end
 
