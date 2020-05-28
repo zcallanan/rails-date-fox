@@ -80,6 +80,7 @@ class SearchesController < ApplicationController
         if item == @item
           # capture the item's activity
           activity_id = item.activity_id
+          activity = Activity.find(activity_id)
           # remove item from experience
           item.destroy
 
@@ -91,6 +92,24 @@ class SearchesController < ApplicationController
             item_list << x
           end
           new_item = sample_item(item_list, experience_item_array)
+
+          if activity.name == 'Bar'
+            new_item.update!(image_url: nil, long_description: nil)
+            new_item.update!(image_url: add_image(activity, 3)) if new_item.image_url.nil?
+            new_item.update!(long_description: long_description(activity, 3, new_item)) if new_item.long_description.nil?
+            new_item.update!(priority: 3) if new_item.priority != 3
+          elsif activity.name == 'Dinner & Lunch'
+            new_item.update!(image_url: nil, long_description: nil)
+            new_item.update!(image_url: add_image(activity, 3)) if new_item.image_url.nil?
+            new_item.update!(long_description: long_description(activity, 3, new_item)) if new_item.long_description.nil?
+            new_item.update!(priority: 2) if new_item.priority != 2
+          elsif activity.name == 'Museums & Sites'
+            new_item.update!(image_url: nil, long_description: nil)
+            new_item.update!(image_url: add_image(activity, 3)) if new_item.image_url.nil?
+            new_item.update!(long_description: long_description(activity, 3, new_item)) if new_item.long_description.nil?
+            new_item.update!(priority: 1) if new_item.priority != 1
+          end
+
           experience.items << new_item
         end
       end
@@ -125,6 +144,59 @@ class SearchesController < ApplicationController
     params.require(:search).permit(:city, :starts_at, :ends_at, :price_range, activity_ids: [])
   end
 
+  def long_description(activity, index, item)
+    bar_descriptions = [
+      "#{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmosphere and outstanding service.",
+      "#{item.name} harkens back to the romantic nostalgia of a forgotten time. A time when neighbors gathered to share their stories over good drinks – make sure to ask the barkeeper for the most recent creations in this hidden gem.",
+      "#{item.name} is very refreshing, simple, yet elegant. If you’re lucky, you’ll catch one of their live music acts. Well known for its wide range of cocktails, the barfood can compete with some of the restaurants in the city as well."
+    ]
+
+    restaurant_descriptions = [
+      "#{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can.",
+      "#{item.name} has created rustic and elegant dishes that showcase the restaurant’s relationship with local farms and purveyors—speaking to time-honored techniques with a focus on offerings best shared with your significant other.",
+      "#{item.name} offers nationally renowned steaks—dry aged and hand-cut on premises by the restaurant's own butchers—the freshest of seafood, creative sides and irresistible desserts prepared on-site every day. You cannot go wrong here!"
+    ]
+
+    museum_descriptions = [
+      "#{item.name} is one of the most interesting places in Munich to go for some cultural education. With a wide range of digital gimmicks, the staff will surely keep you entertained and make the visit more fun than you may expect.",
+      "#{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend.",
+      "#{item.name} is among the largest of its size and offers something for everyone. Close to a million visitors per year speak for itself. Make sure to book tickets in advance, especially on weekends the queues get very long."
+    ]
+
+    return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
+    return bar_descriptions[index] if activity.name == 'Bar'
+    return museum_descriptions[index] if activity.name == 'Museums & Sites'
+  end
+
+  def add_image(activity, index)
+    bar_images = [
+      'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1491333078588-55b6733c7de6?ixlib=rb-1.2.1&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1529502669403-c073b74fcefb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1436018626274-89acd1d6ec9d?ixlib=rb-1.2.1&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop'
+    ]
+
+    restaurant_images = [
+      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544739313-6fad02872377?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1589769105893-3cfe4c0c8851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf?ixlib=rb-1.2.1&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1563507466372-c61871fff681?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop'
+    ]
+
+    museum_images = [
+      'https://images.unsplash.com/photo-1586884542514-f6bef0283446?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1566127444941-8e124ffbc59e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1584652868574-0669f4292976?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1566099191530-598e878ebd8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1580539924857-755cdc6aa3c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop'
+    ]
+    return restaurant_images[index] if activity.name == 'Dinner & Lunch'
+    return bar_images[index] if activity.name == 'Bar'
+    return museum_images[index] if activity.name == 'Museums & Sites'
+  end
 end
 
 # create controllers:
