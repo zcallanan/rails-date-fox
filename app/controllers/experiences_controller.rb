@@ -229,28 +229,28 @@ class ExperiencesController < ApplicationController
 
   def add_image(activity, index)
     bar_images = [
-      'https://images.unsplash.com/photo-1514933651103-005eec06c04b',
-      'https://images.unsplash.com/photo-1491333078588-55b6733c7de6',
-      'https://images.unsplash.com/photo-1529502669403-c073b74fcefb',
-      'https://images.unsplash.com/photo-1436018626274-89acd1d6ec9d',
-      'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727'
+      'https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1491333078588-55b6733c7de6?ixlib=rb-1.2.1&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1529502669403-c073b74fcefb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1436018626274-89acd1d6ec9d?ixlib=rb-1.2.1&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop'
     ]
 
     restaurant_images = [
-      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
-      'https://images.unsplash.com/photo-1525610553991-2bede1a236e2',
-      'https://images.unsplash.com/photo-1544739313-6fad02872377',
-      'https://images.unsplash.com/photo-1589769105893-3cfe4c0c8851',
-      'https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf',
-      'https://images.unsplash.com/photo-1563507466372-c61871fff681'
+      'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1544739313-6fad02872377?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1589769105893-3cfe4c0c8851?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf?ixlib=rb-1.2.1&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1563507466372-c61871fff681?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop'
     ]
 
     museum_images = [
-      'https://images.unsplash.com/photo-1586884542514-f6bef0283446?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80',
-      'https://images.unsplash.com/photo-1584652868574-0669f4292976',
-      'https://images.unsplash.com/photo-1566099191530-598e878ebd8b',
-      'https://images.unsplash.com/photo-1580539924857-755cdc6aa3c2',
-      'https://images.unsplash.com/photo-1566127444941-8e124ffbc59e'
+      'https://images.unsplash.com/photo-1586884542514-f6bef0283446?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1566127444941-8e124ffbc59e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1584652868574-0669f4292976?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1566099191530-598e878ebd8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1580539924857-755cdc6aa3c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop'
     ]
     return restaurant_images[index] if activity.name == 'Dinner & Lunch'
     return bar_images[index] if activity.name == 'Bar'
