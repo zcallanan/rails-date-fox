@@ -50,17 +50,15 @@
   font-size: 24px;
 }
 .booking_border {
-  border-right: 1px solid rgb(230,230,230);
+  border-right: 0px solid rgb(230,230,230);
 }
-.booking_cards {
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  background-color: white;
-}
+
 .booking_card_keepinmind {
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   background-color: white;
+  margin-top: 15px;
+  margin-left: 27px;
 }
 .booking_summary_card {
   position: relative;
@@ -68,7 +66,7 @@
   flex-direction: column;
   // height: 300px;
   word-wrap: break-word;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   }
 
 .booking_buttons_card {
@@ -77,6 +75,7 @@
   flex-direction: column;
   word-wrap: break-word;
   margin-bottom: 20px;
+  margin-top: 0px;
 }
 
 
@@ -90,18 +89,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  border: 0px solid rgba(0, 0, 0, 0.125);
 }
 .bookings_button {
   background-color: #6362AF;
   border: none;
   color: white;
   padding: 15px 10px;
-  text-align: center;
   display: inline-block;
   font-size: 16px;
   width: 180px;
   border-radius: 10px;
   margin-bottom: 20px;
+  text-align: left;
   font-family: Quicksand;
 }
 .booking_tip_card {
@@ -152,6 +152,14 @@
   font-family: Quicksand;
   margin-left: 12px;
   font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.bookings_header_options {
+  color: #6362AF;
+  font-family: Quicksand;
+  font-size: 24px;
+  margin-bottom: 26px;
 }
 
 .tip_font {
