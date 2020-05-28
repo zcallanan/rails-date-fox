@@ -2,9 +2,9 @@
   <div class="booking_banner_content">
     <h1>Congratulations!</h1>
     <h1>You have booked your personal date experience.</h1>
-  </div>    
+  </div>
 </div>
-             
+
 
 </div>
   <div class="container booking_container">
@@ -12,19 +12,19 @@
       <div class="d-flex justify-content-between">
           <div class="col-md-9 p-3 mr-3 booking_cards booking_summary_card">
             <p class="bookings_header"><strong>Your personal date experience</strong></p>
-            <% @items.each_with_index do |item, index| %>
+            <% @ordered_items.each_with_index do |item, index| %>
               <div class="row">
-                
-                  <% i=@itinerary[0] if item== @items.first %>
-                  <% f=@itinerary[1] if item== @items.first %>
-                  <% i=@itinerary[2] if item== @items.second %>
-                  <% f=@itinerary[3] if item== @items.second %>
-                  <% i=@itinerary[4] if item== @items.third %>
-                  <% f=@itinerary[5] if item== @items.third %>
-                        
+
+                  <% i=@itinerary[0] if item== @ordered_items.first %>
+                  <% f=@itinerary[1] if item== @ordered_items.first %>
+                  <% i=@itinerary[2] if item== @ordered_items.second %>
+                  <% f=@itinerary[3] if item== @ordered_items.second %>
+                  <% i=@itinerary[4] if item== @ordered_items.third %>
+                  <% f=@itinerary[5] if item== @ordered_items.third %>
+
 
                 <div class="col-12">
-                    <%= render 'booking-card', item: item, items: @items %> 
+                    <%= render 'booking-card', item: item, items: @items %>
                 </div>
               </div>
             <% end %>
@@ -34,7 +34,7 @@
             <button type="button" class="bookings_button">Change</button>
             <button type="button" class="bookings_button">Cancel</button>
             <button type="button" class="bookings_button">Contact us</button>
-          </div>          
+          </div>
       </div>
 
       <div class="col-md-12 px-4 py-2 booking_card_keepinmind booking_tips_card">
@@ -42,8 +42,8 @@
         <p class="tip_font"><strong>Some last words from   </strong></p>
         <div class="logo_bookings">
             <%= image_tag "logo-sm.png" %>
-          </div> 
-        </div>          
+          </div>
+        </div>
         <div class="row d-flex mb-2">
           <div class="col-3 booking_tip_card align-items-center justify-content-around d-flex" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421040/Wine_and_dine_qovdzb.jpg)">Dress to impress
           </div>
@@ -53,7 +53,7 @@
           </div>
           <div class="col-1 booking_tip_card_text align-items-center justify-content-around d-flex" >and
           </div>
-          <div class="col-3 booking_tip_card align-items-center justify-content-around d-flex" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421041/Cocktails_qhqahk.jpg)">Have a good time          
+          <div class="col-3 booking_tip_card align-items-center justify-content-around d-flex" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(https://res.cloudinary.com/dwmqtysj3/image/upload/v1590421041/Cocktails_qhqahk.jpg)">Have a good time
           </div>
            <div class="col-1 booking_tip_card_smiley align-items-center justify-content-around d-flex" ><i class="fas fa-smile"></i>
           </div>

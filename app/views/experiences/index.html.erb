@@ -1,8 +1,8 @@
 <div class="class">
   <div class="row">
-  <% @search.experiences.each do |experience| %>
+  <% @ordered_items.each_with_index do |items, index| %>
     <div class="col-sm-4">
-      <%= render 'experience-card', searches: @search, experience: experience %>
+      <%= render 'experience-card', searches: @search, items: items, experience: @search.experiences[index] %>
     </div>
   <% end %>
   </div>

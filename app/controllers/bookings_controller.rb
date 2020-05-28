@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @search = @experience.searches.first
     @itinerary = calculate_date_schedule(@search, @experience)
+    @ordered_items = @items.order(:priority)
   end
 
   def create
