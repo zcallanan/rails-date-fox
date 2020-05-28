@@ -1,8 +1,8 @@
+
 <div class="bookings-show-banner" style="background-image: linear-gradient(rgba(150,150,150,0.3), rgba(150,150,150,0.3)), url('https://res.cloudinary.com/daf8fgekl/image/upload/v1590058200/Bildschirmfoto_2020-05-21_um_12.49.05_f7r7qj.png')">
     <h1 class="banner_text_1">Congratulations!</h1>
     <h2 class="banner_text_1">You have booked your personal date experience.</h1>
   </div>
-             
 
 </div>
   <div class="container booking_container">
@@ -10,19 +10,19 @@
       <div class="d-flex justify-content-between">
           <div class="col-md-9 p-3 mr-3 booking_cards booking_summary_card">
             <p class="bookings_header"><strong>Your personal date experience</strong></p>
-            <% @items.each_with_index do |item, index| %>
+            <% @ordered_items.each_with_index do |item, index| %>
               <div class="row">
-                
-                  <% i=@itinerary[0] if item== @items.first %>
-                  <% f=@itinerary[1] if item== @items.first %>
-                  <% i=@itinerary[2] if item== @items.second %>
-                  <% f=@itinerary[3] if item== @items.second %>
-                  <% i=@itinerary[4] if item== @items.third %>
-                  <% f=@itinerary[5] if item== @items.third %>
-                        
+
+                  <% i=@itinerary[0] if item== @ordered_items.first %>
+                  <% f=@itinerary[1] if item== @ordered_items.first %>
+                  <% i=@itinerary[2] if item== @ordered_items.second %>
+                  <% f=@itinerary[3] if item== @ordered_items.second %>
+                  <% i=@itinerary[4] if item== @ordered_items.third %>
+                  <% f=@itinerary[5] if item== @ordered_items.third %>
+
 
                 <div class="col-12">
-                    <%= render 'booking-card', item: item, items: @items %> 
+                    <%= render 'booking-card', item: item, items: @items %>
                 </div>
               </div>
             <% end %>
@@ -32,7 +32,7 @@
             <button type="button" class="bookings_button">Change</button>
             <button type="button" class="bookings_button">Cancel</button>
             <button type="button" class="bookings_button">Contact us</button>
-          </div>          
+          </div>
       </div>
 
       <div class="col-md-12 px-4 py-2 booking_card_keepinmind booking_tips_card">

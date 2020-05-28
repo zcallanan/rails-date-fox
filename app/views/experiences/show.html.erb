@@ -5,9 +5,9 @@
 <div class="container p-0">
   <div class="row">
     <div class="col-10 p-0">
-      <% @experience.items.each_with_index do |item, index| %>
+      <% @ordered_items.each_with_index do |item, index| %>
         <%= render 'show_card', search: @search, item: item %>
-        <% if index < @experience.items.size - 1 %>
+        <% if index < @ordered_items.size - 1 %>
           <%= render 'show_travel_card' %>
         <% end %>
       <% end %>

@@ -10,12 +10,13 @@
 
 <div class="class">
   <div class="row">
+
   <% i = 0 %>
-  <% @search.experiences.each_with_index do |experience, index| %>
+  <% @ordered_items.each_with_index do |items, index| %>
       <% if index == i %>
         <% @img = url[i] %>
         <div class="col-sm-4">
-          <%= render 'experience-card', searches: @search, experience: experience, img: @img, i: i %>
+          <%= render 'experience-card', searches: @search, items: items, experience: @search.experiences[index], img: @img, i: i %>
         </div>
       <% end %>
     <% i += 1 %>

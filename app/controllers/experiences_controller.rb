@@ -72,7 +72,9 @@ class ExperiencesController < ApplicationController
         @items = Item.all
         result = []
         @items.each do |i|
-          result << i if activity.name == i.activity.name
+          unless i.activity_id.nil?
+            result << i if activity.name == i.activity.name
+          end
         end
         @activity_items[activity.name] = result
       end
@@ -97,18 +99,21 @@ class ExperiencesController < ApplicationController
               item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
               item.update!(description: add_description(activity, bar, item)) if item.description.nil?
               item.update!(long_description: long_description(activity, bar, item)) if item.long_description.nil?
+              item.update!(priority: 3) if item.priority != 3
               bar += 1
             elsif activity.name == 'Dinner & Lunch'
               item.update!(image_url: nil, description: nil, long_description: nil)
               item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
               item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
               item.update!(long_description: long_description(activity, restaurant, item)) if item.long_description.nil?
+              item.update!(priority: 2) if item.priority != 2
               restaurant += 1
             elsif activity.name == 'Museums & Sites'
               item.update!(image_url: nil, description: nil, long_description: nil)
               item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
               item.update!(description: add_description(activity, museum, item)) if item.description.nil?
               item.update!(long_description: long_description(activity, museum, item)) if item.long_description.nil?
+              item.update!(priority: 1) if item.priority != 1
               museum += 1
             end
 
@@ -121,11 +126,18 @@ class ExperiencesController < ApplicationController
         @search.experiences[index].items << item_list
       end
     end
+    # order items
+    @ordered_items = []
+    @search.experiences.each do |experience|
+      @ordered_items << experience.items.order(:priority)
+    end
   end
 
   def show
     @search = Search.find(params[:search_id])
     @experience = Experience.find(params[:id])
+
+    @ordered_items = @experience.items.order(:priority)
 
     @itinerary = calculate_date_schedule(@search, @experience)
   end
