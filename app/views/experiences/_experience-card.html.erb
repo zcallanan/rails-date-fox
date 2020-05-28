@@ -1,6 +1,6 @@
 <div class="card-category">
-  <div class="text-left bg-img" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(https://images.unsplash.com/photo-1497644083578-611b798c60f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
-    <h2>Experience</h2>
+  <div class="text-left bg-img" style="background-image: linear-gradient(rgba(255,255,255,0.4),rgba(255,255,255,0.4)), url(<%= @img %>)">
+    <h2>Experience <%= (i + 1) %></h2>
   </div>
   <div class="row test-background">
     <% items.each do |item| %>

@@ -3,7 +3,7 @@
   justify-content: space-between;
   width: 100%;
   height: 330px;
-  margin-bottom: 12px;
+  margin-bottom: 36px;
   border-radius: 5px;
   box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
 
@@ -51,7 +51,7 @@
   font-size: 16px;
 
     .circle {
-      border: 1px solid #100303;
+      border: 2px solid #6362af;
       border-radius: 50%;
       width: 10px;
       height: 10px;
@@ -59,24 +59,26 @@
 
     .time {
       padding: 4px 0px;
-      color: #100303;
+      color: #6362af;
+      font-weight: bold;
     }
 
     .time-line {
       flex: 1 0 auto;
-      border-left: 1px solid #100303;
+      border-left: 2px solid #6362af;
     }
 
     .time-end {
       padding: 4px 0px;
-      color: #100303;
+      color: #6362af;
+      font-weight: bold;
     }
 }
 
 .travel {
   height: 90px;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 36px;
   padding-top: 50px 10px;
   display: flex;
   border-radius: 5px;
@@ -90,14 +92,20 @@
   padding: 0px 25%;
   align-items: center;
   width: 100%;
+  color: #6362af;
 
   .icon {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .icon i:hover {
-    color: #00CCBC;
+    color: #48a79a;
+    cursor: pointer;
   }
+}
+
+.clicked {
+  color: #48a79a;
 }
 
 .travel-time {
@@ -107,15 +115,16 @@
   align-items: center;
   width: 12%;
   font-size: 16px;
-  color: #100303;
+  font-weight: bold;
+  color: #6362af;
 
     .line {
     flex: 1 0 auto;
-    border-left: 1px dashed #100303;
+    border-left: 2px dashed #6362af;
     }
 
     .circle {
-      border: 1px solid #100303;
+      border: 2px solid #6362af;
       border-radius: 50%;
       width: 10px;
       height: 10px;

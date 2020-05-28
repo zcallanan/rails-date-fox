@@ -6,7 +6,7 @@
 .class {
   display: flex;
   margin: 0 auto;
-  width: 90vw;
+  width: 95vw;
 }
 
 .flex {
@@ -41,6 +41,7 @@
   font-weight: bold;
   margin: 0;
   width: 280px;
+  overflow: hidden;
 }
 
 .card-product p {

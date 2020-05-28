@@ -1,6 +1,6 @@
 .card-category {
   font-family: 'Quicksand', sans-serif;
-  margin-top: 100px;
+  // margin-top: 100px;
   margin-bottom: 50px;
   background: #B2B1D7;
   padding: 18px;
@@ -11,6 +11,7 @@
     padding-left: 18px;
     align-items: center;
     height: 120px;
+    border-radius: 4px;
     background-size: cover;
     background-position: center;
     h2 {
