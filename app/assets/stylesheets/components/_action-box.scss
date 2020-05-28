@@ -5,7 +5,7 @@
   position: sticky;
   top: 70px;
   margin-left: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 36px;
   width: 310px;
   height: 550px;
   border-radius: 5px;
@@ -37,8 +37,9 @@
     margin: 10px auto;
 
     .action {
-      padding: 10px 32px;
+      padding: 10px 38px;
       font-size: 18px;
+      border-radius: 10px;
     }
   }
 }

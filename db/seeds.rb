@@ -1,4 +1,5 @@
 # starts_at & ends_at are datetime type
+Booking.destroy_all
 
 require "csv"
 

@@ -3,7 +3,7 @@
   justify-content: space-between;
   width: 100%;
   height: 330px;
-  margin-bottom: 12px;
+  margin-bottom: 36px;
   border-radius: 5px;
   box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
 
@@ -76,7 +76,7 @@
 .travel {
   height: 90px;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 36px;
   padding-top: 50px 10px;
   display: flex;
   border-radius: 5px;
@@ -90,14 +90,19 @@
   padding: 0px 25%;
   align-items: center;
   width: 100%;
+  color: #6362af;
 
   .icon {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .icon i:hover {
-    color: #00CCBC;
+    color: #48a79a;
   }
+}
+
+.clicked {
+  color: #48a79a;
 }
 
 .travel-time {
