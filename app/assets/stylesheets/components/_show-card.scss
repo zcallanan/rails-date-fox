@@ -60,18 +60,16 @@
     .time {
       padding: 4px 0px;
       color: #6362af;
-      font-weight: bold;
     }
 
     .time-line {
       flex: 1 0 auto;
-      border-left: 2px solid #6362af;
+      border-left: 1px solid #6362af;
     }
 
     .time-end {
       padding: 4px 0px;
       color: #6362af;
-      font-weight: bold;
     }
 }
 
@@ -115,12 +113,11 @@
   align-items: center;
   width: 12%;
   font-size: 16px;
-  font-weight: bold;
   color: #6362af;
 
     .line {
     flex: 1 0 auto;
-    border-left: 2px dashed #6362af;
+    border-left: 1px dashed #6362af;
     }
 
     .circle {
