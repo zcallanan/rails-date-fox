@@ -19,9 +19,18 @@
             <%= image_tag "logo-sm.png" %>
           </div>
             <h5>What your package includes</h5>
-            <p>✔️ We reserve the tables for you</p>
-            <p>✔️ We book your entrance tickets</p>
-            <p>✔️ We arrange your transport</p>
+            <div class="checklist row">
+              <div class="check col-2 pl-2 pr-0">
+                <div class="check"><%= image_tag "icons.svg" %></div>
+                <div class="check"><%= image_tag "icons.svg" %></div>
+                <div class="check"><%= image_tag "icons.svg" %></div>
+              </div>
+              <div class="checktext col-10 mt-3 pl-0 pr-2">
+                <div class="check-text"><p>We reserve the tables for you</p></div>
+                <div class="check-text"><p>We book your entrance tickets</p></div>
+                <div class="check-text"><p>We arrange your transport</p></div>
+              </div>
+            </div>
           <div class="call">
             <%= link_to "Book your pefect date",  experience_bookings_path(@experience), method: :post, class: "action btn btn-success" %>
           </div>

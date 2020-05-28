@@ -44,3 +44,17 @@
   }
 }
 
+.check {
+  width: 30px;
+}
+.check img {
+  width: 34px;
+  height: 50px;
+}
+
+.checktext {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
