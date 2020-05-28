@@ -41,7 +41,6 @@ class ExperiencesController < ApplicationController
     # for each activity, call yelp index api to get a list of items per activity category
     if n.zero?
       @activity_array.each do |activity|
-
         @items = []
         @item_categories.each do |category|
           next if activity.name != category.activity_reference
@@ -94,19 +93,22 @@ class ExperiencesController < ApplicationController
         @experience_items.flatten.each do |item|
           if activity.id == item.activity_id
             if activity.name == 'Bar'
-              item.update!(image_url: nil, description: nil)
+              item.update!(image_url: nil, description: nil, long_description: nil)
               item.update!(image_url: add_image(activity, bar)) if item.image_url.nil?
               item.update!(description: add_description(activity, bar, item)) if item.description.nil?
+              item.update!(long_description: long_description(activity, bar, item)) if item.long_description.nil?
               bar += 1
             elsif activity.name == 'Dinner & Lunch'
-              item.update!(image_url: nil, description: nil)
+              item.update!(image_url: nil, description: nil, long_description: nil)
               item.update!(image_url: add_image(activity, restaurant)) if item.image_url.nil?
               item.update!(description: add_description(activity, restaurant, item)) if item.description.nil?
+              item.update!(long_description: long_description(activity, restaurant, item)) if item.long_description.nil?
               restaurant += 1
             elsif activity.name == 'Museums & Sites'
-              item.update!(image_url: nil, description: nil)
+              item.update!(image_url: nil, description: nil, long_description: nil)
               item.update!(image_url: add_image(activity, museum)) if item.image_url.nil?
               item.update!(description: add_description(activity, museum, item)) if item.description.nil?
+              item.update!(long_description: long_description(activity, museum, item)) if item.long_description.nil?
               museum += 1
             end
 
@@ -194,6 +196,30 @@ class ExperiencesController < ApplicationController
       "#{item.name} is a great place to unwind and learn about various facets of Munich's past and present.",
       "#{item.name} is always a great place to discover and relax in the beautiful gardens nearby. Careful, it's romantic!",
       "#{item.name} could keep you busy for hours with its wide range of things to discover. But don't rush, you can always come back."
+    ]
+
+    return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'
+    return bar_descriptions[index] if activity.name == 'Bar'
+    return museum_descriptions[index] if activity.name == 'Museums & Sites'
+  end
+
+  def long_description(activity, index, item)
+    bar_descriptions = [
+      "1 - #{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmohsphere and first class service. Dating sucess guaranteed, even for programmers!",
+      "2 - #{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmohsphere and first class service. Dating sucess guaranteed, even for programmers!",
+      "3 - #{item.name} has been a favorite go to place for the people of Munich for over 20 years. Situated in the center of Munich, it is known for its carefully crafted drinks, classy atmohsphere and first class service. Dating sucess guaranteed, even for programmers!"
+    ]
+
+    restaurant_descriptions = [
+      "1 - #{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can.",
+      "2 - #{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can.",
+      "3 - #{item.name}, situated in one of Munich's most popular neighbourhoods, is known for both traditional dishes and changing modern fusion items on the menu. Make sure to come hungry, you will want to eat more than you can."
+    ]
+
+    museum_descriptions = [
+      "1 - #{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past and present. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend.",
+      "2 - #{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past and present. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend.",
+      "3 - #{item.name} is one of the most popular places in Munich to soak up a sophisticated atmosphere and learn about the city's past and present. Great restaurants and bars are closeby, making it a perfect place to make the most out of your weekend."
     ]
 
     return restaurant_descriptions[index] if activity.name == 'Dinner & Lunch'

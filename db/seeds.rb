@@ -16,31 +16,6 @@ Activity.destroy_all
 Experience.destroy_all
 Search.destroy_all
 
-# bar_images = [
-#   'https://images.unsplash.com/photo-1514933651103-005eec06c04b',
-#   'https://images.unsplash.com/photo-1491333078588-55b6733c7de6',
-#   'https://images.unsplash.com/photo-1529502669403-c073b74fcefb',
-#   'https://images.unsplash.com/photo-1436018626274-89acd1d6ec9d',
-#   'https://images.unsplash.com/photo-1534157458714-42b1e9cd5727'
-# ]
-
-# restaurant_images = [
-#   'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
-#   'https://images.unsplash.com/photo-1525610553991-2bede1a236e2',
-#   'https://images.unsplash.com/photo-1544739313-6fad02872377',
-#   'https://images.unsplash.com/photo-1589769105893-3cfe4c0c8851',
-#   'https://images.unsplash.com/photo-1587574293340-e0011c4e8ecf',
-#   'https://images.unsplash.com/photo-1563507466372-c61871fff681'
-# ]
-
-# museum_images = [
-#   'https://images.unsplash.com/photo-1586884542514-f6bef0283446?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80',
-#   'https://images.unsplash.com/photo-1584652868574-0669f4292976',
-#   'https://images.unsplash.com/photo-1566099191530-598e878ebd8b',
-#   'https://images.unsplash.com/photo-1580539924857-755cdc6aa3c2',
-#   'https://images.unsplash.com/photo-1566127444941-8e124ffbc59e'
-# ]
-
 activities = [
   ['Dinner & Lunch', 120],
   ['Bar', 90],
@@ -112,7 +87,7 @@ activities.each do |value|
         location: 'Munich',
         radius: 10_000,
         category: item_category.name,
-        price_range: 2
+        price_range: 3
       ).call
       items.each do |item|
         item.update!(activity: activity, item_category: item_category)
