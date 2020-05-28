@@ -8,7 +8,7 @@
   <div class="container booking_container">
     <div class="booking_summary p-4">
       <div class="d-flex justify-content-between">
-          <div class="col-md-9 p-3 mr-4 booking_cards booking_summary_card">
+          <div class="col-md-9 mr-1">
             <p class="bookings_header"><strong>Your personal date experience</strong></p>
             <% @ordered_items.each_with_index do |item, index| %>
               <div class="row">
@@ -21,22 +21,24 @@
                   <% f=@itinerary[5] if item== @ordered_items.third %>
 
 
-                <div class="col-11">
+                <div class="col-12">
                     <%= render 'booking-card', item: item, items: @items %>
                 </div>
               </div>
             <% end %>
           </div>
 
-          <div class="col-md-3 px-3 mr-2 booking_buttons_card d-flex align-items-center">
-            <button type="button" class="bookings_button">&#10000; Add personal note</button>
-            <button type="button" class="bookings_button">&laquo; Change</button>
-            <button type="button" class="bookings_button">&#10008; Cancel</button>
-            <button type="button" class="bookings_button">&#9993; Contact us &#9990;</button>
+          <div class="col-md-3 mr-2 booking_buttons_card d-flex">
+            <p class="bookings_header_options"><strong>Your options</strong></p>
+            <button type="button" class="bookings_button"><i class="fas fa-pen-nib"></i>  Add personal note</button>
+            <button type="button" class="bookings_button"><i class="fas fa-exchange-alt"></i>  Change</button>
+            <button type="button" class="bookings_button"><i class="fas fa-times"></i>  Cancel</button>
+            <button type="button" class="bookings_button"><i class="fab fa-whatsapp"></i>  Contact us  </button>
+
           </div>
       </div>
 
-      <div class="col-md-12 px-4 py-2 booking_card_keepinmind booking_tips_card">
+      <div class="col-md-11 px-4 py-2 booking_card_keepinmind booking_tips_card">
         <div class="row">
         <p class="tip_font"><strong>Some last words from   </strong></p>
         <div class="logo_bookings">
