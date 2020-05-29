@@ -91,7 +91,7 @@ class SearchesController < ApplicationController
 
             item_list << x
           end
-          new_item = sample_item(item_list, experience_item_array)
+          new_item = item_list.sample
 
           if activity.name == 'Bar'
             new_item.update!(image_url: nil, long_description: nil)
@@ -129,16 +129,6 @@ class SearchesController < ApplicationController
   end
 
   private
-
-  def sample_item(item_list, experience_item_array)
-    # pick a random item for an activity
-    new_item = item_list.sample
-    # if the new item is a dupe, return false, else return item
-    experience_item_array.each do |item|
-      sample_item(item_list, experience_item_array) if new_item == item
-    end
-    new_item
-  end
 
   def search_params
     params.require(:search).permit(:city, :starts_at, :ends_at, :price_range, activity_ids: [])
